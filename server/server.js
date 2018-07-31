@@ -45,6 +45,37 @@ passport.use(new Auth0Strategy({
   
   }));
 
+app.get('/auth', passport.authenticate('auth0'));
+
+app.get('/auth/callback', passport.authenticate('auth0', {
+  successRedirect: `${process.env.FRONTEND_URL}#/private`,
+  failureRedirect: `${process.env.FRONTEND_URL}#/`
+}))
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  app.get('db').find_session_user([user.id])
+  .then( user => {
+    return done(null, user[0]);
+  })
+});
+
+app.get('/auth/me', (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).send('Log in required');
+  } else {
+    return res.status(200).send(req.user);
+  }
+})
+
+app.get('/auth/logout', (req, res) => {
+  req.logOut();
+  return res.redirect(`${process.env.FRONTEND_URL}#/`);
+})
+
 let SERVER_PORT = 3005;
 app.listen(SERVER_PORT, () => {
     console.log(`Listening intently on port: ${SERVER_PORT}`);
