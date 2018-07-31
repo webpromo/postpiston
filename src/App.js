@@ -5,7 +5,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div class = "wrapper">
+      <div className = "wrapper">
 
       <article>
           <h1 className="top-h1">Post to Twitter and Facebook at the same time with:</h1><br />
@@ -13,7 +13,7 @@ class App extends Component {
 
           <p>Current <strong>Twitter posting tools</strong>, like Hootsuite and Postcron, are nice for distributing promotional content you have <i>already</i> created.</p>
 
-          <p><strong>PostPiston</strong> quickly helps you both <u>create</u> <i>and</i> post multiple eye-popping social networking posts from your Facebook articles or press releases in just seconds!</p>
+          <p><strong>PostPiston</strong> quickly helps you both <u>create</u> <i>and</i> post multiple eye-popping Twitter posts from your Facebook articles or press releases in just seconds!</p>
 
           PostPiston helps you quickly:
               <ul>
