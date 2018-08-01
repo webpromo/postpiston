@@ -1,4 +1,4 @@
 
 SELECT * 
 FROM users
-WHERE id = $1;
+WHERE authid = $1;

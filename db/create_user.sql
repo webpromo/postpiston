@@ -1,6 +1,6 @@
 
 INSERT INTO users
-(username,sub)
+(username,authid)
 VALUES
-( $1)
+( $1,$2)
 RETURNING *;
