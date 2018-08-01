@@ -40,7 +40,6 @@ app.get('/auth/callback', async (req, res) => {
   };
 
   // use the code from auth0 to get a token
-  console.log("This far");
 
   let resWithToken = await axios.post(
     `https://${REACT_APP_DOMAIN}/oauth/token`,
@@ -68,14 +67,14 @@ app.get('/auth/callback', async (req, res) => {
   if (foundUser[0]) {
     // put on session
     req.session.user = foundUser[0];
-    res.redirect('/#/private');
+    res.redirect('/#/facebook-to-twitter');
     // res.redirect('http://localhost:3000/')
   } else {
     // create user
     let createdUser = await db.create_user([name, sub]);
     // put on session
     req.session.user = createdUser[0];
-    res.redirect('/#/private');
+    res.redirect('/#/facebook-to-twitter');
   }
 });
 

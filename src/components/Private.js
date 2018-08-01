@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUserData } from './../ducks/users';
+import { Link } from 'react-router-dom';
 
 class Private extends Component {
   componentDidMount() {
@@ -17,21 +18,29 @@ class Private extends Component {
     });
   }
 
+  toArchive(){
+      
+  }
+
   render() {
     let { user } = this.props;
     return (
       <div>
-        <h1>Account Information</h1>
-        {user.username ? (
-          <div>
-            <p>Account Holder: {user.username}</p>
-            <p>Account number: {user.id}</p>
-            <a href="http://localhost:3005/api/logout">
-              <button>Logout</button>
-            </a>
-          </div>
+        {!user.username ? (
+            <p>Please log in.</p>
         ) : (
-          <p>Please log in.</p>
+            <div>
+
+            <h3>Welcome {user.username}!</h3>
+            {/* <p>Account number: {user.id}</p> */}
+           <div className="navbuttons">
+                <a href="http://localhost:3005/api/logout">
+                <button>Logout</button>
+                </a>
+               <Link to='/facebook-to-twitter/archive'> <button> Archive </button></Link>
+            </div>
+
+          </div>
         )}
       </div>
     );
