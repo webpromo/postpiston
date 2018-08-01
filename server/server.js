@@ -40,26 +40,31 @@ app.get('/auth/callback', async (req, res) => {
   };
 
   // use the code from auth0 to get a token
+  console.log("This far");
+
   let resWithToken = await axios.post(
     `https://${REACT_APP_DOMAIN}/oauth/token`,
     payload
   );
-
+  console.log("To here!");
+  
   // use the access token to get user info for whoever just logged in
   let resWithUserData = await axios.get(
     `https://${REACT_APP_DOMAIN}/userinfo?access_token=${
       resWithToken.data.access_token
     }`
   );
+  console.log("resWithUserData = "+resWithUserData.data)
   // db calls
   // put user data on req.session object
   // req.session.user = responseFromDb
   // req.session = { user: {} }
   const db = req.app.get('db');
 
-  let { sub, email, name, picture } = resWithUserData.data;
+  let { sub, name} = resWithUserData.data;  // "sub" = auth0's auth_id
 
   let foundUser = await db.find_user([sub]);
+
   if (foundUser[0]) {
     // put on session
     req.session.user = foundUser[0];
@@ -67,7 +72,7 @@ app.get('/auth/callback', async (req, res) => {
     // res.redirect('http://localhost:3000/')
   } else {
     // create user
-    let createdUser = await db.create_user([name, email, sub, picture]);
+    let createdUser = await db.create_user([name, sub]);
     // put on session
     req.session.user = createdUser[0];
     res.redirect('/#/private');
@@ -78,7 +83,7 @@ app.get('/api/user-data', (req, res) => {
   if (req.session.user) {
     res.status(200).send(req.session.user);
   } else {
-    res.status(401).send('Nice try sucka!');
+    res.status(401).send('Not found.');
   }
 });
 
