@@ -13,7 +13,7 @@ export default class Oldposts extends Component {
   }
 
   componentDidMount() {
-    return axios.get(`http://localhost:3005/api/posts/`).then( results => {
+    return axios.get(`/api/posts`).then( results => {
         console.log("state = ",Store.getState())
       this.setState({
         postinfo: results.data

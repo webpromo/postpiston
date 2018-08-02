@@ -71,14 +71,18 @@ app.get('/auth/callback', async (req, res) => {
     // put on session
     req.session.user = foundUser[0];
     res.redirect('/#/facebook-to-twitter');
+    // res.status(200).send("Hola!")
     // res.redirect('http://localhost:3000/')
   } else {
     // create user
     let createdUser = await db.create_user([name, sub]);
     // put on session
     req.session.user = createdUser[0];
+    console.log("user: ",req.session.user)
     res.redirect('/#/facebook-to-twitter');
   }
+//   res.status(200).send('hi')
+
 });
 
 app.get('/api/user-data', (req, res) => {
@@ -90,13 +94,19 @@ app.get('/api/user-data', (req, res) => {
 });
 
 // get all posts
-app.get( '/api/posts', controller.getAllPosts );
-// app.get('/api/posts', async (req, res) => {
+app.get( '/api/posts',
+ ( req, res, next ) => {
+        console.log("session ",req.session.user)
+        const dbInstance = req.app.get('db');
+        dbInstance.get_posts(req.session.user.authid)
+          .then( posts => res.status(200).send( posts ) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+            console.log(err)
+          } );
+      }
+);
 
-//     let fetchedPosts = await db.get_posts();
-//     console.log(fetchedPosts[0])
-//     }
-// );
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy();
