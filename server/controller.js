@@ -1,6 +1,6 @@
 
 let allPosts = [];
-
+// not used, imported instead into server.js
 module.exports = {
     getAllPosts: ( req, res, next ) => {
         console.log("session ",req.session.user)

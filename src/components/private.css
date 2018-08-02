@@ -1,0 +1,27 @@
+.fb-section {
+    width:100%;
+}
+
+.row-of-divs {
+    width:100%;
+    display:flex;
+}
+
+.help-text {
+    width:20%;
+}
+
+textarea {
+    width:100%;
+}
+
+.fb-buttons {
+    float:right;
+    width:15%;
+}
+
+/* TWEET SECTION */
+
+.tweet-section {
+    width:100%;
+}

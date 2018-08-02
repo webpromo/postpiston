@@ -6,7 +6,7 @@ const express = require('express'),
 //   import Store from './../src/ducks/store'
 // import {Connect}
 
-const controller = require('./controller');
+// const controller = require('./controller');  opted not to use, but to access the endpoint here below.
 
 const app = express();
 

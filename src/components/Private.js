@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { updateUserData } from './../ducks/users';
 import { Link } from 'react-router-dom';
 import './archive.css'
+import './private.css'
+import Facebook from './Facebook'
+import TweetMaker from './TweetMaker'
+import PickAPic from './Pick-a-pick'
 
 class Private extends Component {
   componentDidMount() {
@@ -23,22 +27,27 @@ class Private extends Component {
     let { user } = this.props;
     return (
       <div>
-        {!user.username ? (
+        {/* {!user.username ? (
             <p>Please log in.</p>
-        ) : (
+        ) : ( */}
             <div>
 
-            <h3>Welcome {user.username}!</h3>
-            {/* <p>Account number: {user.id}</p> */}
-           <div className="navbuttons">
-                <a href="http://localhost:3005/api/logout">
-                <button>Logout</button>
-                </a>
-               <Link to='/facebook-to-twitter/archive'> <button> Archive </button></Link>
-            </div>
+              <h3>Welcome {user.username}!</h3>
+              {/* <p>Account number: {user.id}</p> */}
+            <div className="navbuttons">
+                  <a href="http://localhost:3005/api/logout">
+                  <button>Logout</button>
+                  </a>
+                <Link to='/facebook-to-twitter/archive'> <button> Archive </button></Link>
+              </div>
+
+            <Facebook />
+            <TweetMaker />
+            <PickAPic />
 
           </div>
-        )}
+        {/* ) */}
+        }
       </div>
     );
   }
