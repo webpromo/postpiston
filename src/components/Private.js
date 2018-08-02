@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUserData } from './../ducks/users';
 import { Link } from 'react-router-dom';
+import './archive.css'
 
 class Private extends Component {
   componentDidMount() {
@@ -16,10 +17,6 @@ class Private extends Component {
     axios.get('/api/logout').then(res => {
       this.props.history.push('/');
     });
-  }
-
-  toArchive(){
-      
   }
 
   render() {

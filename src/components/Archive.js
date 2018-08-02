@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { updateUserData } from './../ducks/users';
 import { Link } from 'react-router-dom';
 import './archive.css'
+import Oldposts from './Oldposts';
 
 
-class Private extends Component {
+class Archive extends Component {
   componentDidMount() {
 
   }
@@ -16,11 +17,12 @@ render() {
     // let { user } = this.props;
     return (
 
-                <div>
-<Link to='/facebook-to-twitter'><button>Logo</button></Link>
-                <h1>Post Archive</h1>
+         <div>
+    <Link to='/facebook-to-twitter'><button>Home</button></Link>
+            <h1>Post Archive</h1>
 
-            </div>
+        <Oldposts />
+        </div>
 
     );
 }
@@ -35,4 +37,4 @@ user: state.user
 export default connect(
 mapStateToProps,
 { updateUserData }
-)(Private);
+)(Archive);

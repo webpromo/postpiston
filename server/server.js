@@ -4,6 +4,8 @@ const express = require('express'),
   axios = require('axios'),
   massive = require('massive');
 
+const controller = require('./controller');
+
 const app = express();
 
 const {
@@ -45,7 +47,6 @@ app.get('/auth/callback', async (req, res) => {
     `https://${REACT_APP_DOMAIN}/oauth/token`,
     payload
   );
-  console.log("To here!");
   
   // use the access token to get user info for whoever just logged in
   let resWithUserData = await axios.get(
@@ -53,7 +54,7 @@ app.get('/auth/callback', async (req, res) => {
       resWithToken.data.access_token
     }`
   );
-  console.log("resWithUserData = "+resWithUserData.data)
+  
   // db calls
   // put user data on req.session object
   // req.session.user = responseFromDb
@@ -86,6 +87,15 @@ app.get('/api/user-data', (req, res) => {
   }
 });
 
+// get all posts
+app.get( '/api/posts', controller.getAllPosts );
+// app.get('/api/posts', async (req, res) => {
+
+//     let fetchedPosts = await db.get_posts();
+//     console.log(fetchedPosts[0])
+//     }
+// );
+  
 app.get('/api/logout', (req, res) => {
   req.session.destroy();
   res.redirect('http://localhost:3000/');
