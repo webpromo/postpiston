@@ -21,11 +21,12 @@ time, mark, audio, video {
 }
 
 body {
-  background: url("./images/post-to-twitter-and-facebook-at-the-same-time.jpg")  no-repeat center center fixed;
+  /* background: url("./images/post-to-twitter-and-facebook-at-the-same-time.jpg")  no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
+  background:darkgray;
   font-family:Arial, Helvetica, sans-serif;
   height:100%;
   width:100vw;
