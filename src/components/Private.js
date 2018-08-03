@@ -28,9 +28,9 @@ class Private extends Component {
     let { user } = this.props;
     return (
       <div>
-        {!user.username ? (
+        {/* {!user.username ? (
             <p>Please log in.</p>
-        ) : (
+        ) : ( */}
             <div>
 
               <h3>Welcome {user.username}!</h3>
@@ -49,7 +49,7 @@ class Private extends Component {
 
           </div>
         )
-        }
+        {/* } */}
       </div>
     );
   }

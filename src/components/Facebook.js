@@ -1,20 +1,42 @@
 
 
-import React from 'react';
+import React, {Component} from 'react';
 
-export default function Facebook()  {
+class Facebook extends Component {
+    constructor(){
+        super()
+        this.state = {
+            article:"",
+            targetUrl:""
+        }
+    }
+
+    updateArticle(article){
+        this.setState({
+            article: article
+          })
+    }
+
+    updateURL(URL){
+        this.setState({
+            URL
+          })
+    }
+    
+    render() {
     return (
        <section className="fb-section">
-            <h1> Paste your Press Release </h1>
+            <h1> Paste your Press Release (or Article)</h1>
             <div className="row-of-divs">
-                <div className="help-text"><h3>Directions</h3> Just past your existing or Future Facebook post's text here. Click the Post button over on the right, or, if it's already posted to FB, just hit "Save"</div>
-                <textarea cols="130" rows="30" />
+                <div className="help-text"><h3>Directions</h3>Just post the text of your article here. Then paste the URL to where you want visitors to go to read more.  Then click "Save".</div>
+                <textarea cols="120" rows="30" onChange={(e) => this.updateArticle(e.target.value)} defaultValue={this.state.article}/>
                 <div className="fb-buttons">
-                    <button>Post</button>
+                    <input placeholder="Paste target URL here"></input>
                     <button>Save</button>
                 </div>
             </div>
         </section>
-
-  )
+    )
+    }
 }
+export default Facebook;
