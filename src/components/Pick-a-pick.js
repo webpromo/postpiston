@@ -1,11 +1,11 @@
 
-
+import spacer from './../images/spacer.jpg' // could use company logo as third tweet pic
 import React from 'react';
 
 export default function PickAPic()  {
     return (
-      <section className="tweet-section">
-            <h1>Produce your Twitter Posts</h1><br />
+      <section className="picture-section">
+            <h1>Pick a Pic</h1><br />
             <div className="row-of-divs">
 
                 <div className="help-text">
@@ -13,20 +13,20 @@ export default function PickAPic()  {
                 </div>
 
                 <div className="twitter-buttons">
-                    <img src="" height="200" /><br />
-                    <input>(your image link)</input><button>Use</button><br />
+                    <img src="https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg" alt="pic1" /><br />
+                    <input defaultValue="(your image link)" /><button>Use</button><br />
                     <button>Get similar</button><button>Get diff.</button>
                 </div>
 
                 <div className="twitter-buttons">
-                <img src="" height="200" /><br />
-                    <input>(your image link)</input><button>Use</button><br />
+                <img src="https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg" alt="pic2" /><br />
+                    <input defaultValue="(your image link)" /><button>Use</button><br />
                     <button>Get similar</button><button>Get diff.</button>
                 </div>
 
                 <div className="twitter-buttons">
-                <img src="" height="200" /><br />
-                    <input>(your image link)</input><button>Use</button><br />
+                <img src={spacer} alt="pic3" /><br />
+                    <input defaultValue="(your image link)" /><button>Use</button><br />
                     <button>Get similar</button><button>Get diff.</button>
                 </div>
                 <div className="fb-buttons">(spacer)</div>

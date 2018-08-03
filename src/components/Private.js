@@ -8,6 +8,7 @@ import './private.css'
 import Facebook from './Facebook'
 import TweetMaker from './TweetMaker'
 import PickAPic from './Pick-a-pick'
+import Preview from './Preview'
 
 class Private extends Component {
   componentDidMount() {
@@ -27,9 +28,9 @@ class Private extends Component {
     let { user } = this.props;
     return (
       <div>
-        {/* {!user.username ? (
+        {!user.username ? (
             <p>Please log in.</p>
-        ) : ( */}
+        ) : (
             <div>
 
               <h3>Welcome {user.username}!</h3>
@@ -44,9 +45,10 @@ class Private extends Component {
             <Facebook />
             <TweetMaker />
             <PickAPic />
+            <Preview />
 
           </div>
-        {/* ) */}
+        )
         }
       </div>
     );
