@@ -2,13 +2,12 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {update_Article,update_URL} from './../ducks/reducer';
+import {update_Article,update_URL,remember_article_id} from './../ducks/reducer';
 import axios from 'axios';
 
 class Facebook2 extends Component {
 
 createPost(){
-    console.log("Article: ",this.props )
     axios.post('/api/posts',{
         article:this.props.reducer2.article,
         pic1:"",
@@ -16,12 +15,11 @@ createPost(){
         pic3:"",
         authid:this.props.users.user.authid,
         fblink:this.props.reducer2.fblink})
-        .then( response => {
-       console.log("Response: ",response); //this.setState({ products: response.data }
-      })
+        .then( response => this.props.remember_article_id(response.data[0].id))  
 }   
 
     render() {
+        // console.log("Props: ",this.props)
     return (
        <section className="fb-section">
             <h1> Paste your Press Release (or Article)</h1>
@@ -41,4 +39,4 @@ createPost(){
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {update_Article,update_URL})(Facebook2)
+  export default connect(mapStateToProps, {update_Article,update_URL,remember_article_id})(Facebook2)
