@@ -113,9 +113,9 @@ app.get( '/api/posts',
 app.post( '/api/posts',
  ( req, res, next ) => {
   console.log("body",req.body)
-        let {article,pic1,pic2,pic3,authid} = req.body;
+        let {article,pic1,pic2,pic3,authid,fblink} = req.body;
         const dbInstance = req.app.get('db');
-        dbInstance.save_post([article,pic1,pic2,pic3,authid])
+        dbInstance.save_post([article,pic1,pic2,pic3,authid,fblink])
           .then( posts => res.status(200).send( posts ) )
           .catch( err => {
             res.status(500).send({errorMessage: "Error posting to the database. Abort! Abort!"});

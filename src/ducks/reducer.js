@@ -3,7 +3,7 @@
 
 const initialState = {
     article:"",
-    target_url:""
+    fblink:""
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
@@ -16,6 +16,8 @@ export default function reducer(state=initialState, action){
       //   return Object.assign({}, state, { user: action.payload });
       case UPDATE_ARTICLE:
         return Object.assign({},state,{article:action.payload});
+      case UPDATE_URL:
+        return Object.assign({},state,{fblink:action.payload});
       default: return state;
     }
 }
