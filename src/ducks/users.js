@@ -1,5 +1,18 @@
 const initialState = {
-    user: {}
+    user: {
+      authid
+:
+"github|2996722",
+id
+:
+1,
+password
+:
+null,
+username
+:
+"Jesse Fisher"
+    }
   };
   
   const UPDATE_USER_DATA = 'UPDATE_USER_DATA';

@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bodyParser = require('body-parser');
 const express = require('express'),
   session = require('express-session'),
   axios = require('axios'),
@@ -30,6 +31,8 @@ app.use(
     saveUninitialized: false
   })
 );
+app.use( bodyParser.json() );
+
 
 app.get('/auth/callback', async (req, res) => {
   // req.query.code ---> code from auth0
@@ -102,6 +105,20 @@ app.get( '/api/posts',
           .then( posts => res.status(200).send( posts ) )
           .catch( err => {
             res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+            console.log(err)
+          } );
+      }
+);
+
+app.post( '/api/posts',
+ ( req, res, next ) => {
+  console.log("body",req.body)
+        let {article,pic1,pic2,pic3,authid} = req.body;
+        const dbInstance = req.app.get('db');
+        dbInstance.save_post([article,pic1,pic2,pic3,authid])
+          .then( posts => res.status(200).send( posts ) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Error posting to the database. Abort! Abort!"});
             console.log(err)
           } );
       }

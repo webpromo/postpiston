@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import { updateUserData } from './../ducks/users';
+import { connect } from 'react-redux';  
+import { updateUserData } from './../ducks/users';  
 import { Link } from 'react-router-dom';
 import './archive.css'
 import './private.css'
-import Facebook from './Facebook'
+import Facebook2 from './Facebook2'
 import TweetMaker from './TweetMaker'
 import PickAPic from './Pick-a-pick'
 import Preview from './Preview'
 
-class Private extends Component {
+class Private extends Component { 
   componentDidMount() {
     axios.get('/api/user-data').then(res => {
       // invoke action creator to update redux state
@@ -29,11 +29,11 @@ class Private extends Component {
     return (
       <div>
         {/* {!user.username ? (
-            <p>Please log in.</p>
+            <p>Please <a href="http://localhost:3000/">log in</a>.</p>
         ) : ( */}
             <div>
 
-              <h3>Welcome {user.username}!</h3>
+              {/* <h3>Welcome {user.username}!</h3>  TURN BACK ON WITH AUTH0 */}
               {/* <p>Account number: {user.id}</p> */}
             <div className="navbuttons">
                   <a href="http://localhost:3005/api/logout">
@@ -42,14 +42,14 @@ class Private extends Component {
                 <Link to='/facebook-to-twitter/archive'> <button> Archive </button></Link>
               </div>
 
-            <Facebook />
+            <Facebook2 />
             <TweetMaker />
             <PickAPic />
             <Preview />
 
           </div>
         )
-        {/* } */}
+         {/* }  this one */}
       </div>
     );
   }
@@ -63,5 +63,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { updateUserData }
+  { updateUserData }  // 
 )(Private);
