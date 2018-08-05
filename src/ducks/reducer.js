@@ -3,22 +3,29 @@
 
 const initialState = {
     article:"",
-    target_url:"",
-    userid:"github|2996722"
+    target_url:""
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
-const CREATE_POST = "CREATE_POST"
+// const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
+  
 
 export default function reducer(state=initialState, action){
     switch(action.type){
+      // case UPDATE_USER_DATA:
+      //   return Object.assign({}, state, { user: action.payload });
       case UPDATE_ARTICLE:
-        return Object.assign({},state,{reducer:action.payload});
-      case CREATE_POST:
-        return Object.assign({},state,{reducer:action.payload});
+        return Object.assign({},state,{article:action.payload});
       default: return state;
     }
 }
+
+// export function updateUserData(user) {
+//   return {
+//     type: UPDATE_USER_DATA,
+//     payload: user
+//   };
+// }
 
 export function update_Article(article){
     return {

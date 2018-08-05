@@ -8,15 +8,15 @@ import axios from 'axios';
 class Facebook2 extends Component {
 
 createPost(){
-
+    console.log("Article: ",this.props )
     axios.post('/api/posts',{
-        article:this.props.article,
+        article:this.props.reducer2.article,
         pic1:"",
         pic2:"",
         pic3:"",
-        user:this.props.authid})
+        authid:this.props.users.user.authid})
         .then( response => {
-        this.setState({ products: response.data });
+       console.log("Response: ",response); //this.setState({ products: response.data }
       })
 }   
 

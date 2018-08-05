@@ -124,6 +124,19 @@ app.post( '/api/posts',
       }
 );
 
+app.put( '/api/posts',
+ ( req, res, next ) => {
+        let {article,pic1,pic2,pic3,authid} = req.body;
+        const dbInstance = req.app.get('db');
+        dbInstance.update_post([article,pic1,pic2,pic3,authid])
+          .then( id => res.status(200).send( id ) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Error updating posts to the database. Run away!"});
+            console.log(err)
+          } );
+      }
+);
+
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy();

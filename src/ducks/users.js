@@ -1,17 +1,11 @@
+// MERGED WITH REDUCER.JS
+
 const initialState = {
     user: {
-      authid
-:
-"github|2996722",
-id
-:
-1,
-password
-:
-null,
-username
-:
-"Jesse Fisher"
+      authid:"github|2996722",
+      id:1,
+      password:null,
+      username:"Jesse Fisher"
     }
   };
   
