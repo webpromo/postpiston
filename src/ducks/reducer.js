@@ -4,11 +4,15 @@
 const initialState = {
     article:"",
     fblink:"",
-    articleID:null
+    article_info:{
+      text1: 'ugh',
+      text2: 'kh',
+      text3: 'j'
+    }
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
-const CURRENT_ARTICLE_ID= "CURRENT_ARTICLE_ID"
+const ARTICLE_INFO= "ARTICLE_INFO"
 // const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
   
 
@@ -20,9 +24,8 @@ export default function reducer(state=initialState, action){
         return Object.assign({},state,{article:action.payload});
       case UPDATE_URL:
         return Object.assign({},state,{fblink:action.payload});
-      case CURRENT_ARTICLE_ID:
-        console.log("All that stuff: ",Object.assign({},state,{articleID:action.payload}))
-        return Object.assign({},state,{articleID:action.payload});
+      case ARTICLE_INFO:
+        return Object.assign({},state,{article_info:action.payload});
       default: return state;
     }
 }
@@ -47,10 +50,10 @@ export function update_URL(URL){
     payload: URL
   }
 }
-export function remember_article_id(id){
+export function article_info(id){
   console.log("ID: ",id)
   return {
-    type: CURRENT_ARTICLE_ID,
+    type: ARTICLE_INFO,
     payload: id
   }
 }

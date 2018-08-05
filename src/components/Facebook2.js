@@ -2,20 +2,24 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {update_Article,update_URL,remember_article_id} from './../ducks/reducer';
+import {update_Article,update_URL,article_info} from './../ducks/reducer';
 import axios from 'axios';
 
 class Facebook2 extends Component {
 
 createPost(){
+    const text1 = 'testing1' // pull first paragraph from article
+    const text2 = "testing2" // topic sentences from article
+    const text3 = 'testing3' // mix of the above or something cool like that 
+
     axios.post('/api/posts',{
         article:this.props.reducer2.article,
-        pic1:"",
-        pic2:"",
-        pic3:"",
+        text1,
+        text2,
+        text3,
         authid:this.props.users.user.authid,
         fblink:this.props.reducer2.fblink})
-        .then( response => this.props.remember_article_id(response.data[0].id))  
+        .then( response => this.props.article_info(response.data[0]))  
 }   
 
     render() {
@@ -39,4 +43,4 @@ createPost(){
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {update_Article,update_URL,remember_article_id})(Facebook2)
+  export default connect(mapStateToProps, {update_Article,update_URL,article_info})(Facebook2)
