@@ -12,34 +12,114 @@ export default class Login extends Component {
     render() {
         return (
             <div className = "wrapper">
-      
-            <article>
-                <h1 className="top-h1">Post to Twitter and Facebook at the same time with:</h1><br />
-                <h1>PostPiston</h1><br /><br />
-      
-                <p>Current <strong>Twitter posting tools</strong>, like Hootsuite and Postcron, are nice for distributing promotional content you have <i>already</i> created.</p>
-      
-                <p><strong>PostPiston</strong> quickly helps you both <u>create</u> <i>and</i> post multiple eye-popping Twitter posts from your Facebook articles or press releases in just seconds!</p>
-      
-                PostPiston helps you quickly:
-                    <ul>
-                        <li>Create three unique tweets,</li>
-                        <li>Quickly find 3 related eye-popping photos to match,</li>
-                        <li>Post them to your company's Twitter account, <br />linking back to your original article, and</li>
-                        <li>It allows you to save them for re-use at a later time.</li>
-                    </ul>
-      
-      
-                <p>Future features include posting to Instagram, Pinterest, and LinkedIn</p>
-      
-                <div className="buttons">
-                 <button>Register</button> &nbsp; 
-                 <button onClick={this.login}> Login </button>
+            <menu>
+                <div className="logo"><a href="http://localhost:3000/$/"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" height="100" /></a></div>
+                <div><h1 className="off-white">Best Twitter Marketing Software</h1></div>
+                <div className="nav-buttons">
+                    <div><a href="http://localhost:3000/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
+                    <div><a href="" title="The Best way to use Twitter for marketing and PR">About</a></div>
+                    <div><a href="" title="Best Twitter Marketing Software"  onClick={this.login}>Login</a></div>
+                    <div><a href="" title="">Contact</a></div>
                 </div>
-            </article>
-            <section>
-      asdf
-              </section>
+            </menu>
+
+            {/* "Power of Twitter for Business" section */}
+            <section className="section-one" style={{backgroundImage:"url('../images/power-twitter-business.jpg')"}}>
+                <div className="evenly">
+                    <div><img src={require("../images/the-best-way-to-use-twitter-for-marketing.png")} alt="PostPiston is the best way to use twitter for marketing" height="300" /></div>
+                    <div><img src={require("../images/best-twitter-marketing-software.png")} alt="PostPiston is the best twitter marketing software" height="400" /></div>
+                    <div><img src={require("../images/twitter-as-a-marketing-tool.jpg")} alt="We use Twitter as a marketing tool" height="300" /></div>
+                </div>
+                <div className="c"><h1 className="off-white">Quickly Harness the Power of Twitter for Business!</h1>
+                </div>  
+            </section>
+
+             {/* "Twitter as a marketing tool" portion */}
+            <section className="section-two">
+                <div>
+                  <h3 className="pt30 upper off-white">Three Fast Steps</h3>
+                  <p className="off-white pt18">...to Use Twitter as a Marketing Tool with PostPiston </p>
+                </div>
+                <div className="wide900">
+                    <div className="box">
+                        <div className="box-image">
+                        <img src={require("../images/content-marketing-on-twitter.png")} alt="content-marketing-on-twitter" height="180" />
+                        </div>
+                        <div className="box-title">1. Paste your content</div>
+                        <div className="box-text">It's simply copying and pasting the text &amp; URL of your press release, article, or blog post into PostPiston,</div>
+                    </div>
+                    <div className="box">
+                        <div className="box-image">
+                        <img src={require("../images/post-to-twitter-automatically.jpg")} alt="content-marketing-on-twitter" height="180" />
+                        </div>
+                        <div className="box-title">2. Tweak your 3 tweets</div>
+                        <div className="box-text">PostPiston automatically creates three tweets linking back to your content, you just tweak the proposed text, and </div>
+                    </div>
+                    <div className="box">
+                        <div className="box-image">
+                             <img src={require("../images/twitter-marketing-software.jpg")} alt="twitter-marketing-software" height="180" />
+                        </div>
+                        <div className="box-title">3. Pick your Pics!</div>
+                        <div className="box-text">PostPiston automatically finds 3 free, eye-popping pics to capture attention for your tweets. </div>
+                    </div>
+                </div>
+
+                <div className="c two-together">
+                    <h3 className="pt24 off-white">That's it!</h3>
+                    <p>(OK, well... you <i>do</i> have to click a button to publish your tweets.)</p>
+                </div>
+            </section>
+
+          
+             {/* "The Best way to use twitter for business" area */}
+            <section className="section-three c two-together">
+             
+            <h3 className="off-white">Why PostPiston is the best way to use Twitter for Marketing</h3>  
+                <div className="wide800 two-together">
+                    <p className="c999 p14">Current Twitter posting tools, like Hootsuite and Postcron, are nice for distributing promotional content you have already created.</p>
+
+<p className="c999 p14 padtop8">PostPiston is the best way to use Twitter for Marketing because it quickly helps you both create <em>and</em> post multiple eye-popping social networking posts from your Facebook articles or press releases in just seconds!</p>
+                </div>
+    <div>
+        <h3 className="pt14 off-white">PostPiston helps you by:</h3>
+        <ul  className="c999 p14" >
+        <li>Automatically creating three unique tweets you can tweak, if needed,</li>
+        <li>Quickly findind 3 related eye-popping photos to match,</li>
+        <li>Posting them to your company's Twitter account,
+        linking back to your original article, and</li>
+        <li>It allows you to save them for re-use at a later time.</li> 
+        </ul>
+    </div>
+
+
+<div><h3 className="pt14 off-white">Future features include posting to Instagram, Pinterest, and LinkedIn.</h3></div>
+            </section>
+
+            <footer>
+                <div className="flex-row">
+                    <div><h3 className="off-white">Our Contact Info</h3><br />
+                    <span className="c999 padtop8">Jesse Fisher, Developer<br />NewSalem Web Services<br />
+                    PO Box 176<br />Salem, Utah 84653<br /><br />(801) 423-6426<br />
+                    PostPiston@NewSalemWeb.com</span>
+                    </div>
+
+                        <div><h3 className="off-white">Our Other Services</h3><br />
+                    <span className="c999 padtop8">Website Development<br />SEO &amp; Website Marketing<br />
+                    Social Media Marketing<br />
+                    <a href="http://JesseFisherDomains.com/" title="Cheap domain names" className="c999">Cheap Domain Names &amp; Hosting</a></span>
+                    </div>
+
+                    <div><h3 className="off-white">Special Thanks to:</h3><br />
+                    <span className="c999 padtop8">DevMountain staff, especially:<br />
+                    &nbsp; Joe Blank<br />
+                    &nbsp; Tim Mathews<br />&nbsp; Megan Fisher <br />&nbsp; Missy Beutler<br />
+                    and my fellow DevMountain Student Developers</span>
+                    </div>
+                </div>
+                <div className="c c666"><hr />
+                  <center>  &copy; 2018 by Jesse Fisher, All rights reserved.</center></div>
+            </footer>
+
         </div>
           );
         }

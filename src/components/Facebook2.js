@@ -8,19 +8,28 @@ import axios from 'axios';
 class Facebook2 extends Component {
 
 createPost(){
+    // PROBLEM:  These three make it to the db, but don't update the store's state!  :(
     const text1 = 'testing1' // pull first paragraph from article
     const text2 = "testing2" // topic sentences from article
     const text3 = 'testing3' // mix of the above or something cool like that 
 
-    axios.post('/api/posts',{
+    const PostMe = {
         article:this.props.reducer2.article,
-        text1,
+        text1:text1,
         text2,
         text3,
         authid:this.props.users.user.authid,
-        fblink:this.props.reducer2.fblink})
-        .then( response => this.props.article_info(response.data[0]))  
-}   
+        fblink:this.props.reducer2.fblink};
+
+        axios.post('/api/posts',PostMe) // works!  Saves to database
+        .then( response => { 
+            console.log("In FB2: ",response.data[0])
+            return this.props.article_info(response.data[0])
+        })  // doesn't seem to trigger a DOM update in the three twitter fields.
+        .catch(function (error) {
+            console.log("FB2 error: ",error);
+          });
+        }   
 
     render() {
         // console.log("Props: ",this.props)
