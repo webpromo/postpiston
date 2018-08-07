@@ -136,6 +136,21 @@ app.put( '/api/posts',
       }
 );
 
+// fetch photo by keyword
+const pexelsQuery = "https://api.pexels.com/v1/search?query=example+query&per_page=15&page=1"
+app.get( '/api/posts',
+ ( req, res, next ) => {
+        console.log("session ",req.session.user)
+        const dbInstance = req.app.get('db');
+        dbInstance.get_posts(req.session.user.authid)
+          .then( posts => res.status(200).send( posts ) )
+          .catch( err => {
+            res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
+            console.log(err)
+          } );
+      }
+);
+
   
 app.get('/api/logout', (req, res) => {
   req.session.destroy();

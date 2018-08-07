@@ -2,34 +2,52 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {update_Article,update_URL,article_info} from './../ducks/reducer';
+import {update_Article,update_URL,article_info,save_text1} from './../ducks/reducer';
 import axios from 'axios';
+var _ = require('lodash');
 
 class Facebook2 extends Component {
 
-createPost(){
-    // PROBLEM:  These three make it to the db, but don't update the store's state!  :(
-    const text1 = 'testing1' // pull first paragraph from article
-    const text2 = "testing2" // topic sentences from article
-    const text3 = 'testing3' // mix of the above or something cool like that 
-
-    const PostMe = {
-        article:this.props.reducer2.article,
-        text1:text1,
-        text2,
-        text3,
-        authid:this.props.users.user.authid,
-        fblink:this.props.reducer2.fblink};
+    createPost(){
+        const PostMe = {
+            article:this.props.reducer2.article,
+            text1:"",
+            text2:"",
+            text3:"",
+            authid:this.props.users.user.authid,
+            fblink:this.props.reducer2.fblink
+        };
 
         axios.post('/api/posts',PostMe) // works!  Saves to database
         .then( response => { 
-            console.log("In FB2: ",response.data[0])
-            return this.props.article_info(response.data[0])
-        })  // doesn't seem to trigger a DOM update in the three twitter fields.
+            console.log("RESPONSE = ",response.data[0])
+            this.props.article_info(response.data[0])
+            this.tweetMaker1(this.props.reducer2.article)
+        })  
         .catch(function (error) {
-            console.log("FB2 error: ",error);
-          });
-        }   
+            console.log("Error: FB2 CreatePost: ",error);
+        });
+        // console.log("Reducer2 = ",this.props.reducer2)
+    }   
+
+    tweetMaker1(article){
+        let firstParagraph = "";
+        let sentencesArr = article.match(/\(?[A-Z][^.]+[.!?]\)?(\s+|$)/g);
+        // loop through article's sentences one by one, 
+        let testResults = [];
+        for (let i=0; i<sentencesArr.length;i++){
+            testResults[i]= /\r|\n/.exec(sentencesArr[i]);
+      // if next sentence does not contain RETURN
+            if (!testResults[i]) {
+            // then append to firstParagraph.
+                firstParagraph+=sentencesArr[i];
+            // if RETURN then save and quit looking.
+            } else {break;}
+        }
+        this.props.save_text1(firstParagraph);
+        console.log("First para =",firstParagraph)
+        console.log("Save_text -> Props =",this.props)
+    }
 
     render() {
         // console.log("Props: ",this.props)
@@ -49,7 +67,7 @@ createPost(){
     }
 }
 
-function mapStateToProps( state ) {
+function mapStateToProps(state) {
     return state;
   }
-  export default connect(mapStateToProps, {update_Article,update_URL,article_info})(Facebook2)
+  export default connect(mapStateToProps, {update_Article,update_URL,article_info,save_text1})(Facebook2)

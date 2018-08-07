@@ -2,18 +2,20 @@
 // INITIALIZE VARIABLES 
 
 const initialState = {
-    article:"",
-    fblink:"",
-    article_info:{
-      text1: 'ugh',
-      text2: 'kh',
-      text3: 'j'
-    }
+    article: "",
+    fblink: "",
+      text1: '(Post your content above)',
+      text2: '(Post your content above)',
+      text3: '(Post your content above)',
+      authid: '',
+      pic1: '',
+      pic2: '',
+      pic3: ''
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
 const ARTICLE_INFO= "ARTICLE_INFO"
-const MAKE_TWEETS= "MAKE_TWEETS"
+const SAVE_TEXT1= "SAVE_TEXT1"
 // const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
   
 
@@ -23,20 +25,30 @@ export default function reducer(state=initialState, action){
       //   return Object.assign({}, state, { user: action.payload }); // for Auth0?
       case UPDATE_ARTICLE:
         return Object.assign({},state,{article:action.payload});
+
       case UPDATE_URL:
         return Object.assign({},state,{fblink:action.payload});
-      case ARTICLE_INFO:
-        console.log("Reducer payload: ",action.payload) // makes it this far!
-        return Object.assign({},state,{article_info:action.payload}); // doesn't cause the DOM to update!
-      case MAKE_TWEETS:
-        console.log("Reducer MakeTweets: ",action.payload) 
-        return Object.assign({},state,{id:action.payload}); 
 
+      case ARTICLE_INFO:
+      console.log("Article info: ",action)
+        return Object.assign({},state,{
+          article:action.payload.article,
+        text1:action.payload.text1,
+        text2:action.payload.text2,
+        text3:action.payload.text3,
+        user_id:action.payload.user_id,
+        fblink:action.payload.fblink
+      });
+        
+      case SAVE_TEXT1:
+      console.log("Save text",action)
+        return Object.assign({},state,{text1:action.payload}); 
       default: return state;
     }
 }
 
 export function update_Article(article){
+    // console.log("AC update_Article is receiving: ",article)
     return {
       type: UPDATE_ARTICLE,
       payload: article
@@ -50,16 +62,18 @@ export function update_URL(URL){
   }
 }
 export function article_info(updates){
+  console.log("AC article_info is receiving: ",updates);
   return {
     type: ARTICLE_INFO,
     payload: updates
   }
 }
-export function make_tweets(id){
-  console.log("Action Creator : ",id)
+
+export function save_text1(text1){
+  console.log("save_text1 Action Creator receives : ",text1)
   return {
-    type: MAKE_TWEETS,
-    payload: id
+    type: SAVE_TEXT1,
+    payload: text1
   }
 }
 

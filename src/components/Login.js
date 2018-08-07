@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import './Login.css';
+import bkgnd from '../images/power-twitter-business.jpg'
 
 
 export default class Login extends Component {
@@ -24,7 +25,7 @@ export default class Login extends Component {
             </menu>
 
             {/* "Power of Twitter for Business" section */}
-            <section className="section-one" style={{backgroundImage:"url('../images/power-twitter-business.jpg')"}}>
+     <section className="section-one">
                 <div className="evenly">
                     <div><img src={require("../images/the-best-way-to-use-twitter-for-marketing.png")} alt="PostPiston is the best way to use twitter for marketing" height="300" /></div>
                     <div><img src={require("../images/best-twitter-marketing-software.png")} alt="PostPiston is the best twitter marketing software" height="400" /></div>
@@ -72,7 +73,7 @@ export default class Login extends Component {
 
           
              {/* "The Best way to use twitter for business" area */}
-            <section className="section-three c two-together">
+            <section className="section-three c two-together" style={{backgroundImage:`url(${bkgnd})`}}>
              
             <h3 className="off-white">Why PostPiston is the best way to use Twitter for Marketing</h3>  
                 <div className="wide800 two-together">

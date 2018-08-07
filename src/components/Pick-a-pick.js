@@ -1,9 +1,36 @@
 
 import spacer from './../images/spacer.jpg' // could use company logo as third tweet pic
-import React from 'react';
+import React, {Component} from 'react'; 
+const PexelsAPI = require('pexels-api-wrapper');
 
-export default function PickAPic()  {
-    return (
+class PickAPic extends Component  {
+    constructor() {
+        super()
+        this.state = {
+            photo1:"",
+            PEXELS: "563492ad6f9170000100000145e3ffa0294445cd9fbce4be1b757988"
+        }
+    }
+
+    fetchPhotos(keyword){                                  /// WORKS
+        //Create Client instance by passing in API key
+        var pexelsClient = new PexelsAPI(this.state.PEXELS);
+        pexelsClient.search(keyword, 10, 1)
+        .then( (result) => {
+            this.setState({
+               photo1:result.photos[0].src.small});
+        }).catch(function(e){
+            console.err(e);
+        });
+    }
+
+    componentDidMount() {
+        // this.fetchPhotos("food") //  ON PAUSE FOR NOW
+    }
+
+    render () {
+        console.log("photo1: ",this.state.photo1)
+        return(
       <section className="picture-section">
             <h1>Pick a Pic</h1><br />
             <div className="row-of-divs">
@@ -32,5 +59,7 @@ export default function PickAPic()  {
                 <div className="fb-buttons">(spacer)</div>
             </div>
       </section>
-    )
+         ) }
 }
+
+export default PickAPic;

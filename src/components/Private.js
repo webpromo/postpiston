@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './archive.css'
 import './private.css'
 import Facebook2 from './Facebook2'
-import TweetMaker from './TweetMaker'
+import DiplayTweets from './DiplayTweets'
 import PickAPic from './Pick-a-pick'
 import Preview from './Preview'
 
@@ -43,7 +43,7 @@ class Private extends Component {
               </div>
 
             <Facebook2 />
-            <TweetMaker />
+            <DiplayTweets />
             <PickAPic />
             <Preview />
 
