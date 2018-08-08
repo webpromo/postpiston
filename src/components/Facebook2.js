@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {update_Article,update_URL,article_info,save_text1} from './../ducks/reducer';
 import axios from 'axios';
-var _ = require('lodash');
+// var _ = require('lodash');
 
 class Facebook2 extends Component {
 

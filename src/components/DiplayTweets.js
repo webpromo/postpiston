@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {article_info} from '../ducks/reducer';
+import './displayTweets.css';
 
 class DisplayTweets extends Component {
     constructor () {
@@ -27,8 +28,8 @@ class DisplayTweets extends Component {
             <div className="row-of-divs">
                 <div className="help-text"><h3>Directions</h3> Here are three automatically generated tweets based on your content above. Our years of Social Media Marketing experience show us that simulteously posting three tweets will significantly increase viewer engagement.Feel free to tweak them and "Save" when you like them.</div>
                 <div className="twitter-buttons">
-                    <div name="text1" rows="20" className="tweet-text" defaultValue={this.state.text1}
-                     onChange={e => this.handleChange(e)}></div>
+                    <div name="text1" className="tweet-textDiv"  contentEditable="true" 
+                     onChange={e => this.handleChange(e)}>{this.props.reducer2.text1}</div>
                 </div>
                 <div className="twitter-buttons">
                     <textarea name="text2" rows="20" className="tweet-text" defaultValue={this.props.reducer2.text2}onChange={e => this.handleChange(e)}></textarea>        </div>

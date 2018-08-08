@@ -25,7 +25,7 @@ class Private extends Component {
   }
 
   render() {
-    let { user } = this.props;
+    // let { user } = this.props;
     return (
       <div>
         {/* {!user.username ? (

@@ -62,7 +62,7 @@ export function update_URL(URL){
   }
 }
 export function article_info(updates){
-  console.log("AC article_info is receiving: ",updates);
+  // console.log("AC article_info is receiving: ",updates);
   return {
     type: ARTICLE_INFO,
     payload: updates
@@ -70,7 +70,7 @@ export function article_info(updates){
 }
 
 export function save_text1(text1){
-  console.log("save_text1 Action Creator receives : ",text1)
+  // console.log("save_text1 Action Creator receives : ",text1)
   return {
     type: SAVE_TEXT1,
     payload: text1
