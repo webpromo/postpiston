@@ -37,39 +37,62 @@ class Facebook2 extends Component {
         let firstParagraph = "";
         // loop through article's sentences one by one, 
         let testResults = [];
-        for (let i=0; i<sentencesArr.length;i++){
+        let count1 = 0;
+        for (let i = 0; i<sentencesArr.length; i++) {
             testResults[i]= /\r|\n/.exec(sentencesArr[i]);
             // if next sentence does not contain RETURN
             if (!testResults[i]) {
             // then append to firstParagraph.
                 firstParagraph+=sentencesArr[i];
+                count1++
             // if RETURN then save the last sentence of the paragraph and quit looking.
             } else {
                 firstParagraph+=sentencesArr[i];
                 break;
             }
+            if (count1 > 1) {break}
         }
         this.props.save_text1(firstParagraph);
 
     // FOR TEXT 2
         let firstSentences = "";
         let testResults2 = [];
+        let count2 = 0;
     // loop through the the sentences 
-        for (let i = 0; i<sentencesArr.length; i++) {
-            // if it's the last sentence of a paragraph...
-            testResults2[i]= /\r|\n/.exec(sentencesArr[i]);
-            if (testResults2[i]) {
-                // then append the next sentence to firstSentences.
-                firstSentences+=sentencesArr[i+1];
-            } 
-        }
-        // Use the first sentence already found above as the last sentence
-        firstSentences+=sentencesArr[0];
+    for (let i = 0; i<sentencesArr.length; i++) {
+        // if it's the last sentence of a paragraph...
+        testResults2[i]= /\r|\n/.exec(sentencesArr[i]);
+        if (testResults2[i]) {
+            // then append the next sentence to firstSentences.
+            firstSentences+=sentencesArr[i+1];
+            count2++;
+        } 
+        if (count2>1) {break}
+    }
+            // // Use the first sentence already found above as the last sentence -- REMOVE??
+            // firstSentences+=sentencesArr[0];
         // update Redux state
-       this.props.save_text2(firstSentences);
+        this.props.save_text2(firstSentences);
 
-
-        this.props.save_text3(firstParagraph);
+    // FOR TEXT 3
+        let lastSentences = "";
+        let testResults3 = [];
+        let count3 = 0;
+    // loop through the the sentences 
+    for (let i = 0; i<sentencesArr.length; i++) {
+        // if it's the last sentence of a paragraph...
+        testResults3[i]= /\r|\n/.exec(sentencesArr[i]);
+        if (testResults3[i]) {
+            // then append that sentence to lastSentences.
+            lastSentences+=sentencesArr[i];
+            count3++;
+        } 
+        if (count3 > 0) {break};
+    }
+    // Use the very last sentence as the first of the tweet
+        let newLast = sentencesArr[sentencesArr.length-1]+=lastSentences;
+    // update Redux state
+        this.props.save_text3(newLast);
     }
 
     render() {
