@@ -19,15 +19,15 @@ class Facebook2 extends Component {
         };
 
         axios.post('/api/posts',PostMe) // works!  Saves to database
-        .then( response => { 
-            console.log("RESPONSE = ",response.data[0])
-            this.props.article_info(response.data[0])
-            this.tweetMaker1(this.props.reducer2.article)
-        })  
-        .catch(function (error) {
-            console.log("Error: FB2 CreatePost: ",error);
+            .then( response => { 
+                // console.log("RESPONSE = ",response.data[0])
+                this.props.article_info(response.data[0])
+                this.tweetMaker1(this.props.reducer2.article)
+            })  
+            .catch(function (error) {
+                console.log("Error: FB2 CreatePost: ",error);
         });
-        // console.log("Reducer2 = ",this.props.reducer2)
+     // console.log("Reducer2 = ",this.props.reducer2)
     }   
 
     tweetMaker1(article){
@@ -37,7 +37,7 @@ class Facebook2 extends Component {
         let testResults = [];
         for (let i=0; i<sentencesArr.length;i++){
             testResults[i]= /\r|\n/.exec(sentencesArr[i]);
-      // if next sentence does not contain RETURN
+            // if next sentence does not contain RETURN
             if (!testResults[i]) {
             // then append to firstParagraph.
                 firstParagraph+=sentencesArr[i];
@@ -45,8 +45,8 @@ class Facebook2 extends Component {
             } else {break;}
         }
         this.props.save_text1(firstParagraph);
-        console.log("First para =",firstParagraph)
-        console.log("Save_text -> Props =",this.props)
+        // this.props.save_text2(firstParagraph);
+        // this.props.save_text3(firstParagraph);
     }
 
     render() {
@@ -55,10 +55,13 @@ class Facebook2 extends Component {
        <section className="fb-section">
             <h1> Paste your Press Release (or Article)</h1>
             <div className="row-of-divs">
-                <div className="help-text"><h3>Directions</h3>Just post the text of your article here. Then paste the URL to where you want visitors to go to read more.  Then click "Save".</div>
-                <textarea cols="120" rows="30" onChange={(e) => this.props.update_Article(e.target.value)} defaultValue={this.props.reducer2.article}/>
+                <div className="help-text">
+                    <h3>Directions</h3>Just post the text of your article here. Then paste the URL to where you want visitors to go to read more.  Then click "Save".</div>
+                    <textarea cols="100" rows="15" onChange={(e) => this.props.update_Article(e.target.value)} 
+                       defaultValue={this.props.reducer2.article}/>
                 <div className="fb-buttons">
-                    <input placeholder="Paste target URL here" onChange={(e) => this.props.update_URL(e.target.value)} defaultValue={this.props.reducer2.fblink}></input>
+                    <input placeholder="Paste target URL here" onChange={(e) => this.props.update_URL(e.target.value)} 
+                       defaultValue={this.props.reducer2.fblink}></input>
                     <button onClick={() => this.createPost()}>Save</button>
                 </div>
             </div>

@@ -2,8 +2,12 @@
 UPDATE posts 
 SET 
     article = $1,
-    pic1 = $2,
-    pic2 = $3,
-    pic3 = $4
+    text1 = $2
+    text2 = $3
+    text3 = $4
+    pic1 = $5,
+    pic2 = $6,
+    pic3 = $7
+    fblink = $8
 WHERE 
-    id=$5;
+    id=(select id from users where authid=$9);

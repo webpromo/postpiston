@@ -123,14 +123,14 @@ app.post( '/api/posts',
       }
 );
 
-app.put( '/api/posts',
+app.put( '/api/posts', // triggered by the Save button on DisplayTweets.js
  ( req, res, next ) => {
-        let {article,pic1,pic2,pic3,authid} = req.body;
+        let {article,text1,text2,text3,pic1,pic2,pic3,fblink,authid} = req.body;
         const dbInstance = req.app.get('db');
-        dbInstance.update_post([article,pic1,pic2,pic3,authid])
+        dbInstance.update_post([article,text1,text2,text3,pic1,pic2,pic3,fblink,authid])
           .then( id => res.status(200).send( id ) )
           .catch( err => {
-            res.status(500).send({errorMessage: "Error updating posts to the database. Run away!"});
+            res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
             console.log(err)
           } );
       }
