@@ -36,9 +36,9 @@ class DisplayTweets extends Component {
     saveTexts(){
         const SaveMe = {
             article:this.props.reducer2.article,
-            text1:this.state.text1,
-            text2:this.state.text2,
-            text3:this.state.text3,
+            text1:(this.state.text1 ? this.state.text1 : this.props.reducer2.text1),
+            text2:(this.state.text2 ? this.state.text2 : this.props.reducer2.text2),
+            text3:(this.state.text3 ? this.state.text3 : this.props.reducer2.text3),
             pic1:this.props.reducer2.pic1,
             pic2:this.props.reducer2.pic2,
             pic3:this.props.reducer2.pic3,
