@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {update_Article,update_URL,article_info,save_text1} from './../ducks/reducer';
+import {update_Article,update_URL,article_info,save_text1,save_text2,save_text3} from './../ducks/reducer';
 import axios from 'axios';
 // var _ = require('lodash');
 
@@ -31,8 +31,10 @@ class Facebook2 extends Component {
     }   
 
     tweetMaker1(article){
-        let firstParagraph = "";
         let sentencesArr = article.match(/\(?[A-Z][^.]+[.!?]\)?(\s+|$)/g);
+    
+    // FOR TEXT1
+        let firstParagraph = "";
         // loop through article's sentences one by one, 
         let testResults = [];
         for (let i=0; i<sentencesArr.length;i++){
@@ -41,12 +43,33 @@ class Facebook2 extends Component {
             if (!testResults[i]) {
             // then append to firstParagraph.
                 firstParagraph+=sentencesArr[i];
-            // if RETURN then save and quit looking.
-            } else {break;}
+            // if RETURN then save the last sentence of the paragraph and quit looking.
+            } else {
+                firstParagraph+=sentencesArr[i];
+                break;
+            }
         }
         this.props.save_text1(firstParagraph);
-        // this.props.save_text2(firstParagraph);
-        // this.props.save_text3(firstParagraph);
+
+    // FOR TEXT 2
+        let firstSentences = "";
+        let testResults2 = [];
+    // loop through the the sentences 
+        for (let i = 0; i<sentencesArr.length; i++) {
+            // if it's the last sentence of a paragraph...
+            testResults2[i]= /\r|\n/.exec(sentencesArr[i]);
+            if (testResults2[i]) {
+                // then append the next sentence to firstSentences.
+                firstSentences+=sentencesArr[i+1];
+            } 
+        }
+        // Use the first sentence already found above as the last sentence
+        firstSentences+=sentencesArr[0];
+        // update Redux state
+       this.props.save_text2(firstSentences);
+
+
+        this.props.save_text3(firstParagraph);
     }
 
     render() {
@@ -73,4 +96,4 @@ class Facebook2 extends Component {
 function mapStateToProps(state) {
     return state;
   }
-  export default connect(mapStateToProps, {update_Article,update_URL,article_info,save_text1})(Facebook2)
+  export default connect(mapStateToProps, {update_Article,update_URL,article_info,save_text1,save_text2,save_text3})(Facebook2)

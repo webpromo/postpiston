@@ -4,9 +4,9 @@
 const initialState = {
     article: "",
     fblink: "",
-      text1: '',
-      text2: '',
-      text3: '',
+      text1: '(Post your content above)',
+      text2: '(Post your content above)',
+      text3: '(Post your content above)',
       authid: '',
       pic1: '',
       pic2: '',
