@@ -5,6 +5,7 @@ import {article_info,save_texts,sorted_1,sorted_2,sorted_3} from '../ducks/reduc
 import axios from 'axios';
 import './displayTweets.css';
 import { grabAndProcessALLthoseWords } from '../services/crunch-text-service';
+// import { updateUser } from './UpdateSQL';
 
 class DisplayTweets extends Component {
     constructor () {
@@ -46,12 +47,14 @@ class DisplayTweets extends Component {
             fblink:this.props.reducer2.fblink,
             id:this.props.reducer2.id
         };
+        console.log("##### SaveMe: ",SaveMe);
+
         // save the above data to the database
-        axios.post('/api/puts',SaveMe)
+        axios.put('/api/puts',SaveMe)
         .then( response => { 
             // And save the post to Redux-state
             this.props.article_info(response.data[0]); // works as of 8/9 at 10:22am
-        })  
+        }) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
@@ -68,15 +71,12 @@ class DisplayTweets extends Component {
             // and save to props
             this.props.sorted_3(text3Sorted); 
 
-// TEST WHERE THE KEYWORD INFO NEED IS IN PROPS ---  it's not!
-
-console.log("save2props = ",save2props);  // shows it's sent to the action creator.
-// fetch initial pics
-    // figure which keyword to search for
-    let keyword = this.props.reducer2.sorted1[0];
-    // load picArr1 from API
-        // this.fetchPics(keyword);
-    // load whichever photos display at first
+    // fetch initial pics
+        // figure which keyword to search for
+        let keyword = this.props.reducer2.sorted1[0];
+        // load picArr1 from API
+            // this.fetchPics(keyword);
+        // load whichever photos display at first
             let promise = axios.get('/api/pics/'+keyword)
             promise.then(res => {  
                 console.log("promises, promises")
