@@ -63,11 +63,12 @@ export default function reducer(state=initialState, action){
       console.log("Article info triggered: ",action)
         return Object.assign({},state,{
           article:action.payload.article,
+          fblink:action.payload.fblink,
+          id:action.payload.id,
           text1:action.payload.text1,
           text2:action.payload.text2,
           text3:action.payload.text3,
-          user_id:action.payload.user_id,
-          fblink:action.payload.fblink
+          user_id:action.payload.user_id
       });
         
       case SAVE_TEXT1:

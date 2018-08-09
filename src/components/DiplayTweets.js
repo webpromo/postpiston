@@ -44,10 +44,10 @@ class DisplayTweets extends Component {
             pic2:this.props.reducer2.pic2,
             pic3:this.props.reducer2.pic3,
             fblink:this.props.reducer2.fblink,
-            authid:this.props.users.user.authid
+            id:this.props.reducer2.id
         };
         // save the above data to the database
-        axios.post('/api/posts',SaveMe)
+        axios.post('/api/puts',SaveMe)
         .then( response => { 
             // And save the post to Redux-state
             this.props.article_info(response.data[0]); // works as of 8/9 at 10:22am
@@ -71,7 +71,6 @@ class DisplayTweets extends Component {
 // TEST WHERE THE KEYWORD INFO NEED IS IN PROPS ---  it's not!
 
 console.log("save2props = ",save2props);  // shows it's sent to the action creator.
-            console.log("this.props = ",this.props)  // show's it doesn't save.
 // fetch initial pics
     // figure which keyword to search for
     let keyword = this.props.reducer2.sorted1[0];
@@ -93,6 +92,8 @@ console.log("save2props = ",save2props);  // shows it's sent to the action creat
     }   
 
     render() {
+
+        console.log("this.props = ",this.props) 
     return (
       <section className="tweet-section">
             <h1>Produce your Twitter Posts</h1><br />

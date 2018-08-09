@@ -20,7 +20,7 @@ class Facebook2 extends Component {
 
         axios.post('/api/posts',PostMe) // works!  Saves to database
             .then( response => { 
-                // console.log("RESPONSE = ",response.data[0])
+                console.log("RESPONSE = ",response.data[0])
                 this.props.article_info(response.data[0])
                 this.tweetMaker1(this.props.reducer2.article)
             })  
