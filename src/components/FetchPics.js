@@ -1,4 +1,7 @@
 
+
+/////    NOT USING   /////
+
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
 import {loadPick,save_pics1,save_pics2,save_pics3} from '../ducks/reducer';

@@ -60,7 +60,7 @@ export default function reducer(state=initialState, action){
         return Object.assign({},state,{fblink:action.payload});
 
       case ARTICLE_INFO:
-      // console.log("Article info: ",action)
+      console.log("Article info triggered: ",action)
         return Object.assign({},state,{
           article:action.payload.article,
           text1:action.payload.text1,
@@ -200,7 +200,7 @@ export function save_pics3(pics3){
 }
 
 export function sorted_1(sorted1){
-  // console.log("sorted_1 Action Creator receives : ",sorted1)
+  console.log("sorted_1 Action Creator receives : ",sorted1)
   return {
     type: SORTED_1,
     payload: sorted1

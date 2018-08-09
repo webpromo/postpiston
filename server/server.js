@@ -4,6 +4,13 @@ const express = require('express'),
   session = require('express-session'),
   axios = require('axios'),
   massive = require('massive');
+
+  // PREP TO call to Pexels' APPI
+  require('dotenv').config();
+  const key = process.env.PEXELS
+  const PexelsAPI = require('pexels-api-wrapper');
+  var pexelsClient = new PexelsAPI(key);
+
 //   import Store from './../src/ducks/store'
 // import {Connect}
 
@@ -137,17 +144,25 @@ app.put( '/api/posts', // triggered by the Save button on DisplayTweets.js
 );
 
 // fetch photo by keyword
-const pexelsQuery = "https://api.pexels.com/v1/search?query=example+query&per_page=15&page=1"
-app.get( '/api/posts',
+// const pexelsQuery = "https://api.pexels.com/v1/search?query=example+query&per_page=15&page=1"
+app.get( '/api/pics/:keyword',
  ( req, res, next ) => {
-        console.log("session ",req.session.user)
-        const dbInstance = req.app.get('db');
-        dbInstance.get_posts(req.session.user.authid)
-          .then( posts => res.status(200).send( posts ) )
-          .catch( err => {
-            res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
-            console.log(err)
-          } );
+   keyword = req.params.keyword;
+    pexelsClient.search(keyword, 10, 1)
+    .then( (result) => {
+      let picArr = result.photos;
+
+      console.log("server: picArr: ",picArr[0]);
+      return picArr;
+    }).catch( err => {
+      res.status(500).send({errorMessage: "##############   db  #############"});
+      console.log(err)
+    } );
+      
+    // .catch(function(e){
+    //     console.err(e);
+    // });
+
       }
 );
 

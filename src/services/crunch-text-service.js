@@ -14,7 +14,7 @@ function grabAndProcessALLthoseWords(text) {
         }).filter(word => {  // get rid of smaller words
          return word.length > 5});
          newTextWords=_.uniq(newTextWords);
-        console.log("Sorted :",newTextWords);
+        // console.log("Sorted :",newTextWords);
 
     // return the sorted word lists
         return newTextWords;

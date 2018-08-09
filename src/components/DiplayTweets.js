@@ -50,15 +50,15 @@ class DisplayTweets extends Component {
         axios.post('/api/posts',SaveMe)
         .then( response => { 
             // And save the post to Redux-state
-            this.props.article_info(response.data[0])
+            this.props.article_info(response.data[0]); // works as of 8/9 at 10:22am
         })  
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
         // sort the words in text1 by length
-            const text1Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text1);
+            const text1Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text1); // works as of 8/9 at 10:22am
             // and save to props
-            this.props.sorted_1(text1Sorted); 
+            let save2props = this.props.sorted_1(text1Sorted); // DOES THIS WORK?  no.
         // sort the words in text2 by length
             const text2Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text2);
             // and save to props
@@ -68,7 +68,28 @@ class DisplayTweets extends Component {
             // and save to props
             this.props.sorted_3(text3Sorted); 
 
+// TEST WHERE THE KEYWORD INFO NEED IS IN PROPS ---  it's not!
 
+console.log("save2props = ",save2props);  // shows it's sent to the action creator.
+            console.log("this.props = ",this.props)  // show's it doesn't save.
+// fetch initial pics
+    // figure which keyword to search for
+    let keyword = this.props.reducer2.sorted1[0];
+    // load picArr1 from API
+        // this.fetchPics(keyword);
+    // load whichever photos display at first
+            let promise = axios.get('/api/pics/'+keyword)
+            promise.then(res => {  
+                console.log("promises, promises")
+              this.setState({     
+                photoSet1: res.data.results
+              }).catch( err => {
+                res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
+                console.log(err)
+              } );
+              console.log("fetchedPics = ",this.state.photoSet1)
+            })
+    
     }   
 
     render() {

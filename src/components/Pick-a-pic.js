@@ -2,8 +2,10 @@
 // import spacer from './../images/spacer.jpg' // could use company logo as third tweet pic
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
-import {loadPick} from '../ducks/reducer';
-const PexelsAPI = require('pexels-api-wrapper');
+import {loadPick,sorted_1,sorted_2,sorted_3} from '../ducks/reducer';
+// import { fetchPics } from '../services/fetch-pics-service'; /// NOT USING
+// import axios from 'axios'; 
+
 
 
 class PickAPic extends Component  {
@@ -14,16 +16,44 @@ class PickAPic extends Component  {
              // https://www.bootcamps.in/wp-content/uploads/2015/05/bootcampsin.png",
             photo2:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
             photo3:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
-            PEXELS: "563492ad6f9170000100000145e3ffa0294445cd9fbce4be1b757988"
+            PEXELS: "563492ad6f9170000100000145e3ffa0294445cd9fbce4be1b757988",
+            similar1:0,
+            similar2:0,
+            similar3:0,
+            diff1:0,
+            diff2:0,
+            diff3:0,
+            photoSet1: []
+
         }
     }
 
-    componentDidMount() {
+    getSimilar1(){
+        // increments counter
+        this.setState({
+            similar1:this.state.similar1+1
+        })
+    }
 
+    fetchPics(keyword){
+        // let promise = axios.get('/api/pics/'+keyword)
+        // promise.then(res => {  
+        //     console.log("promises, promises")
+        //   this.setState({     
+        //     photoSet1: res.data.results
+        //   }).catch( err => {
+        //     res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
+        //     console.log(err)
+        //   } );
+        //   console.log("fetchedPics = ",this.state.photoSet1)
+        // })
+
+        
     }
 
     render () {
 
+        
     return(
       <section className="picture-section">
             <h1>Pick a Pic</h1><br />
@@ -36,7 +66,7 @@ class PickAPic extends Component  {
                 <div className="twitter-buttons">
                     <img src={this.state.photo1} alt="pic1" /><br />
                     <input defaultValue="(your image link)" /><button>Use</button><br />
-                    <button>Get similar</button><button>Get diff.</button>
+                    <button onChange={() => this.getSimilar1()}>Get similar</button><button>Get diff.</button>
                 </div>
 
                 <div className="twitter-buttons">
@@ -61,4 +91,4 @@ class PickAPic extends Component  {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {loadPick})(PickAPic)
+  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3})(PickAPic)
