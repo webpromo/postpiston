@@ -8,9 +8,22 @@ const initialState = {
       text2: '(Post your content above)',
       text3: '(Post your content above)',
       authid: '',
-      pic1: '',
-      pic2: '',
-      pic3: ''
+      pic1: 'https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg',
+      pic2: 'https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg',
+      pic3: 'https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg',
+      loadPick: '',
+      sorted1: [],
+      sorted2: [],
+      sorted3: [],
+      picArr1: [],
+      picArr2: [],
+      picArr3: [],
+      similar1: 0,
+      similar2: 0,
+      similar3: 0,
+      diff1: 0,
+      diff2: 0,
+      diff3: 0
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
@@ -19,6 +32,19 @@ const SAVE_TEXT1= "SAVE_TEXT1"
 const SAVE_TEXT2= "SAVE_TEXT2"
 const SAVE_TEXT3= "SAVE_TEXT3"
 const SAVE_TEXTS= "SAVE_TEXTS"
+const SAVE_PICS1= "SAVE_PICS1"
+const SAVE_PICS2= "SAVE_PICS2"
+const SAVE_PICS3= "SAVE_PICS3"
+const LOAD_PICK= "LOAD_PICK"
+const SORTED_1= "SORTED_1"
+const SORTED_2= "SORTED_2"
+const SORTED_3= "SORTED_3"
+const SIMILAR_1= "SIMILAR_1"
+const SIMILAR_2= "SIMILAR_2"
+const SIMILAR_3= "SIMILAR_3"
+const DIFF_1= "DIFF_1"
+const DIFF_2= "DIFF_2"
+const DIFF_3= "DIFF_3"
 // const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
   
 
@@ -45,32 +71,66 @@ export default function reducer(state=initialState, action){
       });
         
       case SAVE_TEXT1:
-      console.log("Saves text1 to state ",action)
         return Object.assign({},state,{text1:action.payload}); 
 
       case SAVE_TEXT2:
-      console.log("Saves text2 to state ",action)
         return Object.assign({},state,{text2:action.payload}); 
 
       case SAVE_TEXT3:
-      console.log("Saves text3 to state ",action)
         return Object.assign({},state,{text3:action.payload}); 
 
+      case SAVE_PICS1:
+        return Object.assign({},state,{picArr1:action.payload}); 
+
+      case SAVE_PICS2:
+        return Object.assign({},state,{picArr2:action.payload}); 
+
+      case SAVE_PICS3:
+        return Object.assign({},state,{picArr3:action.payload}); 
+
+      case SORTED_1:
+        return Object.assign({},state,{sorted1:action.payload}); 
+
+      case SORTED_2:
+        return Object.assign({},state,{sorted2:action.payload}); 
+
+      case SORTED_3:
+        return Object.assign({},state,{sorted3:action.payload}); 
+
+      case SIMILAR_1:
+        return Object.assign({},state,{similar1:action.payload}); 
+
+      case SIMILAR_2:
+        return Object.assign({},state,{similar2:action.payload}); 
+
+      case SIMILAR_3:
+        return Object.assign({},state,{similar3:action.payload}); 
+
+      case DIFF_1:
+        return Object.assign({},state,{diff1:action.payload}); 
+
+      case DIFF_2:
+        return Object.assign({},state,{diff2:action.payload}); 
+
+      case DIFF_3:
+        return Object.assign({},state,{diff3:action.payload}); 
+
       case SAVE_TEXTS:
-      console.log("Save_texts AC's action: ",action)
         return Object.assign({},state,{
           text1:action.payload.t1,
           text2:action.payload.t2,
           text3:action.payload.t3
         }); 
 
-
+      case LOAD_PICK:
+        console.log("Pick-a-pic was triggered",action)
+        return Object.assign({},state,{loadPick:action.payload}); 
+  
       default: return state;
     }
 }
 
 export function update_Article(article){
-    // console.log("AC update_Article is receiving: ",article)
     return {
       type: UPDATE_ARTICLE,
       payload: article
@@ -115,11 +175,115 @@ export function save_text3(text3){
   }
 }
 
+export function save_pics1(pics1){
+  console.log("save_pics1 Action Creator receives : ",pics1)
+  return {
+    type: SAVE_PICS1,
+    payload: pics1
+  }
+}
+
+export function save_pics2(pics2){
+  console.log("save_text2 Action Creator receives : ",pics2)
+  return {
+    type: SAVE_PICS2,
+    payload: pics2
+  }
+}
+
+export function save_pics3(pics3){
+  console.log("save_text3 Action Creator receives : ",pics3)
+  return {
+    type: SAVE_PICS3,
+    payload: pics3
+  }
+}
+
+export function sorted_1(sorted1){
+  // console.log("sorted_1 Action Creator receives : ",sorted1)
+  return {
+    type: SORTED_1,
+    payload: sorted1
+  }
+}
+
+export function sorted_2(sorted2){
+  // console.log("sorted_2 Action Creator receives : ",sorted2)
+  return {
+    type: SORTED_2,
+    payload: sorted2
+  }
+}
+
+export function sorted_3(sorted3){
+  // console.log("sorted_3 Action Creator receives : ",sorted3)
+  return {
+    type: SORTED_3,
+    payload: sorted3
+  }
+}
+
+export function similar_1(similar1){
+  console.log("similar_1 Action Creator receives : ",similar1)
+  return {
+    type: SIMILAR_1,
+    payload: similar1
+  }
+}
+
+export function similar_2(similar2){
+  console.log("similar_2 Action Creator receives : ",similar2)
+  return {
+    type: SIMILAR_2,
+    payload: similar2
+  }
+}
+
+export function similar_3(similar3){
+  console.log("similar_3 Action Creator receives : ",similar3)
+  return {
+    type: SIMILAR_3,
+    payload: similar3
+  }
+}
+
+export function diff_1(diff1){
+  console.log("diff_1 Action Creator receives : ",diff1)
+  return {
+    type: DIFF_1,
+    payload: diff1
+  }
+}
+
+export function diff_2(diff2){
+  console.log("diff_2 Action Creator receives : ",diff2)
+  return {
+    type: DIFF_2,
+    payload: diff2
+  }
+}
+
+export function diff_3(diff3){
+  console.log("diff_3 Action Creator receives : ",diff3)
+  return {
+    type: DIFF_3,
+    payload: diff3
+  }
+}
+
 export function save_texts(texts){
   // console.log("save_text1 Action Creator receives : ",text1)
   return {
     type: SAVE_TEXTS,
     payload: texts
+  }
+}
+
+export function loadPick(e){
+  console.log("loadPick AC received : ",e)
+  return {
+    type: LOAD_PICK,
+    payload: e
   }
 }
 

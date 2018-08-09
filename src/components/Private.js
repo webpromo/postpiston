@@ -7,7 +7,7 @@ import './archive.css'
 import './private.css'
 import Facebook2 from './Facebook2'
 import DiplayTweets from './DiplayTweets'
-import PickAPic from './Pick-a-pick'
+import PickAPic from './Pick-a-pic'
 import Preview from './Preview'
 
 class Private extends Component { 
