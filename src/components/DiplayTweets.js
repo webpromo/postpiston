@@ -35,6 +35,42 @@ class DisplayTweets extends Component {
         // console.log("Updated text3 in localstate to: ",this.state.text3)
       }
 
+      crunchData(){  // WORKING!  8/9 at 4:10pm
+
+        // sort the words in text1 by length
+        const text1Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text1); // works as of 8/9 at 10:22am
+        // and save to props
+        this.props.sorted_1(text1Sorted); 
+    // sort the words in text2 by length
+        const text2Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text2);
+        // and save to props
+        this.props.sorted_2(text2Sorted); 
+    // sort the words in text1 by length
+        const text3Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text3);
+        // and save to props
+        this.props.sorted_3(text3Sorted); 
+      }
+
+      fetchPics(){
+              // fetch initial pics
+        // figure which keyword to search for
+        let keyword = this.props.reducer2.sorted1[0];
+        // load picArr1 from API
+            // this.fetchPics(keyword);
+        // load whichever photos display at first
+            let promise = axios.get('/api/pics/'+keyword)
+            promise.then(res => {  
+                console.log("promises, promises");
+              this.setState({     
+                photoSet1: res.data.results
+              }).catch( err => {
+                res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
+                console.log(err)
+              } );
+              console.log("fetchedPics = ",this.state.photoSet1)
+            })
+      }
+
     saveTexts(){
         const SaveMe = {
             article:this.props.reducer2.article,
@@ -47,47 +83,18 @@ class DisplayTweets extends Component {
             fblink:this.props.reducer2.fblink,
             id:this.props.reducer2.id
         };
-        console.log("##### SaveMe: ",SaveMe);
 
         // save the above data to the database
         axios.put('/api/puts',SaveMe)
         .then( response => { 
             // And save the post to Redux-state
-            this.props.article_info(response.data[0]); // works as of 8/9 at 10:22am
+            this.props.article_info(response.data[0]); // works as of 8/9 at 3:48pm
+            this.crunchData();
+            this.fetchPics();
         }) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
-        // sort the words in text1 by length
-            const text1Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text1); // works as of 8/9 at 10:22am
-            // and save to props
-            let save2props = this.props.sorted_1(text1Sorted); // DOES THIS WORK?  no.
-        // sort the words in text2 by length
-            const text2Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text2);
-            // and save to props
-            this.props.sorted_2(text2Sorted); 
-        // sort the words in text1 by length
-            const text3Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text3);
-            // and save to props
-            this.props.sorted_3(text3Sorted); 
-
-    // fetch initial pics
-        // figure which keyword to search for
-        let keyword = this.props.reducer2.sorted1[0];
-        // load picArr1 from API
-            // this.fetchPics(keyword);
-        // load whichever photos display at first
-            let promise = axios.get('/api/pics/'+keyword)
-            promise.then(res => {  
-                console.log("promises, promises")
-              this.setState({     
-                photoSet1: res.data.results
-              }).catch( err => {
-                res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
-                console.log(err)
-              } );
-              console.log("fetchedPics = ",this.state.photoSet1)
-            })
     
     }   
 

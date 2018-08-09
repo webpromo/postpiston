@@ -10,4 +10,5 @@ SET
     pic3 = $7,
     fblink = $8
 WHERE 
-    id=$9;
+    id=$9
+RETURNING *;--

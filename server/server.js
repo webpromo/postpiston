@@ -136,7 +136,7 @@ app.put('/api/puts',
         const dbInstance = req.app.get('db');
         dbInstance.update_post([article,text1,text2,text3,pic1,pic2,pic3,fblink,id])
           // .then( (id2) => {res.status(200).send( id2 );
-          .then( () => {res.sendStatus(200)})
+          .then( (updatedPost) => {res.send(updatedPost)})
           .catch( err => {
             res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
             console.log(err)
