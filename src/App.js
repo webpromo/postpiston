@@ -12,8 +12,8 @@ class App extends Component {
         <HashRouter>
           <Switch>
             <Route path="/" component={Login} exact />
-            <Route path="/facebook-to-twitter" exact component={Private} />
-            <Route path="/facebook-to-twitter/archive" component={Archive} />
+            <Route path="/twitter-marketing" exact component={Private} />
+            <Route path="/twitter-marketing/archive" component={Archive} />
           </Switch>
         </HashRouter>
       </div>
