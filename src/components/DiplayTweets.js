@@ -13,7 +13,8 @@ class DisplayTweets extends Component {
         this.state = {
           text1: '',
           text2: '',
-          text3: ''
+          text3: '',
+          photoSet1: []
         }
       }
       updateText1(change) {
@@ -60,14 +61,11 @@ class DisplayTweets extends Component {
         // load whichever photos display at first
             let promise = axios.get('/api/pics/'+keyword)
             promise.then(res => {  
-                console.log("promises, promises");
-              this.setState({     
-                photoSet1: res.data.results
-              }).catch( err => {
-                res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
-                console.log(err)
-              } );
-              console.log("fetchedPics = ",this.state.photoSet1)
+              this.setState({photoSet1: res.data})
+            //     .catch( err => {
+            //     res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
+            //     console.log(err)
+            //   } );
             })
       }
 
@@ -99,8 +97,8 @@ class DisplayTweets extends Component {
     }   
 
     render() {
-
-        console.log("this.props = ",this.props) 
+        console.log("fetchedPics = ",this.state.photoSet1)
+        // console.log("this.props = ",this.props) 
     return (
       <section className="tweet-section">
             <h1>Produce your Twitter Posts</h1><br />

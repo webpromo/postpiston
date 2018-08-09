@@ -150,12 +150,8 @@ app.get( '/api/pics/:keyword',
  ( req, res, next ) => {
    keyword = req.params.keyword;
     pexelsClient.search(keyword, 10, 1)
-    .then( (result) => {
-      let picArr = result.photos;
-
-      console.log("server: picArr: ",picArr[0]);
-      return picArr;
-    }).catch( err => {
+    .then( (result) => {res.send(result.photos)})
+    .catch( err => {
       res.status(500).send({errorMessage: "##############   db  #############"});
       console.log(err)
     } );
