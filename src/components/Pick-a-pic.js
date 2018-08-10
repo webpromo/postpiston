@@ -26,12 +26,22 @@ class PickAPic extends Component  {
             photoSet1: []
 
         }
+        this.getSimilar1 = this.getSimilar1.bind(this);
     }
 
     getSimilar1(){
-        // increments counter
+        // increments SIMILAR counter
+        let loopy = (this.state.similar1+1) % 10;
         this.setState({
-            similar1:this.state.similar1+1
+            similar1:loopy
+        })
+    }
+
+    getDiff1(){
+        // increments DIFF counter
+        let loopy = (this.state.diff1+1) % 10;
+        this.setState({
+            diff1:loopy
         })
     }
 
@@ -50,9 +60,9 @@ class PickAPic extends Component  {
                 </div>
 
                 <div className="twitter-buttons">
-                    <img src={this.props.reducer2.picArr1.length > 0 ? this.props.reducer2.picArr1[0].src.medium : this.state.photo1}/><br />
+                    <img src={this.props.reducer2.picArr1.length > 0 ? this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} width="200"/><br />
                     <input defaultValue="(your image link)" /><button>Use</button><br />
-                    {/* <button onChange={() => this.getSimilar1()}>Get similar</button><button>Get diff.</button> */}
+                    <button onClick={() => this.getSimilar1()}>Get similar</button><button onClick={() => this.getDiff(1)}>Get diff.</button>
                 </div>
 
                 <div className="twitter-buttons">
