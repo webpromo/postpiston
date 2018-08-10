@@ -1,5 +1,4 @@
 
-// import spacer from './../images/spacer.jpg' // could use company logo as third tweet pic
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
 import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
@@ -81,7 +80,7 @@ class PickAPic extends Component  {
 
                 <div className="twitter-buttons">
                     <img src={this.props.reducer2.picArr1.length > 0 ? 
-                        this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} 
+                        this.props.reducer2.picArr1[this.state.similar1].src.medium : this.props.reducer2.pic1} 
                     width="200" alt="credit photog"/><br />
                     <input defaultValue="(your image link)" /><button onClick={() => this.saveTweet1()}>Use</button><br />
                     <button onClick={() => this.getSimilar1()}>Same theme</button><br />
