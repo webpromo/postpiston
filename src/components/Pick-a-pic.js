@@ -23,7 +23,10 @@ class PickAPic extends Component  {
             diff1:0,
             diff2:0,
             diff3:0,
-            photoSet1: []
+            photoSet1: [],
+            keyword1: "",
+            keyword2: "",
+            keyword3: ""
 
         }
         this.getSimilar1 = this.getSimilar1.bind(this);
@@ -49,6 +52,9 @@ class PickAPic extends Component  {
      const newKeyword = this.props.reducer2.sorted1[loopy];
      console.log("NewKeyword = ",newKeyword)
      this.props.get_pics(newKeyword);
+     this.setState({
+         keyword1:newKeyword
+     })
     }
 
 
@@ -68,7 +74,8 @@ class PickAPic extends Component  {
                 <div className="twitter-buttons">
                     <img src={this.props.reducer2.picArr1.length > 0 ? this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} width="200" alt="credit photog"/><br />
                     <input defaultValue="(your image link)" /><button>Use</button><br />
-                    <button onClick={() => this.getSimilar1()}>Get similar</button><button onClick={() => this.getDiff1(1)}>Get diff.</button>
+                    <button onClick={() => this.getSimilar1()}>Same theme</button><br />
+                    <button onClick={() => this.getDiff1(1)}>Diff. theme</button>
                 </div>
 
                 <div className="twitter-buttons">

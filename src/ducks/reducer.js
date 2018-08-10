@@ -63,7 +63,7 @@ export default function reducer(state=initialState, action){
         return Object.assign({},state,{fblink:action.payload});
 
       case ARTICLE_INFO:
-      console.log("Article info triggered: ",action)
+      // console.log("Article info triggered: ",action)
         return Object.assign({},state,{
           article:action.payload.article,
           fblink:action.payload.fblink,
@@ -131,8 +131,7 @@ export default function reducer(state=initialState, action){
         return Object.assign({},state,{loadPick:action.payload}); 
   
       case GET_PICS_FULFILLED:
-      console.log("Object.assign({}, state, {pickArr1: action.payload})",Object.assign({}, state, {picArr1: action.payload.data}))
-        return Object.assign({}, state, {picArr1: action.payload.data})
+       return Object.assign({}, state, {picArr1: action.payload.data})
 
       default: return state;
     }
@@ -142,7 +141,6 @@ export function get_pics(keyword){
   let promise = axios.get('/api/pics/'+keyword)
   promise.then(res => {  
       let returnMe = res.data.data;
-      console.log("returnMe ",returnMe)
       return returnMe;
   })
   return {
