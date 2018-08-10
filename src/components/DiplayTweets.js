@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {article_info,save_texts,sorted_1,sorted_2,sorted_3} from '../ducks/reducer';
+import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1} from '../ducks/reducer';
 import axios from 'axios';
 import './displayTweets.css';
 import { grabAndProcessALLthoseWords } from '../services/crunch-text-service';
@@ -13,8 +13,7 @@ class DisplayTweets extends Component {
         this.state = {
           text1: '',
           text2: '',
-          text3: '',
-          photoSet1: []
+          text3: ''
         }
       }
       updateText1(change) {
@@ -61,11 +60,8 @@ class DisplayTweets extends Component {
         // load whichever photos display at first
             let promise = axios.get('/api/pics/'+keyword)
             promise.then(res => {  
-              this.setState({photoSet1: res.data})
-            //     .catch( err => {
-            //     res.status(500).send({errorMessage: "Error updating the database. Scoundrels!"});
-            //     console.log(err)
-            //   } );
+              this.props.save_pics1(res.data)
+
             })
       }
 
@@ -97,7 +93,7 @@ class DisplayTweets extends Component {
     }   
 
     render() {
-        console.log("fetchedPics = ",this.state.photoSet1)
+        // console.log("fetchedPics = ",this.state.photoSet1)
         // console.log("this.props = ",this.props) 
     return (
       <section className="tweet-section">
@@ -134,4 +130,4 @@ class DisplayTweets extends Component {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3})(DisplayTweets)
+  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1})(DisplayTweets)
