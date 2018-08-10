@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 // INITIALIZE VARIABLES 
 
@@ -45,6 +46,8 @@ const SIMILAR_3= "SIMILAR_3"
 const DIFF_1= "DIFF_1"
 const DIFF_2= "DIFF_2"
 const DIFF_3= "DIFF_3"
+const GET_PICS_FULFILLED = "GET_PICS_FULFILLED"
+const GET_PICS = "GET_PICS"
 // const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
   
 
@@ -127,8 +130,25 @@ export default function reducer(state=initialState, action){
         console.log("Pick-a-pic was triggered",action)
         return Object.assign({},state,{loadPick:action.payload}); 
   
+      case GET_PICS_FULFILLED:
+      console.log("Object.assign({}, state, {pickArr1: action.payload})",Object.assign({}, state, {picArr1: action.payload.data}))
+        return Object.assign({}, state, {picArr1: action.payload.data})
+
       default: return state;
     }
+}
+
+export function get_pics(keyword){
+  let promise = axios.get('/api/pics/'+keyword)
+  promise.then(res => {  
+      let returnMe = res.data.data;
+      console.log("returnMe ",returnMe)
+      return returnMe;
+  })
+  return {
+    type: GET_PICS,
+    payload: promise
+  }
 }
 
 export function update_Article(article){

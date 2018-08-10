@@ -14,6 +14,10 @@ function grabAndProcessALLthoseWords(text) {
         }).filter(word => {  // get rid of smaller words
          return word.length > 5});
          newTextWords=_.uniq(newTextWords);
+        //  newTextWords=_.map(newTextWords, word => {
+        //      word.replace("/'s/g","");
+        //      word.replace("/'/g","");
+        //  })
         // console.log("Sorted :",newTextWords);
 
     // return the sorted word lists

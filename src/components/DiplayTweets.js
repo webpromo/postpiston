@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1} from '../ducks/reducer';
+import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,get_pics} from '../ducks/reducer';
 import axios from 'axios';
 import './displayTweets.css';
 import { grabAndProcessALLthoseWords } from '../services/crunch-text-service';
@@ -51,18 +51,12 @@ class DisplayTweets extends Component {
         this.props.sorted_3(text3Sorted); 
       }
 
-      fetchPics(){
-              // fetch initial pics
+    fetchPics(){
         // figure which keyword to search for
         let keyword = this.props.reducer2.sorted1[0];
-        // load picArr1 from API
-            // this.fetchPics(keyword);
-        // load whichever photos display at first
-            let promise = axios.get('/api/pics/'+keyword)
-            promise.then(res => {  
-              this.props.save_pics1(res.data)
-
-            })
+        let firstSetOfPics = this.props.get_pics(keyword);
+        // update Redux props
+        this.props.save_pics1(firstSetOfPics);
       }
 
     saveTexts(){
@@ -84,7 +78,7 @@ class DisplayTweets extends Component {
             // And save the post to Redux-state
             this.props.article_info(response.data[0]); // works as of 8/9 at 3:48pm
             this.crunchData();
-            this.fetchPics();
+            this.fetchPics(); 
         }) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
@@ -130,4 +124,4 @@ class DisplayTweets extends Component {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1})(DisplayTweets)
+  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1,get_pics})(DisplayTweets)

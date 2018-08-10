@@ -2,7 +2,7 @@
 // import spacer from './../images/spacer.jpg' // could use company logo as third tweet pic
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
-import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1} from '../ducks/reducer';
+import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics} from '../ducks/reducer';
 // import { fetchPics } from '../services/fetch-pics-service'; /// NOT USING
 // import axios from 'axios'; 
 
@@ -27,7 +27,10 @@ class PickAPic extends Component  {
 
         }
         this.getSimilar1 = this.getSimilar1.bind(this);
+        this.getDiff1 = this.getDiff1.bind(this);
     }
+
+
 
     getSimilar1(){
         // increments SIMILAR counter
@@ -43,6 +46,9 @@ class PickAPic extends Component  {
         this.setState({
             diff1:loopy
         })
+     const newKeyword = this.props.reducer2.sorted1[loopy];
+     console.log("NewKeyword = ",newKeyword)
+     this.props.get_pics(newKeyword);
     }
 
 
@@ -60,9 +66,9 @@ class PickAPic extends Component  {
                 </div>
 
                 <div className="twitter-buttons">
-                    <img src={this.props.reducer2.picArr1.length > 0 ? this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} width="200"/><br />
+                    <img src={this.props.reducer2.picArr1.length > 0 ? this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} width="200" alt="credit photog"/><br />
                     <input defaultValue="(your image link)" /><button>Use</button><br />
-                    <button onClick={() => this.getSimilar1()}>Get similar</button><button onClick={() => this.getDiff(1)}>Get diff.</button>
+                    <button onClick={() => this.getSimilar1()}>Get similar</button><button onClick={() => this.getDiff1(1)}>Get diff.</button>
                 </div>
 
                 <div className="twitter-buttons">
@@ -87,4 +93,4 @@ class PickAPic extends Component  {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1})(PickAPic)
+  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics})(PickAPic)
