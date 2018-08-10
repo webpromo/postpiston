@@ -3,8 +3,6 @@ function grabAndProcessALLthoseWords(text) {
 
     var _ = require ('lodash');  // calls the package lodash
 
-    console.log("text is a string: ",_.isString(text))
-
     // clean text of code-breaking apostrophes
     text = text.replace("'s"," ");
     text = text.replace("'"," ");
@@ -19,9 +17,6 @@ function grabAndProcessALLthoseWords(text) {
             return word.length > 5});
     // de-dupe
          newTextWords=_.uniq(newTextWords);  // lodash rocks!
-
-
-        console.log("Sorted :",newTextWords);
 
     // return the sorted word lists
         return newTextWords;

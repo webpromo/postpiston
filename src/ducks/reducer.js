@@ -33,6 +33,9 @@ const SAVE_TEXT1= "SAVE_TEXT1"
 const SAVE_TEXT2= "SAVE_TEXT2"
 const SAVE_TEXT3= "SAVE_TEXT3"
 const SAVE_TEXTS= "SAVE_TEXTS"
+const SAVE_PIC1= "SAVE_PIC1"
+const SAVE_PIC2= "SAVE_PIC2"
+const SAVE_PIC3= "SAVE_PIC3"
 const SAVE_PICS1= "SAVE_PICS1"
 const SAVE_PICS2= "SAVE_PICS2"
 const SAVE_PICS3= "SAVE_PICS3"
@@ -132,6 +135,15 @@ export default function reducer(state=initialState, action){
   
       case GET_PICS_FULFILLED:
        return Object.assign({}, state, {picArr1: action.payload.data})
+  
+      case SAVE_PIC1:
+       return Object.assign({}, state, {pic1: action.payload})
+  
+      case SAVE_PIC2:
+       return Object.assign({}, state, {pic2: action.payload})
+  
+      case SAVE_PIC3:
+       return Object.assign({}, state, {pic3: action.payload})
 
       default: return state;
     }
@@ -147,6 +159,27 @@ export function get_pics(keyword){
     type: GET_PICS,
     payload: promise
   }
+}
+
+export function save_pic1(picURL){
+    return {
+      type: SAVE_PIC1,
+      payload: picURL
+    }
+}
+
+export function save_pic2(picURL){
+    return {
+      type: SAVE_PIC2,
+      payload: picURL
+    }
+}
+
+export function save_pic3(picURL){
+    return {
+      type: SAVE_PIC3,
+      payload: picURL
+    }
 }
 
 export function update_Article(article){
@@ -195,7 +228,7 @@ export function save_text3(text3){
 }
 
 export function save_pics1(pics1){
-  console.log("save_pics1 Action Creator receives : ",pics1)
+  // console.log("save_pics1 Action Creator receives : ",pics1)
   return {
     type: SAVE_PICS1,
     payload: pics1
@@ -203,7 +236,7 @@ export function save_pics1(pics1){
 }
 
 export function save_pics2(pics2){
-  console.log("save_text2 Action Creator receives : ",pics2)
+  // console.log("save_text2 Action Creator receives : ",pics2)
   return {
     type: SAVE_PICS2,
     payload: pics2
@@ -211,7 +244,7 @@ export function save_pics2(pics2){
 }
 
 export function save_pics3(pics3){
-  console.log("save_text3 Action Creator receives : ",pics3)
+  // console.log("save_text3 Action Creator receives : ",pics3)
   return {
     type: SAVE_PICS3,
     payload: pics3
@@ -219,7 +252,7 @@ export function save_pics3(pics3){
 }
 
 export function sorted_1(sorted1){
-  console.log("sorted_1 Action Creator receives : ",sorted1)
+  // console.log("sorted_1 Action Creator receives : ",sorted1)
   return {
     type: SORTED_1,
     payload: sorted1
@@ -243,7 +276,7 @@ export function sorted_3(sorted3){
 }
 
 export function similar_1(similar1){
-  console.log("similar_1 Action Creator receives : ",similar1)
+  // console.log("similar_1 Action Creator receives : ",similar1)
   return {
     type: SIMILAR_1,
     payload: similar1
@@ -251,7 +284,7 @@ export function similar_1(similar1){
 }
 
 export function similar_2(similar2){
-  console.log("similar_2 Action Creator receives : ",similar2)
+  // console.log("similar_2 Action Creator receives : ",similar2)
   return {
     type: SIMILAR_2,
     payload: similar2
@@ -259,7 +292,7 @@ export function similar_2(similar2){
 }
 
 export function similar_3(similar3){
-  console.log("similar_3 Action Creator receives : ",similar3)
+  // console.log("similar_3 Action Creator receives : ",similar3)
   return {
     type: SIMILAR_3,
     payload: similar3
@@ -267,7 +300,7 @@ export function similar_3(similar3){
 }
 
 export function diff_1(diff1){
-  console.log("diff_1 Action Creator receives : ",diff1)
+  // console.log("diff_1 Action Creator receives : ",diff1)
   return {
     type: DIFF_1,
     payload: diff1
@@ -275,7 +308,7 @@ export function diff_1(diff1){
 }
 
 export function diff_2(diff2){
-  console.log("diff_2 Action Creator receives : ",diff2)
+  // console.log("diff_2 Action Creator receives : ",diff2)
   return {
     type: DIFF_2,
     payload: diff2
@@ -283,7 +316,7 @@ export function diff_2(diff2){
 }
 
 export function diff_3(diff3){
-  console.log("diff_3 Action Creator receives : ",diff3)
+  // console.log("diff_3 Action Creator receives : ",diff3)
   return {
     type: DIFF_3,
     payload: diff3
@@ -299,7 +332,7 @@ export function save_texts(texts){
 }
 
 export function loadPick(e){
-  console.log("loadPick AC received : ",e)
+  // console.log("loadPick AC received : ",e)
   return {
     type: LOAD_PICK,
     payload: e

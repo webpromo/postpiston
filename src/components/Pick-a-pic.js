@@ -2,8 +2,7 @@
 // import spacer from './../images/spacer.jpg' // could use company logo as third tweet pic
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
-import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics} from '../ducks/reducer';
-// import { fetchPics } from '../services/fetch-pics-service'; /// NOT USING
+import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
 // import axios from 'axios'; 
 
 
@@ -53,13 +52,22 @@ class PickAPic extends Component  {
      console.log("NewKeyword = ",newKeyword)
      this.props.get_pics(newKeyword);
      this.setState({
-         keyword1:newKeyword
+         keyword1:newKeyword,
+    
      })
     }
 
+    saveTweet1(){
+        // get current photo
+       let image1url = this.props.reducer2.picArr1.length > 0 ? 
+        this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1
+        // save image to Redux store
+        this.props.save_pic1(image1url);
+        console.log("Saved pic1: ",this.props.reducer2.pic1)
+    }
 
     render () {
- 
+
     return(
         // if(this.props.reducer2.picArr1[0])
 
@@ -72,8 +80,10 @@ class PickAPic extends Component  {
                 </div>
 
                 <div className="twitter-buttons">
-                    <img src={this.props.reducer2.picArr1.length > 0 ? this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} width="200" alt="credit photog"/><br />
-                    <input defaultValue="(your image link)" /><button>Use</button><br />
+                    <img src={this.props.reducer2.picArr1.length > 0 ? 
+                        this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1} 
+                    width="200" alt="credit photog"/><br />
+                    <input defaultValue="(your image link)" /><button onClick={() => this.saveTweet1()}>Use</button><br />
                     <button onClick={() => this.getSimilar1()}>Same theme</button><br />
                     <button onClick={() => this.getDiff1(1)}>Diff. theme</button>
                 </div>
@@ -100,4 +110,4 @@ class PickAPic extends Component  {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics})(PickAPic)
+  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,save_pic1,save_pic2,save_pic3})(PickAPic)
