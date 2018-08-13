@@ -19,19 +19,35 @@ class Preview extends Component  {
             fblink:this.props.reducer2.fblink,
             id:this.props.reducer2.id
         };
+        
+        // create tweet 
+        const tweetMe = {
+             emailAddress: "post@tweetymail.com",
+             tweetSubject:"",
+             tweetText: SaveMe.text1+" - "+SaveMe.fblink+" "+SaveMe.pic1
+        }
 
-        // save the above data to the database
+        // save SaveMe to the database
         axios.put('/api/puts',SaveMe)
         .then( response => { 
-    // post to Twitter
-console.log("Pretending to post to Twitter ",response.data)
+
+             // post to Twitter
+            this.sendEmail(tweetMe);
         }) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
+ }
 
-
-
+ sendEmail(tweetMe){
+        const {emailAddress,tweetSubject,tweetText} = tweetMe;
+                axios.put('/api/email',emailAddress,tweetSubject,tweetText)
+                .then( response => { 
+        console.log("Sent to post to Twitter ",response.data)
+                }) 
+                .catch(function (error) {
+                    console.log("Error: DisplayTweets.js CreatePost: ",error);
+                });
     }
 
   render(){
@@ -47,18 +63,18 @@ console.log("Pretending to post to Twitter ",response.data)
 
                 <div className="twitter-buttons">
                     <img src={this.props.reducer2.pic1} alt="pic1" width="200"/><br />
-                    "This is the greatest tweet ever to be tweeted. "
+                   {this.props.reducer2.text1}
                 </div>
 
                 <div className="twitter-buttons">
                 <img src={this.props.reducer2.pic2} alt="pic2" width="200"/><br />
-                "Here's our test tweet. This is an amazing tweet, filled with passion and enthusiasm."<br />
+                {this.props.reducer2.text2}<br />
                     <button onClick={() => this.saveThenPost()}>Post to Twitter</button>
                 </div>
 
                 <div className="twitter-buttons">
                 <img src={this.props.reducer2.pic3} alt="pic3" width="200"/><br />
-                    "This is another amazing tweet. You just can't get tweets like this these days."
+                {this.props.reducer2.text3}
                 </div>
                 <div className="fb-buttons">(spacer)</div>
             </div>

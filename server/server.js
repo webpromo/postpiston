@@ -1,13 +1,16 @@
-require('dotenv').config();
 const bodyParser = require('body-parser');
-const express = require('express'),
-  session = require('express-session'),
-  axios = require('axios'),
-  massive = require('massive');
+const express = require('express');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+session = require('express-session');
+axios = require('axios');
+massive = require('massive');
 
-  // PREP TO call to Pexels' APPI
-  require('dotenv').config();
-  const key = process.env.PEXELS
+require('dotenv').config();
+
+// PREP TO call to Pexels' APPI
+
+  const key = process.env.PEXELS;
   const PexelsAPI = require('pexels-api-wrapper');
   var pexelsClient = new PexelsAPI(key);
 
@@ -24,7 +27,9 @@ const {
   REACT_APP_CLIENT_ID,
   CLIENT_SECRET,
   SESSION_SECRET,
-  CONNECTION_STRING
+  CONNECTION_STRING,
+  USER_EMAIL,
+  USER_PASS
 } = process.env;
 
 massive(CONNECTION_STRING).then(db => {
@@ -163,11 +168,41 @@ app.get( '/api/pics/:keyword',
       }
 );
 
+app.post('/api/email', (req, res) => {
+
+  const {emailAddress,tweetSubject,tweetText} = req.body 
+
+  let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      secure: true,
+      auth: {
+          user: process.env.USER_EMAIL, //sender email address
+          pass: process.env.USER_PASS //sender email password
+      }
+  });
+
+  let mailOptions = {
+      from: `"PostPiston.com" <${process.env.USER_EMAIL}>`, // sender email address
+      to: emailAddress, //email address you want to send email to.
+      subject: tweetSubject, // Subject line
+      text: tweetText  //body of email.       
+  };
+
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.log(error)
+          res.send(error)
+      }
+      res.status(200).send(info);
+  });
+})
+
   
-app.get('/api/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('http://localhost:3000/');
-});
+// app.get('/api/logout', (req, res) => {
+//   req.session.destroy();
+//   res.redirect('http://localhost:3000/');
+// });
 
 app.listen(SERVER_PORT, () => {
   console.log(`Listening on port: ${SERVER_PORT}`)
