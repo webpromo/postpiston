@@ -20,35 +20,29 @@ class Preview extends Component  {
             id:this.props.reducer2.id
         };
         
-        // create tweet 
-        const tweetMe = {
-             emailAddress: "post@tweetymail.com",
-             tweetSubject:"",
-             tweetText: SaveMe.text1+" - "+SaveMe.fblink+" "+SaveMe.pic1
-        }
-
+        const emailAddress = "trigger@applet.ifttt.com"; //rank_booster@yahoo.com";  //post@tweetymail.com";
+        const tweetSubject=SaveMe.pic1;
+        const tweetText=SaveMe.text1+" - "+SaveMe.fblink;
+        const attachment = SaveMe.pic1;
+          
         // save SaveMe to the database
         axios.put('/api/puts',SaveMe)
         .then( response => { 
 
              // post to Twitter
-            this.sendEmail(tweetMe);
+             axios.post('/api/email',{emailAddress,tweetSubject,tweetText,attachment}) //
+             .then( response => { 
+                console.log("Successfully sent to post via email ",response.data);
+             }) 
+             .catch(function (error) {
+                 console.log("Error: DisplayTweets.js Post to Twitter: ",error);
+             });
         }) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
  }
 
- sendEmail(tweetMe){
-        const {emailAddress,tweetSubject,tweetText} = tweetMe;
-                axios.put('/api/email',emailAddress,tweetSubject,tweetText)
-                .then( response => { 
-        console.log("Sent to post to Twitter ",response.data)
-                }) 
-                .catch(function (error) {
-                    console.log("Error: DisplayTweets.js CreatePost: ",error);
-                });
-    }
 
   render(){
 

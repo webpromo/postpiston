@@ -5,6 +5,8 @@ require('dotenv').config();
 session = require('express-session');
 axios = require('axios');
 massive = require('massive');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 require('dotenv').config();
 
@@ -153,7 +155,7 @@ app.put('/api/puts',
 // const pexelsQuery = "https://api.pexels.com/v1/search?query=example+query&per_page=15&page=1"
 app.get( '/api/pics/:keyword',
  ( req, res, next ) => {
-   keyword = req.params.keyword;
+    keyword = req.params.keyword;
     pexelsClient.search(keyword, 10, 1)
     .then( (result) => {res.send(result.photos)})
     .catch( err => {
@@ -169,23 +171,60 @@ app.get( '/api/pics/:keyword',
 );
 
 app.post('/api/email', (req, res) => {
+  const {emailAddress,tweetSubject,tweetText,attachment} = req.body 
 
-  const {emailAddress,tweetSubject,tweetText} = req.body 
+  let locale = attachment.indexOf(".jp");
+  let coreURL = attachment.substring(0,locale+5)
+  console.log("coreURL", coreURL)
+  let rightEnd = coreURL.substring(33,locale+5)
+  // console.log("rightEnd", rightEnd)
+  let whereSlash = rightEnd.indexOf("/")
+  let filename = rightEnd.substring(whereSlash+1);
+  console.log("filename", filename)
+  // let picNum = rightEnd.substring(0,whereSlash)
+  // console.log("picNum",picNum)
+  // let path = "https://images.pexels.com/photos/"+picNum+"/";
+  // console.log ("path",path)
+  let content=encodeURIComponent(coreURL);
+  console.log("Base64",content)
 
-  let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      secure: true,
+  let arrayOfObjects = [
+    {content:content,
+    filename:filename}
+  ]
+
+  // const msg = {
+  //   to: emailAddress, //"twitter@postpiston.com",  // this WON"T send emails
+  //   from: 'twitter@postpiston.com',
+  //   subject: tweetSubject,
+  //   text: tweetText,
+  // };
+  // sgMail.send(msg);
+  // // attachments:arrayOfObjects÷
+  // console.log("SendGrid email sent",msg)
+
+  let transporter = nodemailer.createTransport({  // 
+      host:'mail.postpiston.com',
+      port: 587,
       auth: {
-          user: process.env.USER_EMAIL, //sender email address
-          pass: process.env.USER_PASS //sender email password
-      }
+        user:'twitter@postpiston.com',
+        pass:process.env.PP_PASS
+          // user: process.env.USER_EMAIL, //sender email address
+          // pass:  //sender email password
+      },
+      tls: {rejectUnauthorized: false},
+      debug:true
   });
 
   let mailOptions = {
       from: `"PostPiston.com" <${process.env.USER_EMAIL}>`, // sender email address
       to: emailAddress, //email address you want to send email to.
       subject: tweetSubject, // Subject line
-      text: tweetText  //body of email.       
+      text: tweetText //body of email.     
+      // attachments: {
+      //   filename:filename, 
+      //   path:path
+      // }
   };
 
 
