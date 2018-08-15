@@ -24,7 +24,8 @@ const initialState = {
       similar3: 0,
       diff1: 0,
       diff2: 0,
-      diff3: 0
+      diff3: 0,
+      loadArchive: ""
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
@@ -40,6 +41,7 @@ const SAVE_PICS1= "SAVE_PICS1"
 const SAVE_PICS2= "SAVE_PICS2"
 const SAVE_PICS3= "SAVE_PICS3"
 const LOAD_PICK= "LOAD_PICK"
+const LOAD_SET= "LOAD_SET"
 const SORTED_1= "SORTED_1"
 const SORTED_2= "SORTED_2"
 const SORTED_3= "SORTED_3"
@@ -145,7 +147,28 @@ export default function reducer(state=initialState, action){
       case SAVE_PIC3:
        return Object.assign({}, state, {pic3: action.payload})
 
+      case LOAD_SET:
+        return Object.assign({},state,{
+          article:action.payload.article,
+          fblink:action.payload.fblink,
+          id:action.payload.id,
+          text1:action.payload.text1,
+          text2:action.payload.text2,
+          text3:action.payload.text3,
+          pic1:action.payload.pic1,
+          pic2:action.payload.pic2,
+          pic3:action.payload.pic3,
+          loadArchive:"yes"
+      });
+
       default: return state;
+    }
+}
+
+export function load_set(post){
+    return {
+      type: LOAD_SET,
+      payload: post
     }
 }
 

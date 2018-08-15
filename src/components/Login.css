@@ -32,7 +32,7 @@ menu {
 }
 
 .nav-buttons>a {
-    text-decoration: none;
+    text-decoration-line: none;
     font-weight:bold;
 }
 

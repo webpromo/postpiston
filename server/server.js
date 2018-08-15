@@ -170,6 +170,7 @@ app.get( '/api/pics/:keyword',
       }
 );
 
+
 app.post('/api/email', (req, res) => {
   const {emailAddress,tweetSubject,tweetText,attachment} = req.body 
 
@@ -237,7 +238,20 @@ app.post('/api/email', (req, res) => {
   });
 })
 
-  
+app.delete( '/api/posts/:id',
+ ( req, res, next ) => {
+        let {id} = req.params;
+        const dbInstance = req.app.get('db');
+        dbInstance.delete_post([id])
+          .then( posts => res.status(200).send( posts ) ) 
+          .catch( err => {
+            res.status(500).send({errorMessage: "Error deleting post from the database."});
+            console.log(err)
+          } );
+      }
+);
+
+
 // app.get('/api/logout', (req, res) => {
 //   req.session.destroy();
 //   res.redirect('http://localhost:3000/');

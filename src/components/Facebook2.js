@@ -2,11 +2,19 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {update_Article,update_URL,article_info,save_text1,save_text2,save_text3} from './../ducks/reducer';
+import {update_Article,update_URL,article_info,save_text1,save_text2,save_text3,load_set} from './../ducks/reducer';
 import axios from 'axios';
 // var _ = require('lodash');
 
 class Facebook2 extends Component {
+
+    componentDidMount() {
+        // if(this.props.reducer2.loadArchive ==="yes") {
+        // return (
+
+        // )
+        //  }
+      }
 
     createPost(){
         const PostMe = {
@@ -119,4 +127,4 @@ class Facebook2 extends Component {
 function mapStateToProps(state) {
     return state;
   }
-  export default connect(mapStateToProps, {update_Article,update_URL,article_info,save_text1,save_text2,save_text3})(Facebook2)
+  export default connect(mapStateToProps, {update_Article,update_URL,article_info,save_text1,save_text2,save_text3,load_set})(Facebook2)
