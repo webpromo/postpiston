@@ -39,7 +39,7 @@ class Private extends Component {
                   <a href="http://localhost:3005/api/logout">
                   <button>Logout</button>
                   </a>
-                <Link to='/facebook-to-twitter/archive'> <button> Archive </button></Link>
+                <Link to='/twitter-marketing/archive'> <button> Archive </button></Link>
               </div>
 
             <Facebook2 />

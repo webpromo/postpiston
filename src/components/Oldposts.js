@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Store from './../ducks/store'
+import './Login.css'
+import './oldposts.css'
+import bkgnd from '../images/power-twitter-business.jpg'
 
 export default class Oldposts extends Component {
   constructor() {
@@ -21,19 +24,29 @@ export default class Oldposts extends Component {
     });
   }
 
+  useThisSet(){
+
+  }
+
     
   render() {
      let wholeList = this.state.postinfo.map((post,i) => {
         return (
         <div className='one-post' key={i}>
-            <button>Use</button> | {post.article} <img src={post.pic1} alt="Tweet 1" width="60" />
-            <img src={post.pic2} alt="Tweet 2"  width="100"/>  <img src={post.pic3} alt="Tweet 3"  width="100" />
+            <div className="buttonColumn"> 
+              <button onClick={()=>this.useThisSet(i)}>Use</button></div>
+            <div className="postArticle">{post.article} </div>
+            <div className="pics">
+              <img src={post.pic1} alt="Tweet 1" width="100" />
+              <img src={post.pic2} alt="Tweet 2"  width="100"/>  
+              <img src={post.pic3} alt="Tweet 3"  width="100" />
+            </div>
       </div>
         )
      })
 
     return (
-        <div>
+        <div style={{backgroundImage:`url(${bkgnd})`}}>
          {wholeList} 
         </div>
     )

@@ -1,0 +1,28 @@
+
+
+.one-post {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin:8px 20px;
+
+}
+
+.buttonColumn {
+margin-right:12px;
+}
+
+.postArticle {
+    width:800px;
+    background-color:ivory;
+    padding:3px;
+}
+
+.pics {
+    width:333px;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-around
+}
