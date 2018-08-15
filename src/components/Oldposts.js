@@ -5,6 +5,7 @@ import Store from './../ducks/store';
 import { connect } from 'react-redux';
 import { load_set } from './../ducks/reducer';
 import './Login.css';
+import './archive.css'
 import './oldposts.css';
 import bkgnd from '../images/power-twitter-business.jpg';
 import { Link } from 'react-router-dom';
