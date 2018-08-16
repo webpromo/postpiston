@@ -17,8 +17,8 @@ export default class Login extends Component {
                 <div className="logo"><a href="/#/"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" height="100" /></a></div>
                 <div><h1 className="off-white">Best Twitter Marketing Software</h1></div>
                 <div className="nav-buttons">
-                    <div className="hvr-float-shadow"><a href="http://localhost:3000/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
-                    <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank">About</a></div>
+                    <div className="hvr-float-shadow"><a href="/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
+                    <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank" rel="noopener noreferrer">About</a></div>
                     <div className="hvr-float-shadow"><a href="" title="Best Twitter Marketing Software"  onClick={this.login}>Login</a></div>
                     <div className="hvr-float-shadow"><a href="/#contact" title="The Best way to use Twitter for marketing and PR">Contact</a></div>
                 </div>

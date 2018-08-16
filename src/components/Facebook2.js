@@ -10,11 +10,7 @@ import './private.css';
 class Facebook2 extends Component {
 
     componentDidMount() {
-        // if(this.props.reducer2.loadArchive ==="yes") {
-        // return (
 
-        // )
-        //  }
       }
 
     createPost(){
@@ -112,7 +108,7 @@ class Facebook2 extends Component {
     return (
        <section className="fb-section">
 
-           <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>Paste your Press Release or Article</h1></div><br clear='all'/>
+           <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'20px'}}>Paste your Press Release or Article</h1></div><br clear='all'/>
             <div className="row-of-divs">
                 <div className="help-text">
                     <h3><strong>Directions:</strong></h3>
@@ -120,7 +116,7 @@ class Facebook2 extends Component {
                     <li>Then paste the URL to where you want visitors to go to read more.</li>
                     <li>Then click "Save".</li></ol>
                     </div>
-                <div><textarea cols="100" rows="15" 
+                <div><textarea cols="60" rows="15" 
                     onChange={(e) => this.props.update_Article(e.target.value)} 
                        defaultValue={this.props.reducer2.article}/>
                 </div>

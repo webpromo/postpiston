@@ -26,12 +26,12 @@ class Private extends Component {
   }
 
   render() {
-    // let { user } = this.props;
+    let { user } = this.props; //auth0
     return (
       <span>
-        {/* {!user.username ? (
-            <p>Please <a href="http://localhost:3000/">log in</a>.</p>
-        ) : ( */}
+        {!user.username ? (
+            <p>Please <a href="api/login">log in</a>.</p>
+        ) : (
             <div className="main">
 
               {/* <h3>Welcome {user.username}!</h3>  TURN BACK ON WITH AUTH0 */}
@@ -50,7 +50,7 @@ class Private extends Component {
 
           </div>
         
-         {/* }  this one */}
+         )} // auth0 
       </span>
     );
   }

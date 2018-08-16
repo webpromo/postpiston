@@ -85,7 +85,7 @@ menu {
 }
 section {
     padding:20px;
-    height:650px;
+    /* height:650px; */
     width: calc(100% - 20px);
     display:flex;
     /* flex-direction: column;
