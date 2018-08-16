@@ -11,21 +11,16 @@ import bkgnd from '../images/power-twitter-business.jpg';
 import { Link } from 'react-router-dom';
 
 class Oldposts extends Component {
-  constructor() {
+  constructor(data) {
     super();
 
     this.state = {
-      postinfo: []
+      postinfo: data
     };
   }
 
   componentDidMount() {
-    return axios.get(`/api/posts`).then( results => {
-        console.log("state = ",Store.getState())
-      this.setState({
-        postinfo: results.data
-      });
-    });
+
   }
 
   useThisSet(post){
@@ -35,7 +30,6 @@ class Oldposts extends Component {
 
   deleteMe(id){
     return axios.delete(`/api/posts/`+id).then( results => {
-      console.log("tried to delete post id",id);
     this.setState({
       postinfo: results.data
     });
@@ -63,7 +57,7 @@ class Oldposts extends Component {
 
     return (
         <div style={{backgroundImage:`url(${bkgnd})`}}>
-         {wholeList} 
+          {wholeList} 
         </div>
     )
   }

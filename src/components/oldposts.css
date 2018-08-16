@@ -5,22 +5,23 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin:8px 20px;
+    margin:12px 10px;
 
 }
 
 .buttonColumn {
-margin-right:12px;
+margin:0 auto;
 }
 
 .postArticle {
-    width:800px;
-    background-color:ivory;
-    padding:3px;
+    width:760px;
+    background-color:#F3EBEA;
+    padding:5px;
+    margin-right:20px;
 }
 
 .pics {
-    width:333px;
+    width:380px;
     display:flex;
     flex-direction:row;
     align-items: center;

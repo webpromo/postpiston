@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';  
 import { updateUserData } from './../ducks/users';  
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './archive.css'
 import './private.css'
 import Facebook2 from './Facebook2'
@@ -40,7 +40,7 @@ class Private extends Component {
                 <div><h1 className="off-white">Best Twitter Marketing Software</h1></div>
                 <div className="nav-buttons">
                     <div className="hvr-float-shadow"><a href="http://localhost:3000/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
-                    <div className="hvr-float-shadow"><a href="/twitter-marketing/archive" title="">Archive</a></div>
+                    <div className="hvr-float-shadow"><a href="#/twitter-marketing/archive" title="">Archive</a></div>
                     <div className="hvr-float-shadow"><a href="/#contact" title="http://localhost:3005/api/logout">Logout</a></div>
                 </div>
             </menu>
