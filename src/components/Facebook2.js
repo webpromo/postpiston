@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {update_Article,update_URL,article_info,save_text1,save_text2,save_text3,load_set} from './../ducks/reducer';
 import axios from 'axios';
+import './private.css';
 // var _ = require('lodash');
 
 class Facebook2 extends Component {
@@ -110,12 +111,15 @@ class Facebook2 extends Component {
         // console.log("Props: ",this.props)
     return (
        <section className="fb-section">
-            <h1> Paste your Press Release (or Article)</h1>
+
+           <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>Paste your Press Release (or Article)</h1></div><br clear='all'/>
             <div className="row-of-divs">
                 <div className="help-text">
-                    <h3>Directions</h3>Just post the text of your article here. Then paste the URL to where you want visitors to go to read more.  Then click "Save".</div>
-                    <textarea cols="100" rows="15" onChange={(e) => this.props.update_Article(e.target.value)} 
+                    <h3><strong>Directions:</strong></h3>Just post the text of your article here. Then paste the URL to where you want visitors to go to read more.  Then click "Save".</div>
+                <div><textarea cols="100" rows="15" 
+                    onChange={(e) => this.props.update_Article(e.target.value)} 
                        defaultValue={this.props.reducer2.article}/>
+                </div>
                 <div className="fb-buttons">
                     <input placeholder="Paste target URL here" onChange={(e) => this.props.update_URL(e.target.value)} 
                        defaultValue={this.props.reducer2.fblink}></input>
