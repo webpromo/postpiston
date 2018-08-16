@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,get_pics} from '../ducks/reducer';
 import axios from 'axios';
+
+import './private.css';
 import './displayTweets.css';
 import { grabAndProcessALLthoseWords } from '../services/crunch-text-service';
 // import { updateUser } from './UpdateSQL';
@@ -90,11 +92,14 @@ class DisplayTweets extends Component {
         // console.log("fetchedPics = ",this.state.photoSet1)
         // console.log("this.props = ",this.props) 
     return (
-      <section className="tweet-section">
-            <h1>Produce your Twitter Posts</h1><br />
+      <section className="fb-section">
+        <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+            Produce your Twitter Posts</h1>
+        </div>
+        <br clear='all'/>
             <div className="row-of-divs">
                 <div className="help-text"> 
-                    <h3>Directions</h3> Here are three automatically generated tweets based on your content above. Our years of Social Media Marketing experience show us that simulteously posting three tweets will significantly increase viewer engagement.Feel free to tweak them and "Save" when you like them.</div>
+                    <h3>Directions:</h3> Here are three automatically-generated tweets based on your content above. Our years of Social Media Marketing experience show us that simulteously posting three tweets will significantly increase viewer engagement.Feel free to tweak them and "Save" when you like them.</div>
                 <div className="twitter-buttons">
                     <div name="text1" className="tweet-textDiv" contentEditable="true"  
                      onInput={e => this.updateText1(e.target.textContent)} 
