@@ -11,27 +11,28 @@ export default class Login extends Component {
         window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri${url}&response_type=code`
     }
     render() {
-        return (
+        return ( 
             <div className = "wrapper">
             <menu>
                 <div className="logo"><a href="http://localhost:3000/$/"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" height="100" /></a></div>
                 <div><h1 className="off-white">Best Twitter Marketing Software</h1></div>
                 <div className="nav-buttons">
-                    <div><a href="http://localhost:3000/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
-                    <div><a href="" title="The Best way to use Twitter for marketing and PR">About</a></div>
-                    <div><a href="" title="Best Twitter Marketing Software"  onClick={this.login}>Login</a></div>
-                    <div><a href="" title="">Contact</a></div>
+                    <div className="hvr-float-shadow"><a href="http://localhost:3000/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
+                    <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank">About</a></div>
+                    <div className="hvr-float-shadow"><a href="" title="Best Twitter Marketing Software"  onClick={this.login}>Login</a></div>
+                    <div className="hvr-float-shadow"><a href="/#contact" title="The Best way to use Twitter for marketing and PR">Contact</a></div>
                 </div>
             </menu>
 
             {/* "Power of Twitter for Business" section */}
-     <section className="section-one">
+            <section className="section-one">
                 <div className="evenly">
                     <div><img src={require("../images/the-best-way-to-use-twitter-for-marketing.png")} alt="PostPiston is the best way to use twitter for marketing" height="300" /></div>
                     <div><img src={require("../images/best-twitter-marketing-software.png")} alt="PostPiston is the best twitter marketing software" height="400" /></div>
                     <div><img src={require("../images/twitter-as-a-marketing-tool.jpg")} alt="We use Twitter as a marketing tool" height="300" /></div>
                 </div>
-                <div className="c"><h1 className="off-white">Quickly Harness the Power of Twitter for Business!</h1>
+                <div className="c" style={{float:'right'}}>
+                    <h1 style={{color:'#CA873F'}}>Quickly Harness the Power of Twitter for Business!</h1>
                 </div>  
             </section>
 
@@ -95,8 +96,7 @@ export default class Login extends Component {
 
 <div><h3 className="pt14 off-white">Future features include posting to Instagram, Pinterest, and LinkedIn.</h3></div>
             </section>
-
-            <footer>
+            <footer ref="contact">
                 <div className="flex-row">
                     <div><h3 className="off-white">Our Contact Info</h3><br />
                     <span className="c999 padtop8">Jesse Fisher, Developer<br />NewSalem Web Services<br />
@@ -112,8 +112,8 @@ export default class Login extends Component {
 
                     <div><h3 className="off-white">Special Thanks to:</h3><br />
                     <span className="c999 padtop8">DevMountain staff, especially:<br />
-                    &nbsp; Joe Blank<br />
-                    &nbsp; Tim Mathews<br />&nbsp; Megan Fisher <br />&nbsp; Missy Beutler<br />
+                    &nbsp; Joe Blank &amp; Brack Carmony<br />
+                    &nbsp; Tim Mathews, Nick Hathaway, &amp; Mira Jones<br />&nbsp; Megan Fisher<br />
                     and my fellow DevMountain Student Developers</span>
                     </div>
                 </div>

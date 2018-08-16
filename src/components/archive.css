@@ -4,26 +4,34 @@ h1 {
 
 body {
     background-color: black;
+    padding-bottom:40px;
+}
+
+.one-post {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin:12px 10px;
 
 }
 
-button {
-    margin-top: 15px;
-    width: 125px;
-    height: 40px;
-    border-radius: 5px;
-    background:#CA873F;
-    font-size: 20px;
-    font-family: 'Overlock', cursive;
-    font-weight:bold;
-    border:1px solid #B32A04;
+.buttonColumn {
+    margin:0 auto;
 }
-button:active {
-    margin-top:17px;
-    width:123px;
-    height:38px;
-    border:2px solid #B32A04;
+
+.postArticle {
+    width:760px;
+    background-color:#F3EBEA;
+    padding:5px;
+    margin-right:20px;
 }
-button:focus {
-    outline: none;
+
+.pics {
+    width:380px;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-around
 }
+
