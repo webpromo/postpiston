@@ -27,30 +27,30 @@ class Private extends Component {
   render() {
     // let { user } = this.props;
     return (
-      <div>
+      <span>
         {/* {!user.username ? (
             <p>Please <a href="http://localhost:3000/">log in</a>.</p>
         ) : ( */}
-            <div>
+            <div className="main">
 
               {/* <h3>Welcome {user.username}!</h3>  TURN BACK ON WITH AUTH0 */}
               {/* <p>Account number: {user.id}</p> */}
-            <div className="navbuttons">
-                  <a href="http://localhost:3005/api/logout">
-                  <button>Logout</button>
-                  </a>
-                <Link to='/twitter-marketing/archive'> <button> Archive </button></Link>
-              </div>
+              <menu>
+                <div className="logo"><a href="http://localhost:3000/#"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" height="100" /></a></div>
+                <div><h1 className="off-white">Best Twitter Marketing Software</h1></div>
+                <div className="nav-buttons">
+                    <div className="hvr-float-shadow"><a href="http://localhost:3000/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
+                    <div className="hvr-float-shadow"><a href="/twitter-marketing/archive" title="">Archive</a></div>
+                    <div className="hvr-float-shadow"><a href="/#contact" title="http://localhost:3005/api/logout">Logout</a></div>
+                </div>
+            </menu>
 
-            <Facebook2 />
-            <DiplayTweets />
-            <PickAPic />
-            <Preview />
+            <section><Facebook2 /></section><DiplayTweets /> <br /> <PickAPic /> <br /> <Preview />
 
           </div>
-        )
+        
          {/* }  this one */}
-      </div>
+      </span>
     );
   }
 }

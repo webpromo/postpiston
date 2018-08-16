@@ -107,7 +107,8 @@ class Facebook2 extends Component {
         // console.log("Props: ",this.props)
     return (
        <section className="fb-section">
-            <h1> Paste your Press Release (or Article)</h1>
+       
+            <h1> Paste your Press Release (or Article)</h1><br />
             <div className="row-of-divs">
                 <div className="help-text">
                     <h3>Directions</h3>Just post the text of your article here. Then paste the URL to where you want visitors to go to read more.  Then click "Save".</div>
