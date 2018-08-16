@@ -42,23 +42,26 @@ class Facebook2 extends Component {
         let sentencesArr = article.match(/\(?[A-Z][^.]+[.!?]\)?(\s+|$)/g);
     
     // FOR TEXT1
+
         let firstParagraph = "";
-        // loop through article's sentences one by one, 
         let testResults = [];
         let count1 = 0;
+        // loop through article's sentences one by one, 
         for (let i = 0; i<sentencesArr.length; i++) {
-            testResults[i]= /\r|\n/.exec(sentencesArr[i]);
-            // if next sentence does not contain RETURN
-            if (!testResults[i]) {
-            // then append to firstParagraph.
+
+            // Prep to see if adding the next sentence would push over the limit
+            let testParagraph = firstParagraph+=sentencesArr[i]
+            let testLength =testParagraph.length
+            
+            // if next sentence does not contain RETURN (and is not too long)
+            if (testLength < 120) {
+                // then append to firstParagraph.
                 firstParagraph+=sentencesArr[i];
-                count1++
-            // if RETURN then save the last sentence of the paragraph and quit looking.
-            } else {
-                firstParagraph+=sentencesArr[i];
-                break;
-            }
-            if (count1 > 1) {break}
+            } 
+            // if adding the next sentence would exceed limit, quit looking.
+            if (testLength > 119) break;
+
+            let pauseHere = 1;
         }
         this.props.save_text1(firstParagraph);
 

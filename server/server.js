@@ -22,7 +22,7 @@ require('dotenv').config();
 // const controller = require('./controller');  opted not to use, but to access the endpoint here below.
 
 const app = express();
-app.use( express.static( `${__dirname}/../build` ) );
+app.use( express.static( `${__dirname}/../build` ) );  // likely should be the first app.use
 
 const {
   SERVER_PORT,

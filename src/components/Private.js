@@ -10,6 +10,7 @@ import DiplayTweets from './DiplayTweets'
 import PickAPic from './Pick-a-pic'
 import Preview from './Preview'
 
+
 class Private extends Component { 
   componentDidMount() {
     axios.get('/api/user-data').then(res => {
@@ -36,7 +37,7 @@ class Private extends Component {
               {/* <h3>Welcome {user.username}!</h3>  TURN BACK ON WITH AUTH0 */}
               {/* <p>Account number: {user.id}</p> */}
             <div className="navbuttons">
-                  <a href="http://localhost:3005/api/logout">
+                  <a href="/api/logout">
                   <button>Logout</button>
                   </a>
                 <Link to='/twitter-marketing/archive'> <button> Archive </button></Link>
