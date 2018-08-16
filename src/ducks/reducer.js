@@ -53,12 +53,11 @@ const DIFF_2= "DIFF_2"
 const DIFF_3= "DIFF_3"
 const GET_PICS_FULFILLED = "GET_PICS_FULFILLED"
 const GET_PICS = "GET_PICS"
-// const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
   
 
 export default function reducer(state=initialState, action){
     switch(action.type){
-      // case UPDATE_USER_DATA:
+      // case UPDATE_USER_DATA:  // Auth0
       //   return Object.assign({}, state, { user: action.payload }); // for Auth0?
 
       case UPDATE_ARTICLE:
@@ -355,6 +354,15 @@ export function save_texts(texts){
 }
 
 export function loadPick(e){
+  // console.log("loadPick AC received : ",e)
+  return {
+    type: LOAD_PICK,
+    payload: e
+  }
+}
+
+
+export function update(e){
   // console.log("loadPick AC received : ",e)
   return {
     type: LOAD_PICK,

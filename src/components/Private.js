@@ -15,7 +15,7 @@ class Private extends Component {
   componentDidMount() {
     axios.get('/api/user-data').then(res => {
       // invoke action creator to update redux state
-      this.props.updateUserData(res.data);
+      this.props.updateUserData(res.data); 
     });
   }
 
@@ -27,10 +27,12 @@ class Private extends Component {
 
   render() {
     let { user } = this.props; //auth0
+    let pizza = "pepperoni with sausage";
     return (
       <span>
-        {!user.username ? (
-            <p>Please <a href="api/login">log in</a>.</p>
+        {!user ? ( // auth0 .username
+        <div style={{backgroundColor:'white',padding:'5px'}}>
+            <p>Please <a href="/#/">log in</a>.</p></div>
         ) : (
             <div className="main">
 
@@ -50,7 +52,7 @@ class Private extends Component {
 
           </div>
         
-         )} // auth0 
+       )}   // auth0 
       </span>
     );
   }
@@ -58,7 +60,7 @@ class Private extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.users.user
   };
 }
 

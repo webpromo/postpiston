@@ -2,7 +2,7 @@
 
 const initialState = {
     user: {
-      authid:"github|2996722",
+      authid:"",  // Auth0 github|2996722
       id:1,
       password:null,
       username:"Jesse Fisher"
@@ -20,8 +20,10 @@ const initialState = {
   
   export default function reducer(state = initialState, action) {
     switch (action.type) {
+
       case UPDATE_USER_DATA:
         return Object.assign({}, state, { user: action.payload });
+
       default:
         return state;
     }

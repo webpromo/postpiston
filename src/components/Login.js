@@ -5,11 +5,13 @@ import bkgnd from '../images/power-twitter-business.jpg'
 
 
 export default class Login extends Component {
+
     login(){
         let {REACT_APP_DOMAIN, REACT_APP_CLIENT_ID} = process.env;
-        let url = `${window.location.origin}/auth/callback`
-        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri${url}&response_type=code`
+        let url = `${encodeURIComponent(window.location.origin)}/auth/callback`
+        window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${url}&response_type=code`
     }
+
     render() {
         return ( 
             <div className = "wrapper">
@@ -19,7 +21,7 @@ export default class Login extends Component {
                 <div className="nav-buttons">
                     <div className="hvr-float-shadow"><a href="/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
                     <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank" rel="noopener noreferrer">About</a></div>
-                    <div className="hvr-float-shadow"><a href="" title="Best Twitter Marketing Software"  onClick={this.login}>Login</a></div>
+                    <div className="hvr-float-shadow"  onClick={() => this.login()}>Login!</div>
                     <div className="hvr-float-shadow"><a href="/#contact" title="The Best way to use Twitter for marketing and PR">Contact</a></div>
                 </div>
             </menu>

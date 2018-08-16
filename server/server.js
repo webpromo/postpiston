@@ -75,10 +75,6 @@ app.get('/auth/callback', async (req, res) => {
     }`
   );
   
-  // db calls
-  // put user data on req.session object
-  // req.session.user = responseFromDb
-  // req.session = { user: {} }
   const db = req.app.get('db');
 
   let { sub, name} = resWithUserData.data;  // "sub" = auth0's auth_id
@@ -88,7 +84,7 @@ app.get('/auth/callback', async (req, res) => {
   if (foundUser[0]) {
     // put on session
     req.session.user = foundUser[0];
-    res.redirect('/#/facebook-to-twitter');
+    res.redirect('/#/twitter-marketing');
     // res.status(200).send("Hola!")
     // res.redirect('http://localhost:3000/')
   } else {
@@ -97,7 +93,7 @@ app.get('/auth/callback', async (req, res) => {
     // put on session
     req.session.user = createdUser[0];
     console.log("user: ",req.session.user)
-    res.redirect('/#/facebook-to-twitter');
+    res.redirect('/#/twitter-marketing');
   }
 //   res.status(200).send('hi')
 
@@ -253,10 +249,10 @@ app.delete( '/api/posts/:id',
 );
 
 
-// app.get('/api/logout', (req, res) => {
-//   req.session.destroy();
-//   res.redirect('http://localhost:3000/');
-// });
+app.get('/api/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('http://localhost:3000/');
+});
 
 app.listen(SERVER_PORT, () => {
   console.log(`Listening on port: ${SERVER_PORT}`)
