@@ -5,7 +5,6 @@ import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,get_pics} 
 import axios from 'axios';
 
 import './private.css';
-import './displayTweets.css';
 import { grabAndProcessALLthoseWords } from '../services/crunch-text-service';
 // import { updateUser } from './UpdateSQL';
 
@@ -99,7 +98,7 @@ class DisplayTweets extends Component {
         <br clear='all'/>
             <div className="row-of-divs">
                 <div className="help-text"> 
-                    <h3>Directions:</h3> Here are three automatically-generated tweets based on your content above. Our years of Social Media Marketing experience show us that simulteously posting three tweets will significantly increase viewer engagement.Feel free to tweak them and "Save" when you like them.</div>
+                    <h3>Directions:</h3> Here are three automatically-generated tweets based on your content above. Our years of Social Media Marketing experience show us that simulteously posting three tweets will significantly increase viewer engagement. Feel free to tweak them and "Save" when you like them.</div>
                 <div className="twitter-buttons">
                     <div name="text1" className="tweet-textDiv" contentEditable="true"  
                      onInput={e => this.updateText1(e.target.textContent)} 

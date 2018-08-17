@@ -12,8 +12,8 @@ require('dotenv').config();
 
 // PREP TO call to Pexels' APPI
 
-  const key = process.env.PEXELS;
   const PexelsAPI = require('pexels-api-wrapper');
+  const key = process.env.PEXELS;  // works 8/16 at 7:28pm
   var pexelsClient = new PexelsAPI(key);
 
 //   import Store from './../src/ducks/store'
@@ -149,21 +149,16 @@ app.put('/api/puts',
 );
 
 // fetch photo by keyword
-// const pexelsQuery = "https://api.pexels.com/v1/search?query=example+query&per_page=15&page=1"
 app.get( '/api/pics/:keyword',
  ( req, res, next ) => {
     keyword = req.params.keyword;
+
     pexelsClient.search(keyword, 10, 1)
     .then( (result) => {res.send(result.photos)})
     .catch( err => {
       res.status(500).send({errorMessage: "##############   db  #############"});
       console.log(err)
     } );
-      
-    // .catch(function(e){
-    //     console.err(e);
-    // });
-
       }
 );
 

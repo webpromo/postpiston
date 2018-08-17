@@ -41,13 +41,12 @@ class Facebook2 extends Component {
     // FOR TEXT1
 
         let firstParagraph = "";
-        let testResults = [];
-        let count1 = 0;
+        let testParagraph = "";
         // loop through article's sentences one by one, 
         for (let i = 0; i<sentencesArr.length; i++) {
 
             // Prep to see if adding the next sentence would push over the limit
-            let testParagraph = firstParagraph+=sentencesArr[i]
+            let testParagraph = testParagraph+=sentencesArr[i]
             let testLength =testParagraph.length
             
             // if next sentence does not contain RETURN (and is not too long)
@@ -68,6 +67,8 @@ class Facebook2 extends Component {
         let count2 = 0;
     // loop through the the sentences 
     for (let i = 0; i<sentencesArr.length; i++) {
+        // if the tweet is already long enough, exit
+        if (firstSentences.length > 110) break;
         // if it's the last sentence of a paragraph...
         testResults2[i]= /\r|\n/.exec(sentencesArr[i]);
         if (testResults2[i]) {
@@ -77,10 +78,14 @@ class Facebook2 extends Component {
         } 
         if (count2>1) {break}
     }
-            // // Use the first sentence already found above as the last sentence -- REMOVE??
-            // firstSentences+=sentencesArr[0];
-        // update Redux state
+    // chop it off if it's too long
+    if (firstSentences.length > 120) {
+        var trimmed = firstSentences.replace(/^(.{118}[^\s]*).*/, "$1"); 
+        firstSentences = trimmed+="...";
+    }
         this.props.save_text2(firstSentences);
+
+
 
     // FOR TEXT 3
         let lastSentences = "";
@@ -99,6 +104,12 @@ class Facebook2 extends Component {
     }
     // Use the very last sentence as the first of the tweet
         let newLast = sentencesArr[sentencesArr.length-1]+=lastSentences;
+
+    // chop it off if it's too long
+        if (newLast.length > 120) {
+            var trimmed = newLast.replace(/^(.{119}[^\s]*).*/, "$1"); 
+            newLast = trimmed+="...";
+        }
     // update Redux state
         this.props.save_text3(newLast);
     }

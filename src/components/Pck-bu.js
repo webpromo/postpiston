@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
 import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
@@ -64,17 +65,52 @@ class PickAPic extends Component  {
         console.log("Saved pic1: ",this.props.reducer2.pic1)
     }
 
+
+    getSimilar2(){
+        // increments SIMILAR counter
+        let loopy = (this.state.similar2+1) % 10;
+        this.setState({
+            similar2:loopy
+        })
+    }
+
+    getDiff2(){
+        // increments DIFF counter
+        let loopy = (this.state.diff2+1) % 10;
+        this.setState({
+            diff2:loopy
+        })
+     const newKeyword = this.props.reducer2.sorted2[loopy];
+     console.log("NewKeyword = ",newKeyword)
+     this.props.get_pics(newKeyword);
+     this.setState({
+         keyword1:newKeyword,
+    
+     })
+    }
+
+    saveTweet2(){
+        // get current photo
+       let image2url = this.props.reducer2.picArr2.length > 0 ? 
+        this.props.reducer2.picArr2[this.state.similar2].src.medium : this.state.photo2
+        // save image to Redux store
+        this.props.save_pic2(image2url);
+        console.log("Saved pic2: ",this.props.reducer2.pic2)
+    }
+
     render () {
 
     return(
         // if(this.props.reducer2.picArr1[0])
 
-      <section className="picture-section">
-            <h1>Pick a Pic</h1><br />
+      <section className="fb-section">
+        <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+            Pick Some Pics</h1>
+        </div>
             <div className="row-of-divs">
 
                 <div className="help-text">
-                    <h3>Directions</h3>You can use the photos picked for you, find similar ones, try something different, OR, use a link you like. Remember to be sure to only use images to which you have a right to use.
+                    <h3>Directions:</h3>You can use the photos picked for you, find similar ones, try something different, OR, use a link you like. Remember to be sure to only use images to which you have a right to use.
                 </div>
 
                 <div className="twitter-buttons">
@@ -87,9 +123,12 @@ class PickAPic extends Component  {
                 </div>
 
                 <div className="twitter-buttons">
-                <img src={this.state.photo2} alt="pic2" /><br />
-                    <input defaultValue="(your image link)" /><button>Use</button><br />
-                    <button>Get similar</button><button>Get diff.</button>
+                <img src={this.props.reducer2.picArr2.length > 0 ? 
+                        this.props.reducer2.picArr2[this.state.similar2].src.medium : this.props.reducer2.pic2} 
+                    width="200" alt="credit photog"/><br />
+                    <input defaultValue="(your image link)" /><button onClick={() => this.saveTweet2()}>Use</button><br />
+                    <button onClick={() => this.getSimilar2()}>Same theme</button><br />
+                    <button onClick={() => this.getDiff2(1)}>Diff. theme</button>
                 </div>
 
                 <div className="twitter-buttons">

@@ -20,6 +20,9 @@
     width:100%;
     display:flex;
     flex-direction: row;
+    align-items: center;
+    justify-content:space-around; 
+    height:auto;
 }
 
 .help-text {
@@ -49,4 +52,21 @@ textarea {
 
 .tweet-section {
     width:100%;
+}
+
+
+.tweet-textDiv {
+    width:210px;
+    height:275px;
+    background-color:white;
+    margin:0px 5px;
+    padding:3px;
+    font-size:14pt;
+
+}
+
+.twitter-buttons {
+    float:right;
+    width:15%;
+    align-items: center;
 }
