@@ -156,7 +156,7 @@ class PickAPic extends Component  {
             <div className="row-of-divs">
 
                 <div className="help-text">
-                    <h3>Directions:</h3>You can use the photos we find for you, find similar ones, try something different.
+                    <h3>Directions:</h3>You can use the photos we find for you, find similar ones in the same theme, or try different themes.
 
                     These photos are provided by Pexels.com. Other free photo providers to be included soon.
                 </div>

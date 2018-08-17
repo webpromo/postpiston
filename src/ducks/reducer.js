@@ -53,6 +53,7 @@ const DIFF_2= "DIFF_2"
 const DIFF_3= "DIFF_3"
 const GET_PICS_FULFILLED = "GET_PICS_FULFILLED"
 const GET_PICS2_FULFILLED = "GET_PICS2_FULFILLED"
+const GET_PICS3_FULFILLED = "GET_PICS3_FULFILLED"
 const GET_PICS = "GET_PICS"
 const GET_PICS2 = "GET_PICS2"
 const GET_PICS3 = "GET_PICS3"
@@ -165,6 +166,9 @@ export default function reducer(state=initialState, action){
     
       case GET_PICS2_FULFILLED:
         return Object.assign({}, state, {picArr2: action.payload.data})
+    
+      case GET_PICS3_FULFILLED:
+        return Object.assign({}, state, {picArr3: action.payload.data})
 
       default: return state;
     }
