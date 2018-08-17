@@ -88,8 +88,7 @@ class DisplayTweets extends Component {
     }   
 
     render() {
-        // console.log("fetchedPics = ",this.state.photoSet1)
-        // console.log("this.props = ",this.props) 
+        
     return (
       <section className="fb-section">
         <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>

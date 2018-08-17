@@ -46,7 +46,7 @@ class Facebook2 extends Component {
         for (let i = 0; i<sentencesArr.length; i++) {
 
             // Prep to see if adding the next sentence would push over the limit
-            let testParagraph = testParagraph+=sentencesArr[i]
+            testParagraph = testParagraph+=sentencesArr[i]
             let testLength =testParagraph.length
             
             // if next sentence does not contain RETURN (and is not too long)

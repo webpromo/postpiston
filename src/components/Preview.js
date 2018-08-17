@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';  
 import {get_pics} from '../ducks/reducer';
 import axios from 'axios';
+import './private.css';
 
 class Preview extends Component  {
 
@@ -20,7 +21,7 @@ class Preview extends Component  {
             id:this.props.reducer2.id
         };
         
-        const emailAddress = "trigger@applet.ifttt.com"; //rank_booster@yahoo.com";  //post@tweetymail.com";
+        const emailAddress = "trigger@applet.ifttt.com"; 
         const tweetSubject=SaveMe.pic1;
         const tweetText=SaveMe.text1+" - "+SaveMe.fblink;
         const attachment = SaveMe.pic1;
@@ -47,12 +48,14 @@ class Preview extends Component  {
   render(){
 
     return (
-      <section className="preview-section">
-            <h1>Preview &amp; Post</h1><br />
+      <section className="fb-section">
+                 <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+            Preview &amp; Post</h1>
+        </div>
             <div className="row-of-divs">
 
                 <div className="help-text">
-                    <h3>Directions</h3>If you like the tweet previews, go ahead and his "Post". Otherwise, scroll back up and tweak them until you do like them.
+                    <h3>Directions:</h3>If you like the tweet previews,<br /> go ahead and click "Post". Otherwise, scroll back up and tweak (and Save) them until you do.
                 </div>
 
                 <div className="twitter-buttons">
@@ -63,7 +66,7 @@ class Preview extends Component  {
                 <div className="twitter-buttons">
                 <img src={this.props.reducer2.pic2} alt="pic2" width="200"/><br />
                 {this.props.reducer2.text2}<br />
-                    <button onClick={() => this.saveThenPost()}>Post to Twitter</button>
+                    <button onClick={() => this.saveThenPost()}>Post</button>
                 </div>
 
                 <div className="twitter-buttons">

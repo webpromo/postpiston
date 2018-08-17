@@ -52,14 +52,18 @@ const DIFF_1= "DIFF_1"
 const DIFF_2= "DIFF_2"
 const DIFF_3= "DIFF_3"
 const GET_PICS_FULFILLED = "GET_PICS_FULFILLED"
+const GET_PICS2_FULFILLED = "GET_PICS2_FULFILLED"
 const GET_PICS = "GET_PICS"
-  
+const GET_PICS2 = "GET_PICS2"
+const GET_PICS3 = "GET_PICS3"
+
+
 
 export default function reducer(state=initialState, action){
-    switch(action.type){
-      // case UPDATE_USER_DATA:  // Auth0
-      //   return Object.assign({}, state, { user: action.payload }); // for Auth0?
-
+  switch(action.type){
+    // case UPDATE_USER_DATA:  // Auth0
+    //   return Object.assign({}, state, { user: action.payload }); // for Auth0?
+        
       case UPDATE_ARTICLE:
         return Object.assign({},state,{article:action.payload});
 
@@ -131,12 +135,8 @@ export default function reducer(state=initialState, action){
         }); 
 
       case LOAD_PICK:
-        console.log("Pick-a-pic was triggered",action)
         return Object.assign({},state,{loadPick:action.payload}); 
-  
-      case GET_PICS_FULFILLED:
-       return Object.assign({}, state, {picArr1: action.payload.data})
-  
+
       case SAVE_PIC1:
        return Object.assign({}, state, {pic1: action.payload})
   
@@ -160,15 +160,15 @@ export default function reducer(state=initialState, action){
           loadArchive:"yes"
       });
 
+      case GET_PICS_FULFILLED:
+        return Object.assign({}, state, {picArr1: action.payload.data})
+    
+      case GET_PICS2_FULFILLED:
+        return Object.assign({}, state, {picArr2: action.payload.data})
+
       default: return state;
     }
-}
 
-export function load_set(post){
-    return {
-      type: LOAD_SET,
-      payload: post
-    }
 }
 
 export function get_pics(keyword){
@@ -180,6 +180,37 @@ export function get_pics(keyword){
   return {
     type: GET_PICS,
     payload: promise
+  }
+}
+
+export function get_pics2(keyword){
+  let promise = axios.get('/api/pics/'+keyword)
+  promise.then(res => {  
+      let returnMe = res.data.data;
+      return returnMe;
+  })
+  return {
+    type: GET_PICS2,
+    payload: promise
+  }
+}
+
+export function get_pics3(keyword){
+  let promise = axios.get('/api/pics/'+keyword)
+  promise.then(res => {  
+      let returnMe = res.data.data;
+      return returnMe;
+  })
+  return {
+    type: GET_PICS3,
+    payload: promise
+  }
+}
+
+export function load_set(post){
+  return {
+    type: LOAD_SET,
+    payload: post
   }
 }
 
@@ -258,7 +289,7 @@ export function save_pics1(pics1){
 }
 
 export function save_pics2(pics2){
-  // console.log("save_text2 Action Creator receives : ",pics2)
+  console.log("save_text2 Action Creator receives : ",pics2)
   return {
     type: SAVE_PICS2,
     payload: pics2
@@ -266,7 +297,7 @@ export function save_pics2(pics2){
 }
 
 export function save_pics3(pics3){
-  // console.log("save_text3 Action Creator receives : ",pics3)
+  console.log("save_text3 Action Creator receives : ",pics3)
   return {
     type: SAVE_PICS3,
     payload: pics3
@@ -282,7 +313,7 @@ export function sorted_1(sorted1){
 }
 
 export function sorted_2(sorted2){
-  // console.log("sorted_2 Action Creator receives : ",sorted2)
+  console.log("sorted_2 Action Creator receives : ",sorted2)
   return {
     type: SORTED_2,
     payload: sorted2
@@ -290,7 +321,7 @@ export function sorted_2(sorted2){
 }
 
 export function sorted_3(sorted3){
-  // console.log("sorted_3 Action Creator receives : ",sorted3)
+  console.log("sorted_3 Action Creator receives : ",sorted3)
   return {
     type: SORTED_3,
     payload: sorted3
@@ -314,7 +345,7 @@ export function similar_2(similar2){
 }
 
 export function similar_3(similar3){
-  // console.log("similar_3 Action Creator receives : ",similar3)
+  console.log("similar_3 Action Creator receives : ",similar3)
   return {
     type: SIMILAR_3,
     payload: similar3

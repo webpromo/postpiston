@@ -1,8 +1,7 @@
+
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
-import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
-// import axios from 'axios'; 
-
+import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
 
 
 class PickAPic extends Component  {
@@ -13,24 +12,24 @@ class PickAPic extends Component  {
              // https://www.bootcamps.in/wp-content/uploads/2015/05/bootcampsin.png",
             photo2:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
             photo3:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
-            PEXELS: "563492ad6f9170000100000145e3ffa0294445cd9fbce4be1b757988",
             similar1:0,
             similar2:0,
             similar3:0,
             diff1:0,
             diff2:0,
             diff3:0,
-            photoSet1: [],
             keyword1: "",
             keyword2: "",
             keyword3: ""
 
         }
         this.getSimilar1 = this.getSimilar1.bind(this);
+        this.getSimilar2= this.getSimilar2.bind(this);
+        this.getSimilar3 = this.getSimilar3.bind(this);
         this.getDiff1 = this.getDiff1.bind(this);
+        this.getDiff2 = this.getDiff2.bind(this);
+        this.getDiff3 = this.getDiff3.bind(this);
     }
-
-
 
     getSimilar1(){
         // increments SIMILAR counter
@@ -64,38 +63,126 @@ class PickAPic extends Component  {
         console.log("Saved pic1: ",this.props.reducer2.pic1)
     }
 
+
+    getSimilar2(){
+        // increments SIMILAR counter
+        let loopy = (this.state.similar2+1) % 10;
+        this.setState({
+            similar2:loopy
+        })
+    }
+
+    getDiff2(){
+        // increments DIFF counter
+        let loopy = (this.state.diff2+1) % 10;
+        this.setState({
+            diff2:loopy
+        })
+     const newKeyword2 = this.props.reducer2.sorted2[loopy];
+     console.log("NewKeyword = ",newKeyword2)
+     this.props.get_pics2(newKeyword2);
+     this.setState({
+         keyword2:newKeyword2,
+    
+     })
+    }
+
+    saveTweet2(){
+        // get current photo
+       let image2url = this.props.reducer2.picArr2.length > 0 ? 
+        this.props.reducer2.picArr2[this.state.similar2].src.medium : this.state.photo2
+        // save image to Redux store
+        this.props.save_pic2(image2url);
+    }
+
+    getSimilar3(){
+        // increments SIMILAR counter
+        let loopy = (this.state.similar3+1) % 10;
+        this.setState({
+            similar3:loopy
+        })
+    }
+
+    getDiff3(){
+        // increments DIFF counter
+        let loopy = (this.state.diff3+1) % 10;
+        this.setState({
+            diff3:loopy
+        })
+     const newKeyword3 = this.props.reducer2.sorted3[loopy];
+     console.log("NewKeyword 3 = ",newKeyword3)
+     this.props.get_pics3(newKeyword3);
+     this.setState({
+         keyword3:newKeyword3,
+    
+     })
+    }
+
+    saveTweet3(){
+        // get current photo
+       let image3url = this.props.reducer2.picArr3.length > 0 ? 
+        this.props.reducer2.picArr3[this.state.similar3].src.medium : this.state.photo3
+        // save image to Redux store
+        this.props.save_pic3(image3url);
+        console.log("Saved pic3: ",this.props.reducer2.pic3)
+    }
+
     render () {
 
     return(
-        // if(this.props.reducer2.picArr1[0])
 
-      <section className="picture-section">
-            <h1>Pick a Pic</h1><br />
+      <section className="fb-section">
+        <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+            Pick Some Pics</h1>
+        </div>
             <div className="row-of-divs">
 
                 <div className="help-text">
-                    <h3>Directions</h3>You can use the photos picked for you, find similar ones, try something different, OR, use a link you like. Remember to be sure to only use images to which you have a right to use.
+                    <h3>Directions:</h3>You can use the photos picked for you, find similar ones, try something different, OR, use a link you like. Remember to be sure to only use images to which you have a right to use.
                 </div>
-
+    {/* FIRST PIC */}
                 <div className="twitter-buttons">
-                    <img src={this.props.reducer2.picArr1.length > 0 ? 
+                    <div className="twit-pic">
+                        <img src={this.props.reducer2.picArr1.length > 0 ? 
                         this.props.reducer2.picArr1[this.state.similar1].src.medium : this.props.reducer2.pic1} 
-                    width="200" alt="credit photog"/><br />
-                    <input defaultValue="(your image link)" /><button onClick={() => this.saveTweet1()}>Use</button><br />
-                    <button onClick={() => this.getSimilar1()}>Same theme</button><br />
+                        width="200" alt="credit photog"/>
+                    </div>
+                    {/* Theme1 */}
+                    <div class="keyword">
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword1}
+                    </div>
+                    <button onClick={() => this.saveTweet1()}>Use</button>
+                    <button onClick={() => this.getSimilar1()}>Same theme</button>
                     <button onClick={() => this.getDiff1(1)}>Diff. theme</button>
                 </div>
-
+    {/* SECOND PIC */}
                 <div className="twitter-buttons">
-                <img src={this.state.photo2} alt="pic2" /><br />
-                    <input defaultValue="(your image link)" /><button>Use</button><br />
-                    <button>Get similar</button><button>Get diff.</button>
+                    <div className="twit-pic">
+                        <img src={this.props.reducer2.picArr2.length > 0 ? 
+                        this.props.reducer2.picArr2[this.state.similar2].src.medium : this.props.reducer2.pic2} 
+                        width="200" alt="credit photog"/>
+                    </div>
+                    {/* Theme2 */}
+                    <div class="keyword">
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword2}
+                    </div>
+                    {/* Theme 2 buttons */}
+                    <button onClick={() => this.saveTweet2()}>Use</button>
+                    <button onClick={() => this.getSimilar2()}>Same theme</button>
+                    <button onClick={() => this.getDiff2(1)}>Diff. theme</button>
                 </div>
-
+    {/* THIRD PIC */}
                 <div className="twitter-buttons">
-                <img src={this.state.photo3} alt="pic3" /><br />
-                    <input defaultValue="(your image link)" /><button>Use</button><br />
-                    <button>Get similar</button><button>Get diff.</button>
+                    <div className="twit-pic">
+                        <img src={this.props.reducer2.picArr3.length > 0 ? 
+                        this.props.reducer2.picArr3[this.state.similar3].src.medium : this.props.reducer2.pic3} 
+                        width="200" alt="credit photog"/>
+                    </div>
+                    {/* Theme3 */}
+                    <div class="keyword"><span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword3}</div>
+                    <button onClick={() => this.saveTweet3()}>Use</button>
+                    <button onClick={() => this.getSimilar3()}>Same theme</button>
+                    <button onClick={() => this.getDiff3(1)}>Diff. theme</button>
                 </div>
                 <div className="fb-buttons">(spacer)</div>
             </div>
@@ -108,4 +195,4 @@ class PickAPic extends Component  {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,save_pic1,save_pic2,save_pic3})(PickAPic)
+  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3})(PickAPic)
