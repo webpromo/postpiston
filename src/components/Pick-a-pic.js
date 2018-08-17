@@ -34,6 +34,10 @@ class PickAPic extends Component  {
     getSimilar1(){
         // increments SIMILAR counter
         let loopy = (this.state.similar1+1) % 10;
+        // loop back to zero if not 10 photos
+        if (loopy > this.props.reducer2.picArr1.length) {
+            loopy = 0;
+        }
         this.setState({
             similar1:loopy
         })
@@ -42,6 +46,9 @@ class PickAPic extends Component  {
     getDiff1(){
         // increments DIFF counter
         let loopy = (this.state.diff1+1) % 10;
+        if (loopy > this.props.reducer2.sorted1.length) {
+            loopy = 0;
+        }
         this.setState({
             diff1:loopy
         })
@@ -49,8 +56,7 @@ class PickAPic extends Component  {
      console.log("NewKeyword = ",newKeyword)
      this.props.get_pics(newKeyword);
      this.setState({
-         keyword1:newKeyword,
-    
+         keyword1:newKeyword
      })
     }
 
@@ -60,13 +66,16 @@ class PickAPic extends Component  {
         this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1
         // save image to Redux store
         this.props.save_pic1(image1url);
-        console.log("Saved pic1: ",this.props.reducer2.pic1)
     }
-
 
     getSimilar2(){
         // increments SIMILAR counter
         let loopy = (this.state.similar2+1) % 10;
+
+        // loop back to zero if not 10 photos
+        if (loopy > this.props.reducer2.picArr2.length) {
+            loopy = 0;
+        }
         this.setState({
             similar2:loopy
         })
@@ -75,16 +84,18 @@ class PickAPic extends Component  {
     getDiff2(){
         // increments DIFF counter
         let loopy = (this.state.diff2+1) % 10;
+        if (loopy > this.props.reducer2.sorted2.length) {
+            loopy = 0;
+        }
         this.setState({
             diff2:loopy
         })
-     const newKeyword2 = this.props.reducer2.sorted2[loopy];
-     console.log("NewKeyword = ",newKeyword2)
-     this.props.get_pics2(newKeyword2);
-     this.setState({
-         keyword2:newKeyword2,
-    
-     })
+        const newKeyword2 = this.props.reducer2.sorted2[loopy];
+        console.log("NewKeyword2 = ",newKeyword2)
+        this.props.get_pics2(newKeyword2);
+        this.setState({
+            keyword2:newKeyword2
+        })
     }
 
     saveTweet2(){
@@ -98,6 +109,11 @@ class PickAPic extends Component  {
     getSimilar3(){
         // increments SIMILAR counter
         let loopy = (this.state.similar3+1) % 10;
+            
+        // loop back to zero if not 10 photos
+            if (loopy > this.props.reducer2.picArr3.length) {
+                loopy = 0;
+            }
         this.setState({
             similar3:loopy
         })
@@ -106,15 +122,17 @@ class PickAPic extends Component  {
     getDiff3(){
         // increments DIFF counter
         let loopy = (this.state.diff3+1) % 10;
+        if (loopy > this.props.reducer2.sorted3.length) {
+            loopy = 0;
+        }
         this.setState({
             diff3:loopy
         })
-     const newKeyword3 = this.props.reducer2.sorted3[loopy];
-     console.log("NewKeyword 3 = ",newKeyword3)
-     this.props.get_pics3(newKeyword3);
-     this.setState({
-         keyword3:newKeyword3,
-    
+        const newKeyword3 = this.props.reducer2.sorted3[loopy];
+        console.log("NewKeyword 3 = ",newKeyword3)
+        this.props.get_pics3(newKeyword3);
+        this.setState({
+            keyword3:newKeyword3
      })
     }
 
@@ -138,7 +156,9 @@ class PickAPic extends Component  {
             <div className="row-of-divs">
 
                 <div className="help-text">
-                    <h3>Directions:</h3>You can use the photos picked for you, find similar ones, try something different, OR, use a link you like. Remember to be sure to only use images to which you have a right to use.
+                    <h3>Directions:</h3>You can use the photos we find for you, find similar ones, try something different.
+
+                    These photos are provided by Pexels.com. Other free photo providers to be included soon.
                 </div>
     {/* FIRST PIC */}
                 <div className="twitter-buttons">
@@ -150,6 +170,7 @@ class PickAPic extends Component  {
                     {/* Theme1 */}
                     <div class="keyword">
                         <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword1}
+                       &nbsp; - ({this.props.reducer2.picArr1.length})
                     </div>
                     <button onClick={() => this.saveTweet1()}>Use</button>
                     <button onClick={() => this.getSimilar1()}>Same theme</button>
@@ -158,6 +179,7 @@ class PickAPic extends Component  {
     {/* SECOND PIC */}
                 <div className="twitter-buttons">
                     <div className="twit-pic">
+
                         <img src={this.props.reducer2.picArr2.length > 0 ? 
                         this.props.reducer2.picArr2[this.state.similar2].src.medium : this.props.reducer2.pic2} 
                         width="200" alt="credit photog"/>
@@ -165,6 +187,7 @@ class PickAPic extends Component  {
                     {/* Theme2 */}
                     <div class="keyword">
                         <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword2}
+                        &nbsp; - ({this.props.reducer2.picArr2.length})
                     </div>
                     {/* Theme 2 buttons */}
                     <button onClick={() => this.saveTweet2()}>Use</button>
@@ -179,7 +202,10 @@ class PickAPic extends Component  {
                         width="200" alt="credit photog"/>
                     </div>
                     {/* Theme3 */}
-                    <div class="keyword"><span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword3}</div>
+                    <div class="keyword">
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword3}
+                        &nbsp; - ({this.props.reducer2.picArr3.length})
+                    </div>
                     <button onClick={() => this.saveTweet3()}>Use</button>
                     <button onClick={() => this.getSimilar3()}>Same theme</button>
                     <button onClick={() => this.getDiff3(1)}>Diff. theme</button>

@@ -289,7 +289,7 @@ export function save_pics1(pics1){
 }
 
 export function save_pics2(pics2){
-  console.log("save_text2 Action Creator receives : ",pics2)
+  // console.log("save_text2 Action Creator receives : ",pics2)
   return {
     type: SAVE_PICS2,
     payload: pics2
@@ -297,7 +297,7 @@ export function save_pics2(pics2){
 }
 
 export function save_pics3(pics3){
-  console.log("save_text3 Action Creator receives : ",pics3)
+  // console.log("save_text3 Action Creator receives : ",pics3)
   return {
     type: SAVE_PICS3,
     payload: pics3

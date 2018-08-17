@@ -9,10 +9,6 @@ import './private.css';
 
 class Facebook2 extends Component {
 
-    componentDidMount() {
-
-      }
-
     createPost(){
         const PostMe = {
             article:this.props.reducer2.article,
@@ -25,14 +21,12 @@ class Facebook2 extends Component {
 
         axios.post('/api/posts',PostMe) // works!  Saves to database
             .then( response => { 
-                console.log("RESPONSE = ",response.data[0])
                 this.props.article_info(response.data[0])
                 this.tweetMaker1(this.props.reducer2.article)
             })  
             .catch(function (error) {
                 console.log("Error: FB2 CreatePost: ",error);
         });
-     // console.log("Reducer2 = ",this.props.reducer2)
     }   
 
     tweetMaker1(article){
@@ -65,24 +59,24 @@ class Facebook2 extends Component {
         let firstSentences = "";
         let testResults2 = [];
         let count2 = 0;
-    // loop through the the sentences 
-    for (let i = 0; i<sentencesArr.length; i++) {
-        // if the tweet is already long enough, exit
-        if (firstSentences.length > 110) break;
-        // if it's the last sentence of a paragraph...
-        testResults2[i]= /\r|\n/.exec(sentencesArr[i]);
-        if (testResults2[i]) {
-            // then append the next sentence to firstSentences.
-            firstSentences+=sentencesArr[i+1];
-            count2++;
-        } 
-        if (count2>1) {break}
-    }
+        // loop through the the sentences 
+        for (let i = 0; i<sentencesArr.length; i++) {
+            // if the tweet is already long enough, exit
+            if (firstSentences.length > 110) break;
+            // if it's the last sentence of a paragraph...
+            testResults2[i]= /\r|\n/.exec(sentencesArr[i]);
+            if (testResults2[i]) {
+                // then append the next sentence to firstSentences.
+                firstSentences+=sentencesArr[i+1];
+                count2++;
+            } 
+            if (count2>1) {break}
+        }
     // chop it off if it's too long
-    if (firstSentences.length > 120) {
-        var trimmed = firstSentences.replace(/^(.{118}[^\s]*).*/, "$1"); 
-        firstSentences = trimmed+="...";
-    }
+        if (firstSentences.length > 120) {
+            var trimmed = firstSentences.replace(/^(.{118}[^\s]*).*/, "$1"); 
+            firstSentences = trimmed+="...";
+         }
         this.props.save_text2(firstSentences);
 
 
@@ -115,7 +109,7 @@ class Facebook2 extends Component {
     }
 
     render() {
-        // console.log("Props: ",this.props)
+        
     return (
        <section className="fb-section">
 

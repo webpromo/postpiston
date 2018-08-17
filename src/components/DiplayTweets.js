@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,get_pics} from '../ducks/reducer';
+import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3} from '../ducks/reducer';
 import axios from 'axios';
 
 import './private.css';
@@ -39,7 +39,7 @@ class DisplayTweets extends Component {
       crunchData(){  // WORKING!  8/9 at 4:10pm
 
         // sort the words in text1 by length
-        const text1Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text1); // works as of 8/9 at 10:22am
+        const text1Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text1); 
         // and save to props
         this.props.sorted_1(text1Sorted); 
     // sort the words in text2 by length
@@ -48,17 +48,34 @@ class DisplayTweets extends Component {
         this.props.sorted_2(text2Sorted); 
     // sort the words in text1 by length
         const text3Sorted = grabAndProcessALLthoseWords(this.props.reducer2.text3);
+
         // and save to props
         this.props.sorted_3(text3Sorted); 
       }
 
     fetchPics(){
+        // PIC 1
         // figure which keyword to search for
-        let keyword = this.props.reducer2.sorted1[0];
-        let firstSetOfPics = this.props.get_pics(keyword);
+            let keyword = this.props.reducer2.sorted1[0];
+            let firstSetOfPics = this.props.get_pics(keyword);
         // update Redux props
-        this.props.save_pics1(firstSetOfPics);
-      }
+            this.props.save_pics1(firstSetOfPics);
+
+        // PIC 2
+        // figure which keyword to search for
+            let keyword2 = this.props.reducer2.sorted2[0];
+            let firstSetOfPics2 = this.props.get_pics2(keyword2);
+        // update Redux props
+            this.props.save_pics2(firstSetOfPics2);
+
+        // PIC 3
+        // figure which keyword to search for
+            let keyword3 = this.props.reducer2.sorted3[0];
+            let firstSetOfPics3 = this.props.get_pics3(keyword3);
+        // update Redux props
+            this.props.save_pics3(firstSetOfPics3);
+
+        }
 
     saveTexts(){
         const SaveMe = {
@@ -88,7 +105,7 @@ class DisplayTweets extends Component {
     }   
 
     render() {
-        
+
     return (
       <section className="fb-section">
         <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
@@ -127,4 +144,4 @@ class DisplayTweets extends Component {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1,get_pics})(DisplayTweets)
+  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3})(DisplayTweets)
