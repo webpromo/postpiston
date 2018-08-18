@@ -111,9 +111,9 @@ class Facebook2 extends Component {
     render() {
         
     return (
-       <section className="fb-section">
+       <section className="fb-section" style={{PaddingBottom:'80px'}}>
 
-           <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'20px'}}>Paste your Press Release or Article</h1></div><br clear='all'/>
+        <div className="banner" style={{marginBottom:'40px',paddingBottom:'11px'}}><h1 style={{marginTop:'10px', marginLeft:'20px'}}>Paste your Press Release or Article</h1></div><br clear='all'/>
             <div className="row-of-divs">
                 <div className="help-text">
                     <h3><strong>Directions:</strong></h3>

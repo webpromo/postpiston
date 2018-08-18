@@ -20,36 +20,70 @@ class Preview extends Component  {
             fblink:this.props.reducer2.fblink,
             id:this.props.reducer2.id
         };
-        
-        const emailAddress = "trigger@applet.ifttt.com"; 
-        const tweetSubject=SaveMe.pic1;
-        const tweetText=SaveMe.text1+" - "+SaveMe.fblink;
-        const attachment = SaveMe.pic1;
-          
+         
         // save SaveMe to the database
-        axios.put('/api/puts',SaveMe)
-        .then( response => { 
-
-             // post to Twitter
-             axios.post('/api/email',{emailAddress,tweetSubject,tweetText,attachment}) //
-             .then( response => { 
-                console.log("Successfully sent to post via email ",response.data);
-             }) 
-             .catch(function (error) {
-                 console.log("Error: DisplayTweets.js Post to Twitter: ",error);
-             });
+        axios.put('/api/puts',SaveMe).then( response => { 
+            // do something?
         }) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
- }
 
+        // prep to send tweets
+                
+        const emailAddress = "trigger@applet.ifttt.com"; 
+
+        const tweetSubject=SaveMe.pic1;
+        const tweetText=SaveMe.text1+" - "+SaveMe.fblink;
+        const attachment = SaveMe.pic1;
+
+        const tweetSubject2=SaveMe.pic2;
+        const tweetText2=SaveMe.text2+" - "+SaveMe.fblink;
+        const attachment2 = SaveMe.pic2;
+ 
+        const tweetSubject3=SaveMe.pic3;
+        const tweetText3=SaveMe.text3+" - "+SaveMe.fblink;
+        const attachment3 = SaveMe.pic3;
+ 
+
+                // post1 to Twitter
+                     axios.post('/api/email',{emailAddress,tweetSubject,tweetText,attachment}) //
+                     .then( response => { 
+
+
+                // post2 to Twitter
+                axios.post('/api/email',{emailAddress,tweetSubject2,tweetText2,attachment2}) //
+                .then( response => { 
+
+
+                // post3 to Twitter
+                axios.post('/api/email',{emailAddress,tweetSubject3,tweetText3,attachment3}) //
+                .then( response => { 
+                   console.log("Successfully sent to post3 via email ",response.data);
+                }) 
+                .catch(function (error) {
+                    console.log("Error: DisplayTweets.js Post3 to Twitter: ",error);
+                });
+
+
+                }) 
+                .catch(function (error) {
+                    console.log("Error: DisplayTweets.js Post2 to Twitter: ",error);
+                });
+
+
+                     }) 
+                     .catch(function (error) {
+                         console.log("Error: DisplayTweets.js Post1 to Twitter: ",error);
+                     });
+
+    }
 
   render(){
 
     return (
-      <section className="fb-section">
-                 <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+      <section className="fb-section" style={{paddingBottom:'60px'}}>
+        <div className="banner" style={{marginBottom:'40px',paddingBottom:'11px'}}><h1 style={{marginTop:'10px', marginLeft:'20px'}}>
             Preview &amp; Post</h1>
         </div>
             <div className="row-of-divs">
@@ -59,22 +93,33 @@ class Preview extends Component  {
                 </div>
 
                 <div className="twitter-buttons">
-                    <img src={this.props.reducer2.pic1} alt="pic1" width="200"/><br />
-                   {this.props.reducer2.text1}
+                    <div className="twit-pic">
+                        <img src={this.props.reducer2.pic1} alt="pic1" width="200"/>
+                    </div>
+                    <div className="keyword">{this.props.reducer2.text1}</div> 
                 </div>
 
                 <div className="twitter-buttons">
-                <img src={this.props.reducer2.pic2} alt="pic2" width="200"/><br />
-                {this.props.reducer2.text2}<br />
-                    <button onClick={() => this.saveThenPost()}>Post</button>
+                    <div className="twit-pic">
+                        <img src={this.props.reducer2.pic2} alt="pic2" width="200"/>
+                    </div>
+                    <div className="keyword">
+                        {this.props.reducer2.text2}
+                    </div> 
                 </div>
 
                 <div className="twitter-buttons">
-                <img src={this.props.reducer2.pic3} alt="pic3" width="200"/><br />
-                {this.props.reducer2.text3}
+                    <div className="twit-pic">
+                        <img src={this.props.reducer2.pic3} alt="pic3" width="200"/>
+                    </div>
+                <div className="keyword">{this.props.reducer2.text3}</div> 
                 </div>
-                <div className="fb-buttons">(spacer)</div>
+                <div className="fb-buttons" > &nbsp; </div>
             </div>
+            <div style={{alignSelf:'center',marginTop:'20px'}}>
+                <button onClick={() => this.saveThenPost()}>Post</button>
+            </div>
+                    
       </section>
     )
 }}

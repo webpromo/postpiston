@@ -108,7 +108,7 @@ class DisplayTweets extends Component {
 
     return (
       <section className="fb-section">
-        <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+        <div className="banner" style={{marginBottom:'40px',paddingBottom:'11px'}}><h1 style={{marginTop:'10px', marginLeft:'20px'}}>
             Produce your Twitter Posts</h1>
         </div>
         <br clear='all'/>

@@ -1,7 +1,7 @@
 
 
 .main {
-    background-image:url('../images/power-twitter-business.jpg')
+    background-color:black;
 }
 
 .fb-section {
@@ -10,11 +10,14 @@
     flex-direction:column;
     min-height:50vh;
     clear:auto;
+    margin-bottom:20px;
 }
 
 .banner {
   width:100%;
-  background-color:black;
+  background-image:url('../images/power-twitter-business.jpg');
+  border-top:1px solid #333;
+  border-bottom:1px solid #333;
 }
 
 .row-of-divs {
@@ -28,7 +31,7 @@
 
 .help-text {
     width:20%;
-    background-color:#7A787A;
+    background-color:#AFADAF;
     padding:20px;
     font-size:14pt;
     padding-left:30px;
@@ -42,6 +45,7 @@ h3 {
 textarea {
     width:100%;
     font-size:14pt;
+    padding:12px;
 }
 
 .fb-buttons {
@@ -57,34 +61,34 @@ textarea {
 
 
 .tweet-textDiv {
-    width:210px;
+    width:206px;
     height:275px;
     background-color:white;
     margin:0px 5px;
-    padding:3px;
+    padding:4px;
     font-size:14pt;
-
 }
 
 .twitter-buttons {
     display:flex;
     flex-direction: column;
     align-items: center;
-    width:200px;
+    width:210px;
     justify-content: flex-start;
-    /* align-content:center; */
+    overflow:hidden;
 }
 
 .twit-pic {
     height:200px;
-    
+    overflow:hidden;
 }
 
 .keyword {
-    width:100%;
-    background-color:#7A787A;
+    width:98%;
+    background-color:#AFADAF;
+    padding:12px;
 }
 
-.preview-section {
+.final-button {
 
 }

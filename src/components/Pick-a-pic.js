@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
-import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
+import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
 
 
 class PickAPic extends Component  {
@@ -41,8 +41,9 @@ class PickAPic extends Component  {
         this.setState({
             similar1:loopy
         })
+        console.log("Sim1 ",this.state.similar1)
     }
-
+    
     getDiff1(){
         // increments DIFF counter
         let loopy = (this.state.diff1+1) % 10;
@@ -52,26 +53,28 @@ class PickAPic extends Component  {
         this.setState({
             diff1:loopy
         })
-     const newKeyword = this.props.reducer2.sorted1[loopy];
-     console.log("NewKeyword = ",newKeyword)
-     this.props.get_pics(newKeyword);
-     this.setState({
-         keyword1:newKeyword
-     })
+        console.log("Diff1 ",this.state.diff1)
+        const newKeyword = this.props.reducer2.sorted1[loopy];
+        console.log("NewKeyword = ",newKeyword)
+        this.props.get_pics(newKeyword);
+        this.setState({
+            keyword1:newKeyword
+        })
     }
-
+    
     saveTweet1(){
         // get current photo
-       let image1url = this.props.reducer2.picArr1.length > 0 ? 
+        let image1url = this.props.reducer2.picArr1.length > 0 ? 
         this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1
         // save image to Redux store
         this.props.save_pic1(image1url);
     }
-
+    
     getSimilar2(){
         // increments SIMILAR counter
+        console.log("picArr1.len ",this.props.reducer2.picArr2.length)
         let loopy = (this.state.similar2+1) % 10;
-
+        
         // loop back to zero if not 10 photos
         if (loopy > this.props.reducer2.picArr2.length) {
             loopy = 0;
@@ -150,7 +153,7 @@ class PickAPic extends Component  {
     return(
 
       <section className="fb-section">
-        <div className="banner"><h1 style={{marginTop:'10px', marginLeft:'10px'}}>
+        <div className="banner" style={{marginBottom:'40px',paddingBottom:'11px'}}><h1 style={{marginTop:'10px', marginLeft:'20px'}}>
             Pick Some Pics</h1>
         </div>
             <div className="row-of-divs">
@@ -179,7 +182,7 @@ class PickAPic extends Component  {
     {/* SECOND PIC */}
                 <div className="twitter-buttons">
                     <div className="twit-pic">
-
+console.log("")
                         <img src={this.props.reducer2.picArr2.length > 0 ? 
                         this.props.reducer2.picArr2[this.state.similar2].src.medium : this.props.reducer2.pic2} 
                         width="200" alt="credit photog"/>
@@ -210,7 +213,7 @@ class PickAPic extends Component  {
                     <button onClick={() => this.getSimilar3()}>Same theme</button>
                     <button onClick={() => this.getDiff3(1)}>Diff. theme</button>
                 </div>
-                <div className="fb-buttons">(spacer)</div>
+                <div className="fb-buttons">&nbsp;</div>
             </div>
       </section>
          ) }
@@ -221,4 +224,4 @@ class PickAPic extends Component  {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3})(PickAPic)
+  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3})(PickAPic)
