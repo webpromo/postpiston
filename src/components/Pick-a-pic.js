@@ -18,9 +18,9 @@ class PickAPic extends Component  {
             diff1:0,
             diff2:0,
             diff3:0,
-            keyword1: "",
-            keyword2: "",
-            keyword3: ""
+            keyword1: "(None yet)",
+            keyword2: "(None yet)",
+            keyword3: "(None yet)"
 
         }
         this.getSimilar1 = this.getSimilar1.bind(this);
@@ -41,7 +41,6 @@ class PickAPic extends Component  {
         this.setState({
             similar1:loopy
         })
-        console.log("Sim1 ",this.state.similar1)
     }
     
     getDiff1(){
@@ -72,8 +71,8 @@ class PickAPic extends Component  {
     
     getSimilar2(){
         // increments SIMILAR counter
-        console.log("picArr1.len ",this.props.reducer2.picArr2.length)
         let loopy = (this.state.similar2+1) % 10;
+        console.log("loopy ",loopy)
         
         // loop back to zero if not 10 photos
         if (loopy > this.props.reducer2.picArr2.length) {
@@ -83,7 +82,7 @@ class PickAPic extends Component  {
             similar2:loopy
         })
     }
-
+    
     getDiff2(){
         // increments DIFF counter
         let loopy = (this.state.diff2+1) % 10;
@@ -100,28 +99,28 @@ class PickAPic extends Component  {
             keyword2:newKeyword2
         })
     }
-
+    
     saveTweet2(){
         // get current photo
-       let image2url = this.props.reducer2.picArr2.length > 0 ? 
+        let image2url = this.props.reducer2.picArr2.length > 0 ? 
         this.props.reducer2.picArr2[this.state.similar2].src.medium : this.state.photo2
         // save image to Redux store
         this.props.save_pic2(image2url);
     }
-
+    
     getSimilar3(){
         // increments SIMILAR counter
         let loopy = (this.state.similar3+1) % 10;
-            
+        
         // loop back to zero if not 10 photos
-            if (loopy > this.props.reducer2.picArr3.length) {
-                loopy = 0;
-            }
+        if (loopy > this.props.reducer2.picArr3.length) {
+            loopy = 0;
+        }
         this.setState({
             similar3:loopy
         })
     }
-
+    
     getDiff3(){
         // increments DIFF counter
         let loopy = (this.state.diff3+1) % 10;
@@ -136,23 +135,23 @@ class PickAPic extends Component  {
         this.props.get_pics3(newKeyword3);
         this.setState({
             keyword3:newKeyword3
-     })
+        })
     }
-
+    
     saveTweet3(){
         // get current photo
-       let image3url = this.props.reducer2.picArr3.length > 0 ? 
+        let image3url = this.props.reducer2.picArr3.length > 0 ? 
         this.props.reducer2.picArr3[this.state.similar3].src.medium : this.state.photo3
         // save image to Redux store
         this.props.save_pic3(image3url);
         console.log("Saved pic3: ",this.props.reducer2.pic3)
     }
-
+    
     render () {
-
-    return(
-
-      <section className="fb-section">
+        
+        return(
+            
+            <section className="fb-section">
         <div className="banner" style={{marginBottom:'40px',paddingBottom:'11px'}}><h1 style={{marginTop:'10px', marginLeft:'20px'}}>
             Pick Some Pics</h1>
         </div>
@@ -171,8 +170,10 @@ class PickAPic extends Component  {
                         width="200" alt="credit photog"/>
                     </div>
                     {/* Theme1 */}
+                    {console.log("sorted[0]",this.props.reducer2.sorted)}
+                    {console.log("keyword1",this.state.keyword1)}
                     <div class="keyword">
-                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword1}
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.props.reducer2.sorted ? this.props.reducer2.sorted[0] : this.state.keyword1}
                        &nbsp; - ({this.props.reducer2.picArr1.length})
                     </div>
                     <button onClick={() => this.saveTweet1()}>Use</button>
@@ -182,8 +183,11 @@ class PickAPic extends Component  {
     {/* SECOND PIC */}
                 <div className="twitter-buttons">
                     <div className="twit-pic">
-console.log("")
-                        <img src={this.props.reducer2.picArr2.length > 0 ? 
+{console.log("picArr2.len ",this.props.reducer2.picArr2.length)}
+{console.log("Sim2 ",this.state.similar2)}
+{console.log("picArr2 ",this.props.reducer2.picArr2)}
+
+                        <img src={this.state.similar2 < this.props.reducer2.picArr2.length ? 
                         this.props.reducer2.picArr2[this.state.similar2].src.medium : this.props.reducer2.pic2} 
                         width="200" alt="credit photog"/>
                     </div>

@@ -50,8 +50,6 @@ class Facebook2 extends Component {
             } 
             // if adding the next sentence would exceed limit, quit looking.
             if (testLength > 119) break;
-
-            let pauseHere = 1;
         }
         this.props.save_text1(firstParagraph);
 

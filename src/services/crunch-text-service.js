@@ -21,7 +21,7 @@ function grabAndProcessALLthoseWords(oldText) {
     // de-dupe
          newTextWords=_.uniq(newTextWords);  // lodash rocks!
 
-         console.log(newTextWords);
+        //  console.log(newTextWords);
          
              // return the sorted word lists
         return newTextWords;

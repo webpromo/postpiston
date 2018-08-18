@@ -27,7 +27,6 @@ class Private extends Component {
 
   render() {
     let { user } = this.props; //auth0
-    let pizza = "pepperoni with sausage";
     return (
       <span>
         {!user ? ( // auth0 .username
@@ -52,7 +51,7 @@ class Private extends Component {
 
           </div>
         
-       )}   // auth0 
+       )}  
       </span>
     );
   }
