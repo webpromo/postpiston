@@ -108,11 +108,11 @@ app.get('/api/user-data', (req, res) => {
 });
 
 // get all posts
-app.get( '/api/posts',
+app.get('/api/posts',
  ( req, res, next ) => {
         console.log("session ",req.session.user)
         const dbInstance = req.app.get('db');
-        dbInstance.get_posts("github|2996722") //req.session.user.authid) AUTH0
+        dbInstance.get_posts(req.session.user.authid) //) AUTH0
           .then( posts => res.status(200).send( posts ) )
           .catch( err => {
             res.status(500).send({errorMessage: "Oops! Something went wrong. Our engineers have been informed!"});
