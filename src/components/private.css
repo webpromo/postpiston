@@ -59,13 +59,12 @@ textarea {
     width:100%;
 }
 
-
 .tweet-textDiv {
-    width:206px;
+    width:200px;
     height:275px;
     background-color:white;
     margin:0px 5px;
-    padding:4px;
+    padding:10px;
     font-size:14pt;
 }
 
@@ -73,22 +72,30 @@ textarea {
     display:flex;
     flex-direction: column;
     align-items: center;
-    width:210px;
+    width:222px;
     justify-content: flex-start;
     overflow:hidden;
+    height:100%;
 }
 
 .twit-pic {
     height:200px;
     overflow:hidden;
+    justify-content: flex-start;
 }
 
 .keyword {
-    width:98%;
+    width:200px;
     background-color:#AFADAF;
     padding:12px;
 }
 
-.final-button {
-
+.alignTop {
+    display:flex;
+    flex-direction: row;
+    align-content: space-between;
+    align-items: flex-start ;
+    width:222px;
+    justify-content: space-between;
+    width:1000px;
 }

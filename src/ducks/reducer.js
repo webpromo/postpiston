@@ -25,7 +25,11 @@ const initialState = {
       diff1: 0,
       diff2: 0,
       diff3: 0,
-      loadArchive: ""
+      loadArchive: "",
+      keyword1: "Default",
+      keyword2: "Default",
+      keyword3: "Default",
+      
 }
 const UPDATE_ARTICLE = "UPDATE_ARTICLE"
 const UPDATE_URL = "UPDATE_URL"
@@ -57,6 +61,9 @@ const GET_PICS3_FULFILLED = "GET_PICS3_FULFILLED"
 const GET_PICS = "GET_PICS"
 const GET_PICS2 = "GET_PICS2"
 const GET_PICS3 = "GET_PICS3"
+const KEYWORD1 = "KEYWORD1"
+const KEYWORD2 = "KEYWORD2"
+const KEYWORD3 = "KEYWORD3"
 
 
 
@@ -169,6 +176,15 @@ export default function reducer(state=initialState, action){
     
       case GET_PICS3_FULFILLED:
         return Object.assign({}, state, {picArr3: action.payload.data})
+    
+      case KEYWORD1:
+        return Object.assign({}, state, {keyword1: action.payload})
+    
+      case KEYWORD2:
+        return Object.assign({}, state, {keyword2: action.payload})
+    
+      case KEYWORD3:
+        return Object.assign({}, state, {keyword3: action.payload})
 
       default: return state;
     }
@@ -176,6 +192,7 @@ export default function reducer(state=initialState, action){
 }
 
 export function get_pics(keyword){
+  keyword1(keyword);
   let promise = axios.get('/api/pics/'+keyword)
   promise.then(res => {  
       let returnMe = res.data.data;
@@ -317,7 +334,6 @@ export function sorted_1(sorted1){
 }
 
 export function sorted_2(sorted2){
-  console.log("sorted_2 Action Creator receives : ",sorted2)
   return {
     type: SORTED_2,
     payload: sorted2
@@ -325,7 +341,6 @@ export function sorted_2(sorted2){
 }
 
 export function sorted_3(sorted3){
-  console.log("sorted_3 Action Creator receives : ",sorted3)
   return {
     type: SORTED_3,
     payload: sorted3
@@ -396,11 +411,31 @@ export function loadPick(e){
   }
 }
 
-
 export function update(e){
   // console.log("loadPick AC received : ",e)
   return {
     type: LOAD_PICK,
+    payload: e
+  }
+}
+
+export function keyword1(e){
+  return {
+    type: KEYWORD1,
+    payload: e
+  }
+}
+
+export function keyword2(e){
+  return {
+    type: KEYWORD2,
+    payload: e
+  }
+}
+
+export function keyword3(e){
+  return {
+    type: KEYWORD3,
     payload: e
   }
 }

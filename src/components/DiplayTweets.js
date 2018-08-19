@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3} from '../ducks/reducer';
+import {article_info,save_texts,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,keyword1,keyword2,keyword3} from '../ducks/reducer';
 import axios from 'axios';
 
 import './private.css';
@@ -58,6 +58,8 @@ class DisplayTweets extends Component {
         // figure which keyword to search for
             let keyword = this.props.reducer2.sorted1[0];
             let firstSetOfPics = this.props.get_pics(keyword);
+        // and save that keyword to props
+            this.props.keyword1(keyword)
         // update Redux props
             this.props.save_pics1(firstSetOfPics);
 
@@ -65,14 +67,18 @@ class DisplayTweets extends Component {
         // figure which keyword to search for
             let keyword2 = this.props.reducer2.sorted2[0];
             let firstSetOfPics2 = this.props.get_pics2(keyword2);
-        // update Redux props
+            // and save that keyword to props
+            this.props.keyword2(keyword2)
+                // update Redux props
             this.props.save_pics2(firstSetOfPics2);
 
         // PIC 3
         // figure which keyword to search for
             let keyword3 = this.props.reducer2.sorted3[0];
             let firstSetOfPics3 = this.props.get_pics3(keyword3);
-        // update Redux props
+             // and save that keyword to props
+             this.props.keyword3(keyword3)
+             // update Redux props
             this.props.save_pics3(firstSetOfPics3);
 
         }
@@ -124,9 +130,6 @@ class DisplayTweets extends Component {
                     <div name="text2" className="tweet-textDiv" contentEditable="true"  
                      onInput={e => this.updateText2(e.target.textContent)} 
                      spellCheck="true">{this.props.reducer2.text2}</div>
-                 {/* <textarea rows="20" className="tweet-text" default={this.props.reducer2.text2}   // WON'T UPDATE WHEN REDUX STATE DOES
-                    onChange={e => this.updateText2(e.target.value)} spellCheck="true" 
-                    placeholder='(Post your content above)'></textarea>*/}
                 </div> 
                 <div className="twitter-buttons">
                     <div name="text3" className="tweet-textDiv" contentEditable="true"  
@@ -144,4 +147,4 @@ class DisplayTweets extends Component {
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3})(DisplayTweets)
+  export default connect(mapStateToProps, {article_info, save_texts, sorted_1, sorted_2, sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,keyword1,keyword2,keyword3})(DisplayTweets)

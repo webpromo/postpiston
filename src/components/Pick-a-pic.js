@@ -1,17 +1,16 @@
 
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';  
-import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3} from '../ducks/reducer';
+import {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3,keyword1,keyword2,keyword3} from '../ducks/reducer';
 
 
 class PickAPic extends Component  {
     constructor() {
         super()
         this.state = {
-            photo1:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
-             // https://www.bootcamps.in/wp-content/uploads/2015/05/bootcampsin.png",
-            photo2:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
-            photo3:"https://www.getaprop.com/image/cache/catalog/OBSP-200x200.jpg",
+            photo1:"https://www.bootcamps.in/wp-content/uploads/2015/05/bootcampsin.png",
+            photo2:"https://www.bootcamps.in/wp-content/uploads/2015/05/bootcampsin.png",
+            photo3:"https://www.bootcamps.in/wp-content/uploads/2015/05/bootcampsin.png",
             similar1:0,
             similar2:0,
             similar3:0,
@@ -52,10 +51,9 @@ class PickAPic extends Component  {
         this.setState({
             diff1:loopy
         })
-        console.log("Diff1 ",this.state.diff1)
         const newKeyword = this.props.reducer2.sorted1[loopy];
-        console.log("NewKeyword = ",newKeyword)
         this.props.get_pics(newKeyword);
+        this.props.keyword1(newKeyword);
         this.setState({
             keyword1:newKeyword
         })
@@ -65,14 +63,15 @@ class PickAPic extends Component  {
         // get current photo
         let image1url = this.props.reducer2.picArr1.length > 0 ? 
         this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1
+        console.log("image1url",image1url)
         // save image to Redux store
         this.props.save_pic1(image1url);
+
     }
     
     getSimilar2(){
         // increments SIMILAR counter
         let loopy = (this.state.similar2+1) % 10;
-        console.log("loopy ",loopy)
         
         // loop back to zero if not 10 photos
         if (loopy > this.props.reducer2.picArr2.length) {
@@ -93,8 +92,8 @@ class PickAPic extends Component  {
             diff2:loopy
         })
         const newKeyword2 = this.props.reducer2.sorted2[loopy];
-        console.log("NewKeyword2 = ",newKeyword2)
         this.props.get_pics2(newKeyword2);
+        this.props.keyword2(newKeyword2);
         this.setState({
             keyword2:newKeyword2
         })
@@ -131,8 +130,8 @@ class PickAPic extends Component  {
             diff3:loopy
         })
         const newKeyword3 = this.props.reducer2.sorted3[loopy];
-        console.log("NewKeyword 3 = ",newKeyword3)
         this.props.get_pics3(newKeyword3);
+        this.props.keyword3(newKeyword3);
         this.setState({
             keyword3:newKeyword3
         })
@@ -163,18 +162,17 @@ class PickAPic extends Component  {
                     These photos are provided by Pexels.com. Other free photo providers to be included soon.
                 </div>
     {/* FIRST PIC */}
-                <div className="twitter-buttons">
+                <div className="twitter-buttons" style={{marginLeft:'10px'}}>
                     <div className="twit-pic">
                         <img src={this.props.reducer2.picArr1.length > 0 ? 
                         this.props.reducer2.picArr1[this.state.similar1].src.medium : this.props.reducer2.pic1} 
                         width="200" alt="credit photog"/>
                     </div>
+
                     {/* Theme1 */}
-                    {console.log("sorted[0]",this.props.reducer2.sorted)}
-                    {console.log("keyword1",this.state.keyword1)}
                     <div class="keyword">
-                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.props.reducer2.sorted ? this.props.reducer2.sorted[0] : this.state.keyword1}
-                       &nbsp; - ({this.props.reducer2.picArr1.length})
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.props.reducer2.keyword1}
+                       &nbsp; ({this.props.reducer2.picArr1.length})
                     </div>
                     <button onClick={() => this.saveTweet1()}>Use</button>
                     <button onClick={() => this.getSimilar1()}>Same theme</button>
@@ -183,18 +181,14 @@ class PickAPic extends Component  {
     {/* SECOND PIC */}
                 <div className="twitter-buttons">
                     <div className="twit-pic">
-{console.log("picArr2.len ",this.props.reducer2.picArr2.length)}
-{console.log("Sim2 ",this.state.similar2)}
-{console.log("picArr2 ",this.props.reducer2.picArr2)}
-
                         <img src={this.state.similar2 < this.props.reducer2.picArr2.length ? 
                         this.props.reducer2.picArr2[this.state.similar2].src.medium : this.props.reducer2.pic2} 
                         width="200" alt="credit photog"/>
                     </div>
                     {/* Theme2 */}
                     <div class="keyword">
-                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword2}
-                        &nbsp; - ({this.props.reducer2.picArr2.length})
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.props.reducer2.keyword2}
+                       &nbsp; ({this.props.reducer2.picArr2.length})
                     </div>
                     {/* Theme 2 buttons */}
                     <button onClick={() => this.saveTweet2()}>Use</button>
@@ -210,8 +204,8 @@ class PickAPic extends Component  {
                     </div>
                     {/* Theme3 */}
                     <div class="keyword">
-                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.state.keyword3}
-                        &nbsp; - ({this.props.reducer2.picArr3.length})
+                        <span style={{fontSize:'10pt'}}>Theme:</span> {this.props.reducer2.keyword3}
+                       &nbsp; ({this.props.reducer2.picArr3.length})
                     </div>
                     <button onClick={() => this.saveTweet3()}>Use</button>
                     <button onClick={() => this.getSimilar3()}>Same theme</button>
@@ -223,9 +217,7 @@ class PickAPic extends Component  {
          ) }
 }
 
-// export default PickAPic;
-
 function mapStateToProps( state ) {
     return state;
   }
-  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3})(PickAPic)
+  export default connect(mapStateToProps, {loadPick,sorted_1,sorted_2,sorted_3,save_pics1,save_pics2,save_pics3,get_pics,get_pics2,get_pics3,save_pic1,save_pic2,save_pic3,keyword1,keyword2,keyword3})(PickAPic)

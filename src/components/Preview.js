@@ -82,41 +82,45 @@ class Preview extends Component  {
   render(){
 
     return (
-      <section className="fb-section" style={{paddingBottom:'60px'}}>
+      <section className="fb-section" style={{paddingBottom:'90px',marginBottom:'90px'}}>
         <div className="banner" style={{marginBottom:'40px',paddingBottom:'11px'}}><h1 style={{marginTop:'10px', marginLeft:'20px'}}>
             Preview &amp; Post</h1>
         </div>
             <div className="row-of-divs">
-
                 <div className="help-text">
                     <h3>Directions:</h3>If you like the tweet previews,<br /> go ahead and click "Post". Otherwise, scroll back up and tweak (and Save) them until you do.
                 </div>
 
-                <div className="twitter-buttons">
-                    <div className="twit-pic">
-                        <img src={this.props.reducer2.pic1} alt="pic1" width="200"/>
+                <div className='alignTop'>
+                    <div className="twitter-buttons">
+                        <div className="twit-pic">
+                            <img src={this.props.reducer2.pic1} alt="pic1" width="200"/>
+                        </div>
+                        <div className="keyword">
+                            {this.props.reducer2.text1}
+                        </div> 
                     </div>
-                    <div className="keyword">{this.props.reducer2.text1}</div> 
-                </div>
 
-                <div className="twitter-buttons">
-                    <div className="twit-pic">
-                        <img src={this.props.reducer2.pic2} alt="pic2" width="200"/>
+                    <div className="twitter-buttons">
+                        <div className="twit-pic">
+                            <img src={this.props.reducer2.pic2} alt="pic2" width="200"/>
+                        </div>
+                        <div className="keyword">
+                            {this.props.reducer2.text2}
+                        </div> 
                     </div>
-                    <div className="keyword">
-                        {this.props.reducer2.text2}
-                    </div> 
-                </div>
 
-                <div className="twitter-buttons">
-                    <div className="twit-pic">
-                        <img src={this.props.reducer2.pic3} alt="pic3" width="200"/>
+                    <div className="twitter-buttons">
+                        <div className="twit-pic">
+                            <img src={this.props.reducer2.pic3} alt="pic3" width="200"/>
+                        </div>
+                    <div className="keyword">                   
+                        {this.props.reducer2.text3}</div> 
                     </div>
-                <div className="keyword">{this.props.reducer2.text3}</div> 
+                    <div className="fb-buttons" style={{width:'210px'}} > &nbsp; </div>
                 </div>
-                <div className="fb-buttons" > &nbsp; </div>
             </div>
-            <div style={{alignSelf:'center',marginTop:'20px'}}>
+            <div style={{alignSelf:'center',marginTop:'40px'}}>
                 <button onClick={() => this.saveThenPost()}>Post</button>
             </div>
                     
