@@ -17,7 +17,7 @@ export default class Login extends Component {
             <div className = "wrapper">
             <menu>
                 <div className="logo"><a href="/#/"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" height="100" /></a></div>
-                <div><h1 className="off-white">Best Twitter Marketing Software</h1></div>
+                <div><h1 className="off-white" style={{textShadow: '3px 2px #333'}} >Best Twitter Marketing Software</h1></div>
                 <div className="nav-buttons">
                     <div className="hvr-float-shadow"><a href="/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
                     <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank" rel="noopener noreferrer">About</a></div>
@@ -41,7 +41,7 @@ export default class Login extends Component {
              {/* "Twitter as a marketing tool" portion */}
             <section className="section-two">
                 <div>
-                  <h3 className="pt30 upper off-white">Three Fast Steps</h3>
+                  <h3 className="pt30 upper off-white" style={{textShadow: '3px 2px #333'}}>Three Fast Steps</h3>
                   <p className="off-white pt18">...to Use Twitter as a Marketing Tool with PostPiston </p>
                 </div>
                 <div className="wide900">
@@ -85,10 +85,10 @@ export default class Login extends Component {
 <p className="c999 p14 padtop8">PostPiston is the best way to use Twitter for Marketing because it quickly helps you both create <em>and</em> post multiple eye-popping social networking posts from your Facebook articles or press releases in just seconds!</p>
                 </div>
     <div>
-        <h3 className="pt14 off-white">PostPiston helps you by:</h3>
-        <ul  className="c999 p14" >
+        <h3 className="pt18 off-white">PostPiston helps you by:</h3>
+        <ul  className="c999 p16" >
         <li>Automatically creating three unique tweets you can tweak, if needed,</li>
-        <li>Quickly findind 3 related eye-popping photos to match,</li>
+        <li>Quickly finding 3 related eye-popping photos to match,</li>
         <li>Posting them to your company's Twitter account,
         linking back to your original article, and</li>
         <li>It allows you to save them for re-use at a later time.</li> 

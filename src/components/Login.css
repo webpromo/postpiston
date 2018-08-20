@@ -155,8 +155,13 @@ h3 {
     font-size:24pt;
 }
 .pt18 {
-    font-size:24pt;
+    font-size:18pt;
 }
+
+.pt16 {
+    font-size:16pt;
+}
+
 .pt14 {
     font-size:14pt;
 }

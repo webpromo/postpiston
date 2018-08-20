@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {get_pics} from '../ducks/reducer';
 import axios from 'axios';
 import './private.css';
+import swal from 'sweetalert'
 
 class Preview extends Component  {
 
@@ -28,7 +29,7 @@ class Preview extends Component  {
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
-
+        swal("Your 3 awesome tweets\nHave been saved and sent!");
         this.postEm(SaveMe)
 
     }
@@ -61,7 +62,7 @@ class Preview extends Component  {
         // post2 to Twitter
         tweetSubject = tweetSubject2;
         tweetText = tweetText2;
-        attachment = attachment2;
+        attachment = tweetSubject2;
         await axios.post('/api/email',{emailAddress,tweetSubject,tweetText,attachment})
             .catch(function (error) {
             console.log("Error: DisplayTweets.js Post2 to Twitter: ",error);
@@ -70,8 +71,8 @@ class Preview extends Component  {
         // // post3 to Twitter
         tweetSubject = tweetSubject3;
         tweetText = tweetText3;
-        attachment = attachment3;
-        await axios.post('/api/email',{emailAddress,tweetSubject3,tweetText3,attachment3}) 
+        attachment = tweetSubject3;
+        await axios.post('/api/email',{emailAddress,tweetSubject,tweetText,attachment}) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js Post3 to Twitter: ",error);
         });

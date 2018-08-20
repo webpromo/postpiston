@@ -166,9 +166,10 @@ app.get( '/api/pics/:keyword',
 app.post('/api/email', (req, res) => {
   const {emailAddress,tweetSubject,tweetText,attachment} = req.body 
 console.log("### ATTACHMENT ####",attachment)
-  if(attachment.indexOf(".jp")){let locale = attachment.indexOf(".jp")}
-  if(attachment.indexOf(".pn")){let locale = attachment.indexOf(".pn")}
-
+  let locale = "";
+  if(attachment.indexOf(".jp")){ locale = attachment.indexOf(".jp")}
+  if(attachment.indexOf(".pn")){ locale = attachment.indexOf(".pn")}
+  
   let coreURL = attachment.substring(0,locale+5)
   console.log("coreURL", coreURL)
   let rightEnd = coreURL.substring(33,locale+5)
