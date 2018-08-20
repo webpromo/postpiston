@@ -29,7 +29,6 @@ class Archive extends Component {
 
   useThisSet(post){
     this.props.load_set(post);
-    console.log("Updated")
   }
 
   deleteMe(id){
@@ -41,7 +40,6 @@ class Archive extends Component {
   }
 
 getEntries(){
-    console.log("GetEntries runs")
     let wholeList = this.state.postinfo.map((post) => {
         return (
         <div className='one-post' key={post.id}>
@@ -49,11 +47,16 @@ getEntries(){
               <Link to='../twitter-marketing'><button onClick={()=>this.useThisSet(post)}>Use</button></Link><br />
               <button onClick={()=>this.deleteMe(post.id)}>Delete</button>
              </div>
-            <div className="postArticle">{post.article}</div>
-            <div className="pics">
-              <img src={post.pic1} alt="Tweet 1" width="100" />
-              <img src={post.pic2} alt="Tweet 2"  width="100"/>  
-              <img src={post.pic3} alt="Tweet 3"  width="100" />
+            <div className="postArticle">1. {post.text1}<br />
+            2. {post.text2}<br />3. {post.text3}</div>
+            <div>
+              <div className='fblink'>{post.fblink}
+              </div>
+              <div className="pics">
+                <img src={post.pic1} alt="Tweet 1" width="100" />
+                <img src={post.pic2} alt="Tweet 2"  width="100"/>  
+                <img src={post.pic3} alt="Tweet 3"  width="100" />
+              </div>
             </div>
         </div>
         )

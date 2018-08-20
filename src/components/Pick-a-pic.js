@@ -62,8 +62,7 @@ class PickAPic extends Component  {
     saveTweet1(){
         // get current photo
         let image1url = this.props.reducer2.picArr1.length > 0 ? 
-        this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1
-        console.log("image1url",image1url)
+        this.props.reducer2.picArr1[this.state.similar1].src.medium : this.state.photo1;
         // save image to Redux store
         this.props.save_pic1(image1url);
 
@@ -143,7 +142,6 @@ class PickAPic extends Component  {
         this.props.reducer2.picArr3[this.state.similar3].src.medium : this.state.photo3
         // save image to Redux store
         this.props.save_pic3(image3url);
-        console.log("Saved pic3: ",this.props.reducer2.pic3)
     }
     
     render () {

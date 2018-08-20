@@ -12,7 +12,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin:12px 10px;
+    margin:18px 10px;
 
 }
 
@@ -22,8 +22,8 @@ body {
 
 .postArticle {
     width:760px;
-    background-color:#F3EBEA;
-    padding:5px;
+    background-color:#AFADAF;
+    padding:9px;
     margin-right:20px;
 }
 
@@ -35,3 +35,8 @@ body {
     justify-content: space-around
 }
 
+.fblink {
+    background-color:#AFADAF;
+    align-items:center;
+    padding:8px;
+}
