@@ -39,9 +39,9 @@ class Preview extends Component  {
                 
     const emailAddress = "trigger@applet.ifttt.com"; 
 
-    const tweetSubject=SaveMe.pic1;
-    const tweetText=SaveMe.text1+" - "+SaveMe.fblink;
-    const attachment = SaveMe.pic1;
+    let tweetSubject=SaveMe.pic1;
+    let tweetText=SaveMe.text1+" - "+SaveMe.fblink;
+    let attachment = SaveMe.pic1;
 
     const tweetSubject2=SaveMe.pic2;
     const tweetText2=SaveMe.text2+" - "+SaveMe.fblink;
@@ -59,12 +59,18 @@ class Preview extends Component  {
         });
 
         // post2 to Twitter
-        await axios.post('/api/email',{emailAddress,tweetSubject2,tweetText2,attachment2})
+        tweetSubject = tweetSubject2;
+        tweetText = tweetText2;
+        attachment = attachment2;
+        await axios.post('/api/email',{emailAddress,tweetSubject,tweetText,attachment})
             .catch(function (error) {
             console.log("Error: DisplayTweets.js Post2 to Twitter: ",error);
             });
 
-        // post3 to Twitter
+        // // post3 to Twitter
+        tweetSubject = tweetSubject3;
+        tweetText = tweetText3;
+        attachment = attachment3;
         await axios.post('/api/email',{emailAddress,tweetSubject3,tweetText3,attachment3}) 
         .catch(function (error) {
             console.log("Error: DisplayTweets.js Post3 to Twitter: ",error);
