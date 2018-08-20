@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{width:'1424px'}}>
         <HashRouter>
           <Switch>
             <Route path="/" component={Login} exact />

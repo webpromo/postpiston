@@ -41,7 +41,7 @@ export default class Login extends Component {
              {/* "Twitter as a marketing tool" portion */}
             <section className="section-two">
                 <div>
-                  <h3 className="pt30 upper off-white" style={{textShadow: '3px 2px #333'}}>Three Fast Steps</h3>
+                  <h3 className="pt30 upper off-white" style={{textShadow: '3px 3px #333'}}>Three Fast Steps</h3>
                   <p className="off-white pt18">...to Use Twitter as a Marketing Tool with PostPiston </p>
                 </div>
                 <div className="wide900">

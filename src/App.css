@@ -21,13 +21,18 @@ time, mark, audio, video {
 }
 
 body {
-  width:99vw;
+  width:100vw;
   font-family:Arial, Helvetica, sans-serif;
   height:calc(100%-20px);
 
 }
 
-
+.parentDiv {
+  display:flex;
+  flex-direction: row;
+  align-content: center;
+  width:'1624px';
+}
 /* h3 {margin-bottom:0px;} */
 
 h1 {
