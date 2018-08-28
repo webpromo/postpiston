@@ -5,8 +5,8 @@ require('dotenv').config();
 session = require('express-session');
 axios = require('axios');
 massive = require('massive');
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const sgMail = require('@sendgrid/mail');
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 require('dotenv').config();
 
@@ -92,7 +92,7 @@ app.get('/auth/callback', async (req, res) => {
     let createdUser = await db.create_user([name, sub]);
     // put on session
     req.session.user = createdUser[0];
-    console.log("user: ",req.session.user)
+    // console.log("user: ",req.session.user)
     res.redirect('/#/twitter-marketing');
   }
 //   res.status(200).send('hi')
@@ -110,7 +110,7 @@ app.get('/api/user-data', (req, res) => {
 // get all posts
 app.get('/api/posts',
  ( req, res, next ) => {
-        console.log("session ",req.session.user)
+        // console.log("session ",req.session.user)
         const dbInstance = req.app.get('db');
         dbInstance.get_posts(req.session.user.authid) //) AUTH0
           .then( posts => res.status(200).send( posts ) )
@@ -165,24 +165,22 @@ app.get( '/api/pics/:keyword',
 
 app.post('/api/email', (req, res) => {
   const {emailAddress,tweetSubject,tweetText,attachment} = req.body 
-console.log("### ATTACHMENT ####",attachment)
   let locale = "";
   if(attachment.indexOf(".jp")){ locale = attachment.indexOf(".jp")}
   if(attachment.indexOf(".pn")){ locale = attachment.indexOf(".pn")}
   
   let coreURL = attachment.substring(0,locale+5)
-  console.log("coreURL", coreURL)
+  // console.log("coreURL", coreURL)
   let rightEnd = coreURL.substring(33,locale+5)
   // console.log("rightEnd", rightEnd)
   let whereSlash = rightEnd.indexOf("/")
   let filename = rightEnd.substring(whereSlash+1);
-  console.log("filename", filename)
+  // console.log("filename", filename)
   // let picNum = rightEnd.substring(0,whereSlash)
   // console.log("picNum",picNum)
   // let path = "https://images.pexels.com/photos/"+picNum+"/";
   // console.log ("path",path)
   let content=encodeURIComponent(coreURL);
-  console.log("Base64",content)
 
   let arrayOfObjects = [
     {content:content,
@@ -200,17 +198,15 @@ console.log("### ATTACHMENT ####",attachment)
   // console.log("SendGrid email sent",msg)
 
   let transporter = nodemailer.createTransport({  // 
-      host:'mail.postpiston.com',
+      host:'mail.webpromo.us',
       port: 587,
       auth: {
-        user:'twitter@postpiston.com',
+        user:'top10traffic@webpromo.us',
         pass:process.env.PP_PASS
-          // user: process.env.USER_EMAIL, //sender email address
-          // pass:  //sender email password
       },
       tls: {rejectUnauthorized: false},
       debug:true
-  });
+  })
 
   let mailOptions = {
       from: `"PostPiston.com" <${process.env.USER_EMAIL}>`, // sender email address
