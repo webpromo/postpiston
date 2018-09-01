@@ -21,7 +21,7 @@ export default class Login extends Component {
                 <div className="nav-buttons">
                     <div className="hvr-float-shadow"><a href="/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
                     <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank" rel="noopener noreferrer">About</a></div>
-                    <div className="hvr-float-shadow"  onClick={() => this.login()}>Login!</div>
+                    <div className="hvr-float-shadow" id="login" onClick={() => this.login()}>Login!</div>
                     <div className="hvr-float-shadow"><a href="/#contact" title="The Best way to use Twitter for marketing and PR">Contact</a></div>
                 </div>
             </menu>

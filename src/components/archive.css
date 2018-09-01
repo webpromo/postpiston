@@ -1,5 +1,6 @@
 h1 {
     color:white;
+    text-shadow: 3px 2px #333;
 }
 
 body {
@@ -13,7 +14,6 @@ body {
     justify-content: space-between;
     align-items: center;
     margin:18px 10px;
-
 }
 
 .buttonColumn {
@@ -39,4 +39,26 @@ body {
     background-color:#AFADAF;
     align-items:center;
     padding:8px;
+}
+@media (max-width:1350px) {
+
+    wrapper {
+        width: 1200px;
+    }
+
+    body menu h1 {
+      width:calc(100% - 24);
+    }
+
+    .postArticle {
+        width:600px;
+    }
+    .one-post {
+        max-width: 1350px;
+    }
+    .buttonColumn {
+        max-width: 85px;
+        margin-left:20px;
+    }
+    
 }

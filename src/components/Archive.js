@@ -43,12 +43,15 @@ getEntries(){
     let wholeList = this.state.postinfo.map((post) => {
         return (
         <div className='one-post' key={post.id}>
+
             <div className="buttonColumn"> 
               <Link to='../twitter-marketing'><button onClick={()=>this.useThisSet(post)}>Use</button></Link><br />
               <button onClick={()=>this.deleteMe(post.id)}>Delete</button>
              </div>
+
             <div className="postArticle">1. {post.text1}<br />
             2. {post.text2}<br />3. {post.text3}</div>
+
             <div>
               <div className='fblink'>{post.fblink}
               </div>
@@ -58,6 +61,7 @@ getEntries(){
                 <img src={post.pic3} alt="Tweet 3"  width="100" />
               </div>
             </div>
+            
         </div>
         )
      })

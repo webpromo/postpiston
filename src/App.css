@@ -43,3 +43,9 @@ h1 {
   font-size:18pt;
 }
 
+@media (max-width:1350px) {
+  .parentDiv {
+    width:'1350px';
+  }
+}
+
