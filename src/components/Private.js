@@ -16,7 +16,6 @@ class Private extends Component {
     axios.get('/api/user-data').then(res => {
       // invoke action creator to update redux state
       this.props.updateUserData(res.data); 
-      console.log("Line 19 Private",res.data)
     });
   }
 

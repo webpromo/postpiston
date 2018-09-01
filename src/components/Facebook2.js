@@ -32,7 +32,7 @@ class Facebook2 extends Component {
     tweetMaker1(article){
         let sentencesArr = article.match(/\(?[A-Z][^.]+[.!?]\)?(\s+|$)/g);
     
-    // FOR TEXT1
+    // FOR TEXT3 - was originally for Text1
 
         let firstParagraph = "";
         let testParagraph = "";
@@ -51,9 +51,9 @@ class Facebook2 extends Component {
             // if adding the next sentence would exceed limit, quit looking.
             if (testLength > 119) break;
         }
-        this.props.save_text1(firstParagraph);
+        this.props.save_text3(firstParagraph);
 
-    // FOR TEXT 2
+    // FOR TEXT 1 -- was original for Text 2
         let firstSentences = "";
         let testResults2 = [];
         let count2 = 0;
@@ -75,11 +75,11 @@ class Facebook2 extends Component {
             var trimmed = firstSentences.replace(/^(.{118}[^\s]*).*/, "$1"); 
             firstSentences = trimmed+="...";
          }
-        this.props.save_text2(firstSentences);
+        this.props.save_text1(firstSentences);
 
 
 
-    // FOR TEXT 3
+    // FOR TEXT 2 (originally for 3)
         let lastSentences = "";
         let testResults3 = [];
         let count3 = 0;
@@ -103,7 +103,7 @@ class Facebook2 extends Component {
             newLast = trimmed+="...";
         }
     // update Redux state
-        this.props.save_text3(newLast);
+        this.props.save_text2(newLast);
     }
 
     render() {
@@ -119,14 +119,14 @@ class Facebook2 extends Component {
                     <li>Then paste the URL to where you want visitors to go to read more.</li>
                     <li>Then click "Save".</li></ol>
                     </div>
-                <div><textarea cols="60" rows="15" 
+                <div><textarea id="paste" cols="60" rows="15" 
                     onChange={(e) => this.props.update_Article(e.target.value)} 
                        defaultValue={this.props.reducer2.article}/>
                 </div>
                 <div className="fb-buttons">
                     <input placeholder="Paste target URL here" onChange={(e) => this.props.update_URL(e.target.value)} 
                        defaultValue={this.props.reducer2.fblink}></input>
-                    <button onClick={() => this.createPost()}>Save</button>
+                    <button id="Save" onClick={() => this.createPost()}>Save</button>
                 </div>
             </div>
         </section>

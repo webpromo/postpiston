@@ -209,9 +209,9 @@ app.post('/api/email', (req, res) => {
   })
 
   let mailOptions = {
-      from: `"PostPiston.com" <${process.env.USER_EMAIL}>`, // sender email address
+      from: `"PostPiston" <${process.env.USER_EMAIL}>`, // sender email address
       to: emailAddress, //email address you want to send email to.
-      subject: "", //tweetSubject, // Subject line
+      subject: "", //tweetSubject, // Subject line is empty for TweetyMail
       text: tweetText //body of email.     
       // attachments: {
       //   filename:filename, 

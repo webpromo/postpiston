@@ -29,7 +29,7 @@ class Preview extends Component  {
         .catch(function (error) {
             console.log("Error: DisplayTweets.js CreatePost: ",error);
         });
-        swal("Your 3 awesome tweets\nHave been saved and sent!");
+        swal("Your three tweets have been sent.\nIF, and only if, TweetyMail.com is running\nyour tweets will show on @Top10Traffic.");
         this.postEm(SaveMe)
 
     }
@@ -78,7 +78,7 @@ class Preview extends Component  {
         .catch(function (error) {
             console.log("Error: DisplayTweets.js Post3 to Twitter: ",error);
         });
-        console.log("Email 2 sent")
+        console.log("Email 3 sent")
     }
 
   render(){
