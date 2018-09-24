@@ -115,7 +115,8 @@ class Facebook2 extends Component {
             <div className="row-of-divs">
                 <div className="help-text">
                     <h3><strong>Directions:</strong></h3>
-                    <ol><li>Just paste the text of your article in the field to the right. </li>
+                    Use a set from the Archive, OR...
+                    <ol><li>Paste the text of your article in the field to the right. </li>
                     <li>Then paste the URL to where you want visitors to go to read more.</li>
                     <li>Then click "Save".</li></ol>
                     </div>

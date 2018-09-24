@@ -1,16 +1,16 @@
 
 
 .main {
-    background-color:black;
+    background-color:#dfdfdf;
 }
 
 .fb-section {
     width:100%;
     display:flex;
     flex-direction:column;
-    min-height:50vh;
+    min-height:60vh;
     clear:auto;
-    margin-bottom:20px;
+    margin-bottom:80px;
 }
 
 .banner {
@@ -76,6 +76,10 @@ textarea {
     justify-content: flex-start;
     overflow:hidden;
     height:100%;
+}
+
+#shadow {
+    box-shadow: 3px 3px 7px #666;
 }
 
 .twit-pic {

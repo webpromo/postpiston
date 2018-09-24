@@ -121,17 +121,17 @@ class DisplayTweets extends Component {
             <div className="row-of-divs">
                 <div className="help-text"> 
                     <h3>Directions:</h3> Here are three automatically-generated tweets based on your content above. Our years of Social Media Marketing experience show us that simulteously posting three tweets will significantly increase viewer engagement. Feel free to tweak them and "Save" when you like them.</div>
-                <div className="twitter-buttons">
+                <div className="twitter-buttons" id="shadow">
                     <div name="text1" className="tweet-textDiv" contentEditable="true"  
                      onInput={e => this.updateText1(e.target.textContent)} 
                      spellCheck="true">{this.props.reducer2.text1}</div>
                 </div>
-                <div className="twitter-buttons">
+                <div className="twitter-buttons" id="shadow">
                     <div name="text2" className="tweet-textDiv" contentEditable="true"  
                      onInput={e => this.updateText2(e.target.textContent)} 
                      spellCheck="true">{this.props.reducer2.text2}</div>
                 </div> 
-                <div className="twitter-buttons">
+                <div className="twitter-buttons" id="shadow">
                     <div name="text3" className="tweet-textDiv" contentEditable="true"  
                         onInput={e => this.updateText3(e.target.textContent)} 
                         spellCheck="true">{this.props.reducer2.text3}</div>   
