@@ -63,7 +63,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { updateUserData }  // 
-)(Private);
+export default connect(mapStateToProps,{ updateUserData })(Private);
