@@ -16,8 +16,8 @@ export default class Login extends Component {
         return ( 
             <div className = "wrapper">
             <menu>
-                <div className="logo"><a href="/#/"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" height="100" /></a></div>
-                <div><h1 className="off-white" style={{textShadow: '3px 2px #333'}} >Best Twitter Marketing Software</h1></div>
+                <div className="logo"><a href="/#/"><img src={require("../images/power-of-twitter-for-business.png")} alt="Harness the power of Twitter for business!" className="logo-height" /></a></div>
+                <div><h1 className="topH1" style={{textShadow: '3px 2px #333'}} >Best Twitter Marketing Software</h1></div>
                 <div className="nav-buttons">
                     <div className="hvr-float-shadow"><a href="/#/" title="Harness the Power of Twitter for Business Marketing">Home</a></div>
                     <div className="hvr-float-shadow"><a href="https://www.linkedin.com/in/jessefisherwebdev/" title="Jesse Fisher, Salem, Utah" target="_blank" rel="noopener noreferrer">About</a></div>
@@ -29,9 +29,9 @@ export default class Login extends Component {
             {/* "Power of Twitter for Business" section */}
             <section className="section-one">
                 <div className="evenly">
-                    <div><img src={require("../images/the-best-way-to-use-twitter-for-marketing.png")} alt="PostPiston is the best way to use twitter for marketing" height="300" /></div>
+                    <div><img src={require("../images/the-best-way-to-use-twitter-for-marketing.png")} alt="PostPiston is the best way to use twitter for marketing" className="twitter-logo" /></div>
                     <div><img src={require("../images/best-twitter-marketing-software.png")} alt="PostPiston is the best twitter marketing software" height="400" /></div>
-                    <div><img src={require("../images/twitter-as-a-marketing-tool.jpg")} alt="We use Twitter as a marketing tool" height="300" /></div>
+                    <div><img src={require("../images/twitter-as-a-marketing-tool.jpg")} alt="We use Twitter as a marketing tool" className="twitter-logo" /></div>
                 </div>
                 <div className="c" style={{float:'right'}}>
                     <h1 style={{color:'#CA873F'}}>Quickly Harness the Power of Twitter for Business!</h1>
@@ -100,19 +100,20 @@ export default class Login extends Component {
             </section>
             <footer ref="contact">
                 <div className="flex-row">
-                    <div><h3 className="off-white">Our Contact Info</h3><br />
+
+                    <div className="foot"><h3 className="off-white">Our Contact Info</h3><br />
                     <span className="c999 padtop8">Jesse Fisher, Developer<br />NewSalem Web Services<br />
                     PO Box 176<br />Salem, Utah 84653<br /><br />(801) 423-6426<br />
                     PostPiston@NewSalemWeb.com</span>
                     </div>
 
-                        <div><h3 className="off-white">Our Other Services</h3><br />
+                    <div className="foot"><h3 className="off-white">Our Other Services</h3><br />
                     <span className="c999 padtop8">Website Development<br />SEO &amp; Website Marketing<br />
                     Social Media Marketing<br />
                     <a href="http://JesseFisherDomains.com/" title="Cheap domain names" className="c999">Cheap Domain Names &amp; Hosting</a></span>
                     </div>
 
-                    <div><h3 className="off-white">Special Thanks to:</h3><br />
+                    <div className="foot"><h3 className="off-white">Special Thanks to:</h3><br />
                     <span className="c999 padtop8">DevMountain staff, especially:<br />
                     &nbsp; Joe Blank &amp; Brack Carmony<br />
                     &nbsp; Tim Mathews, Nick Hathaway, &amp; Mira Jones<br />&nbsp; Megan Fisher<br />
